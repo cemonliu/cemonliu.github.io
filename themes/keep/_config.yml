@@ -152,10 +152,11 @@ comment:
   # Valine
   # See: https://github.com/xCss/Valine
   valine:
-    enable: false
-    appid:                # your leancloud application appid
-    appkey:               # your leancloud application appkey
-    placeholder:          # your placeholder
+    enable: true
+    appid: 7E3eTywAGKpp0RKGntSLvh6R-9Nh9j0Va   # your leancloud application appid
+    appkey: TkVVtjfDaBkxRJ35SSTcdllD           # your leancloud application appkey
+    meta: ["nick","mail"]
+    placeholder: 😜 尽情吐槽吧~       # your placeholder
 
   # Gitalk
   # See: https://github.com/gitalk/gitalk
