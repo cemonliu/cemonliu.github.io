@@ -3,8 +3,8 @@
 # ---------------------------------------------------------------------------------------
 base_info:
   title: Keep learning
-  author: Keep team
-  url: https://keep.xpoet.cn/
+  author: cemon_liu
+  url: https://blog.gooday.press/
 
 
 # ---------------------------------------------------------------------------------------
@@ -95,20 +95,20 @@ code_copy:
 # Table of Contents in the Sidebar
 # ---------------------------------------------------------------------------------------
 toc:
-  enable: false
+  enable: true
 
   # Automatically add list number to toc.
-  number: false
+  number: true
 
   # If true, all level of TOC in a post will be displayed, rather than the activated part of it.
-  expand_all: false
+  expand_all: true
 
 
 # ---------------------------------------------------------------------------------------
 # Post copyright info
 # ---------------------------------------------------------------------------------------
 copyright_info:
-  enable: false
+  enable: true
 
 
 # ---------------------------------------------------------------------------------------
@@ -129,10 +129,10 @@ website_count:
   # busuanzi
   # See: http://ibruce.info/2015/04/04/busuanzi/
   busuanzi_count:
-    enable: false
-    site_uv: false
-    site_pv: false
-    page_pv: false
+    enable: true
+    site_uv: true
+    site_pv: true
+    page_pv: true
 
 
 # ---------------------------------------------------------------------------------------
@@ -180,7 +180,7 @@ rss:
 # CDN
 # ---------------------------------------------------------------------------------------
 cdn:
-  enable: false
+  enable: true
 
 
 # ---------------------------------------------------------------------------------------
