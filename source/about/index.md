@@ -6,11 +6,10 @@ comment: true
 
 ## About me
 
-- 业余编程爱好
-
-- 运营公众号[ 轻松学习 ]
-
 - 2021年印象笔记官方大使
+- 运营公众号[ 轻松学习 ]
+- 业余编程爱好-Python
+- Excel 公式与VBA爱好者
 
 ## Contact me
 
