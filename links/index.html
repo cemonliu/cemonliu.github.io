@@ -195,10 +195,75 @@
 
         <div class="empty-page-content markdown-body">
             
-                <h1>links</h1>
+                <h4 id="欢迎留言互链"><a href="#欢迎留言互链" class="headerlink" title="欢迎留言互链"></a>欢迎留言互链</h4><p>备注格式如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">姓名</span></span><br><span class="line"><span class="attr">link:</span> <span class="string">互链网址</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">个人描述</span></span><br><span class="line"><span class="attr">avatar:</span> <span class="string">头像地址</span></span><br></pre></td></tr></table></figure>
+
+
+
+
             
         </div>
         <div class="empty-page-comments">
+            
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    
+        
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: '7E3eTywAGKpp0RKGntSLvh6R-9Nh9j0Va',
+                    appKey: 'TkVVtjfDaBkxRJ35SSTcdllD',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜 尽情吐槽吧~',
+                    lang: 'en'.toLowerCase()
+                });
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+
+                        let author = 'cemon_liu';
+                        if (author) {
+                            author = author.toLocaleLowerCase();
+                        }
+
+                        for (let vcard of vcards) {
+                            const vnick = vcard.querySelector('.vhead .vnick');
+                            if (vnick.innerHTML.toLocaleLowerCase() === author) {
+                                vcard.classList.add('author');
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+    
+</div>
+
             
         </div>
     </div>
