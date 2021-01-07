@@ -18,4 +18,5 @@ Email: Cemon_Liu@126.com
 
 Wechat: 关注公众号留言即可
 
-![](https://raw.githubusercontent.com/cemonliu/blogpic/main/qrcode_for_gh_e6dfcbef2e95_344.jpg)
+![](https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/qrcode_for_gh_e6dfcbef2e95_344.jpg)
+
