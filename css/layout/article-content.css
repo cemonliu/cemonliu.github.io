@@ -60,19 +60,19 @@ keep-mobile()
 keep-tablet()
 }
 .article-content-container .article-content {
-  margin-top: $component-interspace;
+  margin-top: $component-spacing-value;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--border-color);
   word-wrap: break-word;
   text-align: justify;
 }
 .article-content-container .post-copyright-info {
-  margin-top: $component-interspace;
+  margin-top: $component-spacing-value;
   width: 100%;
 }
 .article-content-container .article-nav {
   height: 40px;
-  margin-top: $component-interspace;
+  margin-top: $component-spacing-value;
 }
 .article-content-container .article-nav .article-prev,
 .article-content-container .article-nav .article-next {

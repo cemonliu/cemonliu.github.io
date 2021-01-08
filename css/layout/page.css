@@ -37,7 +37,7 @@ keep-mobile()
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: $component-interspace 0;
+  padding: $component-spacing-value 0;
 keep-tablet()
 keep-mobile()
 }
@@ -65,15 +65,15 @@ keep-mobile()
   border-radius: 0 !important;
 keep-tablet()
 }
-.page-container .sidebar-tools {
+.page-container .post-tools {
   position: fixed;
-  top: $header-height$component-interspace;
-  right: $component-interspace;
+  top: $header-height$component-spacing-value;
+  right: $component-spacing-value;
 keep-tablet()
 keep-mobile()
 }
-.header-shrink .page-container .sidebar-tools {
-  top: $header-shrink-height$component-interspace;
+.header-shrink .page-container .post-tools {
+  top: $header-shrink-height$component-spacing-value;
 keep-tablet()
 keep-mobile()
 }
