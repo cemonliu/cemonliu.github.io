@@ -15,7 +15,7 @@ style:
   primary_color: '#0066CC'
 
   # Avatar (You can use local image or image external link)
-  avatar: /images/avatar.svg
+  avatar: https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/avatar.svg
 
   # Favicon (You can use local image or image external link)
   favicon: /images/logo.svg
@@ -87,8 +87,8 @@ home_article:
 # Code copy
 # ---------------------------------------------------------------------------------------
 code_copy:
-  enable: false
-  style: default        # values: default | mac
+  enable: true
+  style: mac        # values: default | mac
 
 
 # ---------------------------------------------------------------------------------------
@@ -117,9 +117,9 @@ copyright_info:
 # See: https://github.com/willin/hexo-wordcount
 # ---------------------------------------------------------------------------------------
 post_wordcount:
-  enable: false
-  wordcount: false  # word count, one article
-  min2read: false   # time to read, one article
+  enable: true
+  wordcount: true  # word count, one article
+  min2read: true   # time to read, one article
 
 
 # ---------------------------------------------------------------------------------------
@@ -141,8 +141,10 @@ website_count:
 # See: https://github.com/theme-next/hexo-generator-searchdb
 # ---------------------------------------------------------------------------------------
 local_search:
-  enable: false
-  preload: false     # Preload the search data when the page loads
+  enable: true
+  trigger: auto
+  unescape: false
+  preload: true     # Preload the search data when the page loads
 
 
 # ---------------------------------------------------------------------------------------
@@ -178,6 +180,13 @@ rss:
 
 
 # ---------------------------------------------------------------------------------------
+# Lazyload image
+# ---------------------------------------------------------------------------------------
+lazyload:
+  enable: true
+
+
+# ---------------------------------------------------------------------------------------
 # CDN
 # ---------------------------------------------------------------------------------------
 cdn:
@@ -188,7 +197,7 @@ cdn:
 # PJAX
 # ---------------------------------------------------------------------------------------
 pjax:
-  enable: false
+  enable: true
 
 
 # ---------------------------------------------------------------------------------------
@@ -201,4 +210,4 @@ footer:
 # ---------------------------------------------------------------------------------------
 # Keep version (Please don't modify)
 # ---------------------------------------------------------------------------------------
-version: 3.1.1
+version: 3.1.3

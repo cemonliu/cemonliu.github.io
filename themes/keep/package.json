@@ -1,16 +1,38 @@
 {
-  "name": "hexo-theme-keep",
-  "version": "3.1.1",
-  "private": false,
+  "_from": "hexo-theme-keep@^3.1.3",
+  "_id": "hexo-theme-keep@3.1.3",
+  "_inBundle": false,
+  "_integrity": "sha512-9yOfPWFZu8KIEnOjxvgmbASm2azW1BXkOIwL7+fQoVV7xC5g5KB5i5+Qi1NRWMSLqSy82wdXhd9y/iDrKMc78g==",
+  "_location": "/hexo-theme-keep",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "hexo-theme-keep@^3.1.3",
+    "name": "hexo-theme-keep",
+    "escapedName": "hexo-theme-keep",
+    "rawSpec": "^3.1.3",
+    "saveSpec": null,
+    "fetchSpec": "^3.1.3"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/hexo-theme-keep/-/hexo-theme-keep-3.1.3.tgz",
+  "_shasum": "f9d3b2bf39a0144e39096782cef89eac07616a45",
+  "_spec": "hexo-theme-keep@^3.1.3",
+  "_where": "F:\\Blog",
+  "author": {
+    "name": "XPoet"
+  },
+  "bugs": {
+    "url": "https://github.com/XPoet/hexo-theme-keep/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
   "description": "A simple and elegant theme for Hexo.",
-  "scripts": {
-    "release": "git push --tag && git push -u origin master",
-    "publish": "npm publish"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/XPoet/hexo-theme-keep.git"
-  },
+  "homepage": "https://github.com/XPoet/hexo-theme-keep#readme",
   "keywords": [
     "hexo",
     "theme",
@@ -20,10 +42,16 @@
     "beautiful",
     "powerful"
   ],
-  "author": "XPoet",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/XPoet/hexo-theme-keep/issues"
+  "name": "hexo-theme-keep",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/XPoet/hexo-theme-keep.git"
   },
-  "homepage": "https://github.com/XPoet/hexo-theme-keep#readme"
+  "scripts": {
+    "publish": "npm publish",
+    "release": "git push --tag && git push -u origin master"
+  },
+  "version": "3.1.3"
 }

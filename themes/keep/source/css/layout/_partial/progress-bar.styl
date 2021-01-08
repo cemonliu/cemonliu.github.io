@@ -9,10 +9,9 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: 1px;
+    height: 1.8px;
     width: 0;
     background: var(--loading-progress-bar-color);
-    box-shadow: 0 1px 3px var(--loading-progress-bar-color);
     visibility: hidden;
     opacity: 0;
     z-index: $z-index-8;
@@ -22,6 +21,30 @@
       transition();
       opacity: 1;
       visibility: visible;
+    }
+  }
+
+
+  .loading-progress-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: $z-index-8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 8px 0 0;
+    color: var(--default-text-color);
+    visibility: hidden;
+    transition();
+
+    &.show {
+      transition: visibility 0.1s linear;
+      visibility: visible;
+    }
+
+    i {
+      font-size: 1.12rem;
     }
   }
 
