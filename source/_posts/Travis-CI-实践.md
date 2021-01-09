@@ -8,7 +8,7 @@ categories: 编程学习
 
 登录 [Travis CI官网](https://travis-ci.com/) 可以使用github来登录.然后授权即可。然后选择监控github的仓库
 
-## 生成 Github key 在 CI 注册
+## 生成 Github key 在 CI 注册  
 
 登录github,在下面路径链接[生成key](https://github.com/settings/tokens)。注意复制保存，不然关闭后就无法查看，只能重新生成。
 
@@ -16,7 +16,7 @@ categories: 编程学习
 
 将生成的 token 在 travis 里面对应的仓库里面去设定 key 值
 
-![image-20210109143705570](https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/image-20210109143705570.png)
+![image-20210109143705570](https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/image-20210109143705570.png)  
 
 
 
@@ -24,7 +24,7 @@ categories: 编程学习
 
 ## blog 目录下新建文件 .travis.yml. 具体设置如下
 
-**主要修改的是分支名称**
+**主要修改的是分支名称**  
 
 ``` yaml
 # 编译语言、环境
@@ -64,8 +64,9 @@ deploy:
     branch: backup # 工作分支
 ```
 
-
+  <br/>
 
 ## 设置完成后，将文件 git到仓库，travis会自动运行
 
-![image-20210109143547434](https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/image-20210109143547434.png)
+![image-20210109143547434](https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/image-20210109143547434.png)  
+
