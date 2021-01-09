@@ -1,7 +1,7 @@
 ---
 title: Travis 实践
 date: 2021-01-09 14:22:54
-tags: 编程学习
+categories: 编程学习
 ---
 
 ## 注册 Travis CI
