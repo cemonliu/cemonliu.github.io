@@ -1,3 +1,5 @@
+/* global KEEP */
+
 KEEP.initUtils = () => {
 
   KEEP.utils = {
@@ -7,25 +9,41 @@ KEEP.initUtils = () => {
     pageTop_dom: document.querySelector('.page-main-content-top'),
     firstScreen_dom: document.querySelector('.first-screen-container'),
     scrollProgressBar_dom: document.querySelector('.scroll-progress-bar'),
-    loadingProgressBar_dom: document.querySelector('.loading-progress-bar'),
-    loadingProgressCircle_dom: document.querySelector('.loading-progress-icon'),
+    pjaxProgressBar_dom: document.querySelector('.pjax-progress-bar'),
+    pjaxProgressIcon_dom: document.querySelector('.pjax-progress-icon'),
+    back2TopButton_dom: document.querySelector('.tool-scroll-to-top'),
 
     innerHeight: window.innerHeight,
-    loadingProgressBarTimer: null,
+    pjaxProgressBarTimer: null,
     prevScrollValue: 0,
-    defaultFontSize: 0,
+    fontSizeLevel: 0,
+
+    isHasScrollProgressBar: KEEP.theme_config.style.scroll.progress_bar.enable === true,
+    isHasScrollPercent: KEEP.theme_config.style.scroll.percent.enable === true,
 
     // Scroll Style Handle
     styleHandleWhenScroll() {
       const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
       const scrollHeight = document.body.scrollHeight || document.documentElement.scrollHeight;
       const clientHeight = window.innerHeight || document.documentElement.clientHeight;
-      const percent = Math.round(scrollTop / (scrollHeight - clientHeight) * 100).toFixed(0);
-      const ProgressPercent = (scrollTop / (scrollHeight - clientHeight) * 100).toFixed(3);
 
-      if (this.scrollProgressBar_dom) {
-        this.scrollProgressBar_dom.style.visibility = percent === '0' ? 'hidden' : 'visible';
+      const percent = Math.round(scrollTop / (scrollHeight - clientHeight) * 100);
+
+      if (this.isHasScrollProgressBar) {
+        const ProgressPercent = (scrollTop / (scrollHeight - clientHeight) * 100).toFixed(3);
+        this.scrollProgressBar_dom.style.visibility = percent === 0 ? 'hidden' : 'visible';
         this.scrollProgressBar_dom.style.width = `${ProgressPercent}%`;
+      }
+
+      if (this.isHasScrollPercent) {
+        const percent_dom = this.back2TopButton_dom.querySelector('.percent');
+        if (percent === 0 || percent === undefined) {
+          this.back2TopButton_dom.classList.remove('show');
+
+        } else {
+          this.back2TopButton_dom.classList.add('show');
+          percent_dom.innerHTML = percent.toFixed(0);
+        }
       }
 
       // hide header handle
@@ -41,7 +59,9 @@ KEEP.initUtils = () => {
     registerWindowScroll() {
       window.addEventListener('scroll', () => {
         // style handle when scroll
-        this.styleHandleWhenScroll();
+        if (this.isHasScrollPercent || this.isHasScrollProgressBar) {
+          this.styleHandleWhenScroll();
+        }
 
         // TOC scroll handle
         if (KEEP.theme_config.toc.enable && KEEP.utils.hasOwnProperty('findActiveIndexByTOC')) {
@@ -62,23 +82,35 @@ KEEP.initUtils = () => {
 
     // global font adjust
     globalFontAdjust() {
-      const initFontSize = document.defaultView.getComputedStyle(document.body).fontSize;
-      const fs = Number(initFontSize.substring(0, initFontSize.length - 2));
+      const fontSize = document.defaultView.getComputedStyle(document.body).fontSize;
+      const fs = parseFloat(fontSize);
 
-      const setFontSize = (defaultFontSize) => {
-        this.html_root_dom.style.fontSize = `${fs * (1 + defaultFontSize * 0.05)}px`;
+      const initFontSize = () => {
+        const styleStatus = KEEP.getStyleStatus();
+        if (styleStatus) {
+          this.fontSizeLevel = styleStatus.fontSizeLevel;
+          setFontSize(this.fontSizeLevel);
+        }
       }
 
+      const setFontSize = (fontSizeLevel) => {
+        this.html_root_dom.style.fontSize = `${fs * (1 + fontSizeLevel * 0.05)}px`;
+        KEEP.styleStatus.fontSizeLevel = fontSizeLevel;
+        KEEP.setStyleStatus();
+      }
+
+      initFontSize();
+
       document.querySelector('.tool-font-adjust-plus').addEventListener('click', () => {
-        if (this.defaultFontSize >= 5) return;
-        this.defaultFontSize++;
-        setFontSize(this.defaultFontSize);
+        if (this.fontSizeLevel === 5) return;
+        this.fontSizeLevel++;
+        setFontSize(this.fontSizeLevel);
       });
 
       document.querySelector('.tool-font-adjust-minus').addEventListener('click', () => {
-        if (this.defaultFontSize <= 0) return;
-        this.defaultFontSize--;
-        setFontSize(this.defaultFontSize);
+        if (this.fontSizeLevel <= 0) return;
+        this.fontSizeLevel--;
+        setFontSize(this.fontSizeLevel);
       });
     },
 
@@ -95,13 +127,13 @@ KEEP.initUtils = () => {
 
       let isExpand = false;
 
-      if (KEEP.theme_config.style.first_screen.enable === true) {
+      if (KEEP.theme_config.style.first_screen.enable === true && window.location.pathname === '/') {
         headerMaxWidth = parseInt(defaultMaxWidth) * 1.2 + 'px';
       }
 
-      toolExpandDom.addEventListener('click', () => {
-        isExpand = !isExpand;
-
+      const setPageWidth = (isExpand) => {
+        KEEP.styleStatus.isExpandPageWidth = isExpand;
+        KEEP.setStyleStatus();
         if (isExpand) {
           iconDom.classList.remove('fa-arrows-alt-h');
           iconDom.classList.add('fa-compress-arrows-alt');
@@ -113,8 +145,24 @@ KEEP.initUtils = () => {
           headerContentDom.style.maxWidth = headerMaxWidth;
           mainContentDom.style.maxWidth = defaultMaxWidth;
         }
+      }
 
+      const initPageWidth = () => {
+        const styleStatus = KEEP.getStyleStatus();
+        if (styleStatus) {
+          isExpand = styleStatus.isExpandPageWidth;
+          setPageWidth(isExpand);
+        }
+      }
+
+      initPageWidth();
+
+      toolExpandDom.addEventListener('click', () => {
+        isExpand = !isExpand;
+        setPageWidth(isExpand)
       });
+
+
     },
 
     // go comment anchor
@@ -199,34 +247,34 @@ KEEP.initUtils = () => {
 
       timestamp /= 1000;
 
-      const __Y = Math.floor(timestamp / (60 * 60 * 24 * 30) / 12)
-      const __M = Math.floor(timestamp / (60 * 60 * 24 * 30))
-      const __W = Math.floor(timestamp / (60 * 60 * 24) / 7)
-      const __d = Math.floor(timestamp / (60 * 60 * 24))
-      const __h = Math.floor(timestamp / (60 * 60) % 24)
-      const __m = Math.floor(timestamp / 60 % 60)
-      const __s = Math.floor(timestamp % 60)
+      const __Y = Math.floor(timestamp / (60 * 60 * 24 * 30) / 12);
+      const __M = Math.floor(timestamp / (60 * 60 * 24 * 30));
+      const __W = Math.floor(timestamp / (60 * 60 * 24) / 7);
+      const __d = Math.floor(timestamp / (60 * 60 * 24));
+      const __h = Math.floor(timestamp / (60 * 60) % 24);
+      const __m = Math.floor(timestamp / 60 % 60);
+      const __s = Math.floor(timestamp % 60);
 
       if (__Y > 0) {
-        return this.setHowLongAgoLanguage(__Y, l.year)
+        return this.setHowLongAgoLanguage(__Y, l.year);
 
       } else if (__M > 0) {
-        return this.setHowLongAgoLanguage(__M, l.month)
+        return this.setHowLongAgoLanguage(__M, l.month);
 
       } else if (__W > 0) {
-        return this.setHowLongAgoLanguage(__W, l.week)
+        return this.setHowLongAgoLanguage(__W, l.week);
 
       } else if (__d > 0) {
-        return this.setHowLongAgoLanguage(__d, l.day)
+        return this.setHowLongAgoLanguage(__d, l.day);
 
       } else if (__h > 0) {
-        return this.setHowLongAgoLanguage(__h, l.hour)
+        return this.setHowLongAgoLanguage(__h, l.hour);
 
       } else if (__m > 0) {
-        return this.setHowLongAgoLanguage(__m, l.minute)
+        return this.setHowLongAgoLanguage(__m, l.minute);
 
       } else if (__s > 0) {
-        return this.setHowLongAgoLanguage(__s, l.second)
+        return this.setHowLongAgoLanguage(__s, l.second);
       }
     },
 
@@ -238,35 +286,46 @@ KEEP.initUtils = () => {
     },
 
     // loading progress bar start
-    loadingProgressBarStart() {
-      this.loadingProgressBarTimer && clearInterval(this.loadingProgressBarTimer);
-      this.loadingProgressBar_dom.style.width = '0';
-      this.scrollProgressBar_dom.classList.add('hide');
-      this.loadingProgressCircle_dom.classList.add('show');
+    pjaxProgressBarStart() {
+      this.pjaxProgressBarTimer && clearInterval(this.pjaxProgressBarTimer);
+      if (this.isHasScrollProgressBar) {
+        this.scrollProgressBar_dom.classList.add('hide');
+      }
 
-      let width = 5;
+      this.pjaxProgressBar_dom.style.width = '0';
+      this.pjaxProgressIcon_dom.classList.add('show');
+
+      let width = 1;
       const maxWidth = 99;
 
-      this.loadingProgressBar_dom.classList.add('show');
-      this.loadingProgressBar_dom.style.width = width + '%';
+      this.pjaxProgressBar_dom.classList.add('show');
+      this.pjaxProgressBar_dom.style.width = width + '%';
 
-      this.loadingProgressBarTimer = setInterval(() => {
+      this.pjaxProgressBarTimer = setInterval(() => {
         width += 5;
         if (width > maxWidth) width = maxWidth;
-        this.loadingProgressBar_dom.style.width = width + '%';
+        this.pjaxProgressBar_dom.style.width = width + '%';
       }, 100);
     },
 
     // loading progress bar end
-    loadingProgressBarEnd() {
-      this.loadingProgressBarTimer && clearInterval(this.loadingProgressBarTimer);
-      this.loadingProgressBar_dom.style.width = '100%';
+    pjaxProgressBarEnd() {
+      this.pjaxProgressBarTimer && clearInterval(this.pjaxProgressBarTimer);
+      this.pjaxProgressBar_dom.style.width = '100%';
 
-      const tempTimeout = setTimeout(() => {
-        this.loadingProgressBar_dom.classList.remove('show');
-        this.loadingProgressCircle_dom.classList.remove('show');
-        this.scrollProgressBar_dom.classList.remove('hide');
-        clearTimeout(tempTimeout);
+      const temp_1 = setTimeout(() => {
+        this.pjaxProgressBar_dom.classList.remove('show');
+        this.pjaxProgressIcon_dom.classList.remove('show');
+
+        if (this.isHasScrollProgressBar) {
+          this.scrollProgressBar_dom.classList.remove('hide');
+        }
+
+        const temp_2 = setTimeout(() => {
+          this.pjaxProgressBar_dom.style.width = '0';
+          clearTimeout(temp_1), clearTimeout(temp_2);
+        }, 200);
+
       }, 200);
     }
   }

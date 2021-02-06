@@ -8,3 +8,6 @@ keep-mobile()
   margin-bottom: $component-spacing-value;
   border-bottom: 1px solid var(--border-color);
 }
+.tag-container .tag-name i {
+  color: var(--second-text-color);
+}

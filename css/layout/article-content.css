@@ -45,14 +45,17 @@ keep-mobile()
   display: flex;
   align-items: center;
 }
-.article-content-container .article-header .info .author .level {
+.article-content-container .article-header .info .author .name {
+  color: var(--default-text-color);
+}
+.article-content-container .article-header .info .author .author-label {
   margin-left: 10px;
-  color: #fff;
   font-size: 0.8rem;
   font-weight: 500;
-  background: var(--selection-color);
-  padding: 0 4px;
+  padding: 0 5px;
   border-radius: 5px;
+  color: #fff;
+  background: var(--selection-color);
 }
 .article-content-container .article-header,
 .article-content-container .article-header-meta-info {
@@ -62,9 +65,9 @@ keep-tablet()
 .article-content-container .article-content {
   margin-top: $component-spacing-value;
   padding-bottom: 10px;
-  border-bottom: 1px solid var(--border-color);
   word-wrap: break-word;
-  text-align: justify;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--default-text-color);
 }
 .article-content-container .post-copyright-info {
   margin-top: $component-spacing-value;

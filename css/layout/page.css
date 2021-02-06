@@ -25,7 +25,7 @@ keep-tablet()
 keep-mobile()
 }
 .page-container .page-main-content .page-main-content-top.hide {
-  transform: translateY(-102%);
+  transform: translateY(-105%);
 }
 .header-shrink .page-container .page-main-content .page-main-content-top {
   height: $header-shrink-height;
@@ -38,6 +38,7 @@ keep-mobile()
   display: flex;
   justify-content: center;
   padding: $component-spacing-value 0;
+  background: var(--background-color);
 keep-tablet()
 keep-mobile()
 }
@@ -62,7 +63,9 @@ keep-mobile()
   height: 100%;
   z-index: $z-index-6;
   overflow-y: auto;
-  border-radius: 0 !important;
+  padding: 20px;
+  box-sizing: border-box;
+  background: var(--background-color);
 keep-tablet()
 }
 .page-container .post-tools {

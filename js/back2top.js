@@ -4,7 +4,6 @@ KEEP.initBack2Top = () => {
 
     ...KEEP.utils,
 
-    back2TopButton_dom: document.querySelector('.tool-scroll-to-top'),
     back2BottomButton_dom: document.querySelector('.tool-scroll-to-bottom'),
 
     back2top() {
@@ -19,7 +18,7 @@ KEEP.initBack2Top = () => {
         if (top === 0) {
           clearInterval(scrollTopTimer);
         }
-      }, 30);
+      }, 50);
     },
 
     back2Bottom() {
