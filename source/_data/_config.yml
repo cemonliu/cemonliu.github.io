@@ -37,8 +37,15 @@ style:
   # First screen
   first_screen:
     enable: true
-    background_img: /images/bg.svg
+    background_img: /images/bg.svg   # You can use local image or image external link
     description: Keep writing and Keep loving.
+
+  # Scroll style settings
+  scroll:
+    progress_bar:
+      enable: false
+    percent:
+      enable: false
 
 
 # ---------------------------------------------------------------------------------------
@@ -84,6 +91,26 @@ home_article:
 
 
 # ---------------------------------------------------------------------------------------
+# Post page Settings
+# ---------------------------------------------------------------------------------------
+post:
+  # Post word count
+  # Dependencies: hexo-wordcount (npm install hexo-wordcount)
+  # See: https://github.com/willin/hexo-wordcount
+  word_count:
+    enable: true
+    wordcount: true  # word count, one article
+    min2read: true   # time to read, one article
+
+  # Author label
+  author_label:
+    enable: true
+    auto: true  # if true, show Lv1, Lv2, Lv3... , If false, show custom label
+    # label array item can be one or more
+    custom_label_list: [ "Trainee", "Engineer", "Architect", "CTO", "BOSS" ]
+
+
+# ---------------------------------------------------------------------------------------
 # Code copy
 # ---------------------------------------------------------------------------------------
 code_copy:
@@ -103,23 +130,15 @@ toc:
   # If true, all level of TOC in a post will be displayed, rather than the activated part of it.
   expand_all: true
 
+  # If true, open TOC every time when you enter the article page
+  init_open: true
+
 
 # ---------------------------------------------------------------------------------------
 # Post copyright info
 # ---------------------------------------------------------------------------------------
 copyright_info:
   enable: true
-
-
-# ---------------------------------------------------------------------------------------
-# Post word count
-# Dependencies: hexo-wordcount
-# See: https://github.com/willin/hexo-wordcount
-# ---------------------------------------------------------------------------------------
-post_wordcount:
-  enable: true
-  wordcount: true  # word count, one article
-  min2read: true   # time to read, one article
 
 
 # ---------------------------------------------------------------------------------------
@@ -134,7 +153,6 @@ website_count:
     site_pv: true
     page_pv: true
 
-
 # ---------------------------------------------------------------------------------------
 # Local Search
 # Dependencies: hexo-generator-searchdb
@@ -142,8 +160,6 @@ website_count:
 # ---------------------------------------------------------------------------------------
 local_search:
   enable: true
-  trigger: auto
-  unescape: false
   preload: true     # Preload the search data when the page loads
 
 
@@ -151,23 +167,28 @@ local_search:
 # Comment plugin
 # ---------------------------------------------------------------------------------------
 comment:
+  enable: true
+  use: valine  # values: valine | gitalk | twikoo
+
   # Valine
   # See: https://github.com/xCss/Valine
   valine:
-    enable: true
     appid: 7E3eTywAGKpp0RKGntSLvh6R-9Nh9j0Va   # your leancloud application appid
     appkey: TkVVtjfDaBkxRJ35SSTcdllD           # your leancloud application appkey
-    meta: ["nick","mail"]
     placeholder: 😜 尽情吐槽吧~       # your placeholder
-
   # Gitalk
   # See: https://github.com/gitalk/gitalk
   gitalk:
-    enable: false
     github_id:             # GitHub repo owner
     repository:            # Repository name to store issues
     client_id:             # GitHub Application Client ID
     client_secret:         # GitHub Application Client Secret
+
+  # Twikoo
+  # See: https://github.com/imaegoo/twikoo
+  twikoo:
+    env_id:                # Tencent Cloud environment id
+    region:                # environment region. If select Guangzhou, fill in "ap-guangzhou".
 
 
 # ---------------------------------------------------------------------------------------
@@ -190,7 +211,7 @@ lazyload:
 # CDN
 # ---------------------------------------------------------------------------------------
 cdn:
-  enable: true
+  enable: false
 
 
 # ---------------------------------------------------------------------------------------
@@ -210,4 +231,4 @@ footer:
 # ---------------------------------------------------------------------------------------
 # Keep version (Please don't modify)
 # ---------------------------------------------------------------------------------------
-version: 3.1.3
+version: 3.4.0
