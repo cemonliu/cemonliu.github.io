@@ -9,7 +9,7 @@
     
     <title>
         
-            子弹笔记读书整理 |
+            手机自动化印象笔记创建 |
         
         Keep learning
     </title>
@@ -163,7 +163,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">子弹笔记读书整理</span>
+            <span class="title-hover-animation">手机自动化印象笔记创建</span>
         </div>
 
         
@@ -181,7 +181,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-02-08 09:50:39
+        <i class="fas fa-edit"></i>&nbsp;2021-02-10 08:12:58
     </span>
     
         <span class="article-categories article-meta-item">
@@ -189,12 +189,27 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/%E8%AF%BB%E4%B9%A6%E6%84%9F%E6%82%9F/">读书感悟</a>&nbsp;
+                        <a href="/categories/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/">编程学习</a>&nbsp;
                     </li>
                 
             </ul>
         </span>
     
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%8D%B0%E8%B1%A1%E7%AC%94%E8%AE%B0/">印象笔记</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/ios%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/">ios快捷指令</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
     
 
     
@@ -213,75 +228,77 @@
         
 
         <div class="article-content markdown-body">
-            <h2 id="子弹笔记的构成"><a href="#子弹笔记的构成" class="headerlink" title="子弹笔记的构成"></a>子弹笔记的构成</h2><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>带着意向去生活，常常只是需要在行动前停下来认真规划。标题是子弹笔记的最开始部分。应该包含下面三个功能</p>
+            <h2 id="需要解决的问题"><a href="#需要解决的问题" class="headerlink" title="需要解决的问题"></a>需要解决的问题</h2><p>使用印象笔记一段时间后，就逐步建立了使用晨间日记的习惯。然后每次建立新笔记的方法主要是下面两种：</p>
 <ol>
-<li>确定并描述内容；</li>
-<li>阐明意图</li>
-<li>设定内容安排</li>
+<li>将笔记存在模板上，新建一个笔记，选择模板，修改标题 <strong>晨间日记 | 20210210 | 今天想法</strong>。</li>
+<li>笔记内已存有一个模板笔记，创建一个模板的复制品，修改标题<strong>晨间日记 | 20210210 | 今天想法</strong>。</li>
 </ol>
-<p>主要要易于思索和整理。 比如我目前使用的是参考别人推荐的 <strong>主题内容| 20210208 | 具体标题</strong> 。这样在后续搜索的都比较容易。特别是搭配印象笔记的<code>intitle:</code> 搜索就更快捷了。</p>
-<h3 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h3><p>记录的本质是什么？我们如何了解一个东西值不值得我们记录？这个问题的确很难回答。但是我们可以先从记录的分类来开始。</p>
-<h4 id="任务-需要做的事情"><a href="#任务-需要做的事情" class="headerlink" title="任务 - 需要做的事情"></a>任务 - 需要做的事情</h4><p>主要有五种形态</p>
+<p>作为一个爱偷懒的人，我一直在想，是否有办法每天早上手机或者电脑自动帮我把以上步骤实现么？</p>
+<p><strong>也就是我打开印象笔记已经有一个创建好的笔记在里面并且格式化好的标题。</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/20210210085630.png" style="zoom:50%;" />
+
+
+
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>研究了相关工具之后，发现有两种可以实现的方式。</p>
+<ol>
+<li>使用印象笔记官方API来调用，并且创建笔记，修改各种属性。<ul>
+<li>优点：修改范围比较广，各种属性都可以控制</li>
+<li>缺点：API太过复杂且需要编程基础。另外官方文档不友好。</li>
+</ul>
+</li>
+<li>使用苹果手机快捷指令搭配印象官方提供的几个指令来完成<ul>
+<li>优点：简单拖拽命令，手机自动化，不需要外部服务器</li>
+<li>缺点：控制的区域有限，尝试修改一些特性会导致格式变化</li>
+</ul>
+</li>
+</ol>
+<p>在尝试之后，发现使用方法2比较理想。</p>
+<h2 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h2><ol>
+<li><p>首先你要有一个苹果手机（安卓还没研究囧）。因为苹果手机上有快捷指令</p>
+</li>
+<li><p>设置自动化实现</p>
+<ol>
+<li><p>打开手机选择快捷指令新建自动化<img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/20210210085932.png"></p>
+</li>
+<li><p>选择个人自动化选择特定时间<img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/20210210090030.png"></p>
+</li>
+<li><p>设定时间和频率，每天还是每周特定时间。<img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/20210210090149.png"></p>
+</li>
+<li><p>点击下一步设定指令，这部分主要是完成获取当前日期并格式化为标题格式<strong>晨间日记 | 20210210 | 今天想法</strong>。<img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/20210210090314.png"></p>
+</li>
+<li><p>获取印象笔记模板并且创建新标题的笔记<img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/20210210090441.png"></p>
+</li>
+<li><p>保存完成，即可以自动运行。</p>
+</li>
+<li><p><strong>特别说明：</strong></p>
 <ul>
-<li><p>需要行动</p>
+<li><p>笔记本为自己可以选择，第一个笔记本是获取笔记模板的笔记本，第二个为需要创建笔记的笔记本</p>
 </li>
-<li><p>完成的任务</p>
+<li><p>模板需要命名为<strong>晨间日记模板</strong>，如果不是，可以修改这个值和笔记模板名称一样即可</p>
 </li>
-<li><p>迁移的任务</p>
+<li><p>尽量不要用超级笔记设定模板，格式变化有点大，我已经反馈给印象官方。等待修正吧。</p>
 </li>
-<li><p>计划中的任务</p>
-<blockquote>
-<p><strong>范例</strong></p>
-<p> ● 这是任务</p>
-<p>​    ● 这是子任务1</p>
-<p>​    ● 这是子任务2</p>
-<p>× 这是完成的任务</p>
-<p>&gt; 推迟到下个月或者其他地方</p>
-<p>&lt; 未来的任务提前开始</p>
-</blockquote>
+<li><p>如果你不会设置怎么办？复制下面路径，在苹果浏览器打开。是我已经创建好的捷径。自己改改就好啦。</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.icloud.com/shortcuts/a14aaf3b4b9549a59e89bf069f571bc1" >https://www.icloud.com/shortcuts/a14aaf3b4b9549a59e89bf069f571bc1<i class="fas fa-external-link-alt"></i></a></p>
 </li>
 </ul>
-<h4 id="事件-经历的过程"><a href="#事件-经历的过程" class="headerlink" title="事件 - 经历的过程"></a>事件 - 经历的过程</h4><p>事件的记录即可以在事件前，也可以在事件后。不过建议在事件后比较好，这样可以记录所有的细节。当事件内容过多，可以搭配笔记子弹来记录。规划性的事件，建议放在未来记录中。</p>
-<blockquote>
-<p><strong>范例</strong></p>
-<p>○ 这是事件</p>
-<p>​    - 这是笔记子弹1</p>
-<p>​    - 这是笔记子弹2</p>
-</blockquote>
-<h4 id="笔记-不想遗忘的东西"><a href="#笔记-不想遗忘的东西" class="headerlink" title="笔记- 不想遗忘的东西"></a>笔记- 不想遗忘的东西</h4><p>笔记子弹前带有“ - ”这一特定符号。笔记子弹包括事实、主意、想法、评论，是你想要记住，但又无须或无法即刻采取行动的信息。</p>
-<h5 id="如何处理笔记呢？"><a href="#如何处理笔记呢？" class="headerlink" title="如何处理笔记呢？"></a>如何处理笔记呢？</h5><p>等事件结束之后，利用几分钟时间，坐下来好好整理刚刚听到的内容，捕捉所有的信息。结合上下文从整体回顾信息时常常会有新的见解。回顾笔记，看看能产生什么新想法，然后把它记录下来。</p>
-<p>用一个简单的方法来总结以上的技巧，那就是把未来的自己放在心里。如果过了一周、一个月、一年，你记的笔记自己都无法辨认，那就毫无意义了。给</p>
-<h4 id="其他特殊符号"><a href="#其他特殊符号" class="headerlink" title="其他特殊符号"></a>其他特殊符号</h4><blockquote>
-<p><strong>范例</strong></p>
-<p>* 表示优先或者重要</p>
-<p>！表示灵感或者想法</p>
-<p>/  表示项目任务负责人</p>
-</blockquote>
-<h3 id="集子"><a href="#集子" class="headerlink" title="集子"></a>集子</h3><h4 id="每日记录"><a href="#每日记录" class="headerlink" title="每日记录"></a>每日记录</h4><p>如果生活是大海，那么其中的每一天就像海浪一样，有的震撼，有的普通。子弹笔记就像海岸，在每一天的影响下得到雕琢。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/20210208151642.png"></p>
-<h4 id="每月记录"><a href="#每月记录" class="headerlink" title="每月记录"></a>每月记录</h4><p>每月记录供你一览<strong>下个月要处理的事项</strong>以及闲暇的时间。建立一份月度记录需要左右两页空白页，在两页上方都以月份为标题，左边是日历页，右边是任务页</p>
-<h5 id="日历页"><a href="#日历页" class="headerlink" title="日历页"></a>日历页</h5><p>在日历页（Calendar Page）左侧按顺序列出日期，并在日期右侧附上星期。记住在左侧留出空间，以便后续增加特殊符号。</p>
-<p>小提示1：尽可能简短地记叙内容，因为月度记录仅供参考所需。</p>
-<p>小提示2：为了更加清晰明了，你可以画线区分每一周。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/20210208152430.png"></p>
-<h5 id="任务页"><a href="#任务页" class="headerlink" title="任务页"></a>任务页</h5><p>整理大脑里的思绪，全部记录下来，这个月里有什么重要的事情。需要优先完成什么。？当都梳理过一遍之后，翻看上一个月的记录，看看遗漏了哪些项目，把重要的项目写到这一个月的任务页上。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/20210208152455.png"></p>
-<h4 id="未来记录"><a href="#未来记录" class="headerlink" title="未来记录"></a>未来记录</h4><p>你可以把未来记录想象成一列队伍，每一条事项都迫切渴望早日轮到自己。当你在创建月度记录[插图]时，切记要先浏览一遍未来记录，查看是否有已经可以开展的事项。如果有，把这些事项从未来记录迁移到月度记录的任务页上。记得做上记号，表明这是“迁移”来的新事项。</p>
-<h4 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h4><p>有了索引，即使过了数天、数月、数年再回头寻找曾经的笔记，也能够很快找到。书籍所介绍的索引是用笔记录页码。而实际上现有的索引其实都可以用笔记的超链接，以及流行的双向链接来实现。</p>
-<p>随着时间的推移，你的索引页就会拓展成一张“目录”，供你一览自己的时间和精力都投向了何方。这上面记录了所有你同意自己进行的事项。记住，有同意就有放弃。既然同意了自己放手去做一些事情，就意味着要牺牲另一些事情。</p>
-<h3 id="行动起来吧！！"><a href="#行动起来吧！！" class="headerlink" title="行动起来吧！！"></a>行动起来吧！！</h3><p><strong>关键不在笔记本的形式，而在于你的感受以及笔记本的效果。</strong>不要因为看到他人复杂的子弹笔记而望而却步。最终，你要追求的标准应该是你自己定的。毕竟，这是属于你的旅程。</p>
-
+</li>
+</ol>
+</li>
+</ol>
+<p>捷径实现参考下面这个 <a class="link"   target="_blank" rel="noopener" href="https://sharecuts.cn/shortcut/436" >https://sharecuts.cn/shortcut/436<i class="fas fa-external-link-alt"></i></a> 大神分享的连接。但是目前因为笔记格式问题。添加天气等信息会导致格式偏差。所以我就在此基础上修改了一下。</p>
+<img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/20210210084710.png" style="zoom:50%;" />
         </div>
 
         
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>本文标题：子弹笔记读书整理</li>
+        <li>本文标题：手机自动化印象笔记创建</li>
         <li>本文作者：cemon_liu</li>
-        <li>创建时间：2021-02-08 09:50:39</li>
+        <li>创建时间：2021-02-10 08:12:58</li>
         <li>
-            本文链接：https://blog.gooday.press/2021/02/08/子弹笔记/
+            本文链接：https://blog.gooday.press/2021/02/10/手机自动化/
         </li>
         <li>
             版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -295,29 +312,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2021/02/10/%E6%89%8B%E6%9C%BA%E8%87%AA%E5%8A%A8%E5%8C%96/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">手机自动化印象笔记创建</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2021/02/01/%E6%B4%BB%E5%A5%BD2/"
+                           href="/2021/02/08/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">活好2:105岁国宝医师的生命日志</span>
+                                <span class="post-nav-title-item">子弹笔记读书整理</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -522,7 +524,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0%E7%9A%84%E6%9E%84%E6%88%90"><span class="nav-number">1.</span> <span class="nav-text">子弹笔记的构成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">标题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE"><span class="nav-number">1.2.</span> <span class="nav-text">项目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1-%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85"><span class="nav-number">1.2.1.</span> <span class="nav-text">任务 - 需要做的事情</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6-%E7%BB%8F%E5%8E%86%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="nav-number">1.2.2.</span> <span class="nav-text">事件 - 经历的过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%94%E8%AE%B0-%E4%B8%8D%E6%83%B3%E9%81%97%E5%BF%98%E7%9A%84%E4%B8%9C%E8%A5%BF"><span class="nav-number">1.2.3.</span> <span class="nav-text">笔记- 不想遗忘的东西</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0%E5%91%A2%EF%BC%9F"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">如何处理笔记呢？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7"><span class="nav-number">1.2.4.</span> <span class="nav-text">其他特殊符号</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E5%AD%90"><span class="nav-number">1.3.</span> <span class="nav-text">集子</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AF%8F%E6%97%A5%E8%AE%B0%E5%BD%95"><span class="nav-number">1.3.1.</span> <span class="nav-text">每日记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AF%8F%E6%9C%88%E8%AE%B0%E5%BD%95"><span class="nav-number">1.3.2.</span> <span class="nav-text">每月记录</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%97%A5%E5%8E%86%E9%A1%B5"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">日历页</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E9%A1%B5"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">任务页</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%AA%E6%9D%A5%E8%AE%B0%E5%BD%95"><span class="nav-number">1.3.3.</span> <span class="nav-text">未来记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95"><span class="nav-number">1.3.4.</span> <span class="nav-text">索引</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%8C%E5%8A%A8%E8%B5%B7%E6%9D%A5%E5%90%A7%EF%BC%81%EF%BC%81"><span class="nav-number">1.4.</span> <span class="nav-text">行动起来吧！！</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E8%A6%81%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">需要解决的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">解决方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4"><span class="nav-number">3.</span> <span class="nav-text">实现步骤</span></a></li></ol>
     </div>
 </div>
         </aside>
