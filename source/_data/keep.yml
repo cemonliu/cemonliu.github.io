@@ -2,156 +2,156 @@
 #  Your basic info
 # ---------------------------------------------------------------------------------------
 base_info:
-  title: Keep learning
-  author: cemon_liu
-  url: https://blog.gooday.press/
+	title: Keep learning
+	author: cemon_liu
+	url: https://blog.gooday.press/
 
 
 # ---------------------------------------------------------------------------------------
 # Theme style settings
 # ---------------------------------------------------------------------------------------
 style:
-  # Theme primary color
-  primary_color: '#0066CC'
+	# Theme primary color
+	primary_color: '#0066CC'
 
-  # Avatar (You can use local image or image external link)
-  avatar: https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/avatar.svg
+	# Avatar (You can use local image or image external link)
+	avatar: https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/avatar.svg
 
-  # Favicon (You can use local image or image external link)
-  favicon: https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/logo.svg
+	# Favicon (You can use local image or image external link)
+	favicon: https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/logo.svg
 
-  # Article image align position, value: left | center
-  article_img_align: left
+	# Article image align position, value: left | center
+	article_img_align: left
 
-  # Left side width
-  left_side_width: 260px
+	# Left side width
+	left_side_width: 260px
 
-  # Content area max width
-  content_max_width: 920px
+	# Content area max width
+	content_max_width: 920px
 
-  # Mouse hover
-  hover:
-    shadow: false   # shadow effect when the mouse hover
-    scale: false    # scale effect when the mouse hover
+	# Mouse hover
+	hover:
+		shadow: false   # shadow effect when the mouse hover
+		scale: false    # scale effect when the mouse hover
 
-  # First screen
-  first_screen:
-    enable: true
-    background_img: /images/bg.svg   # You can use local image or image external link
-    description: Keep writing and Keep loving.
+	# First screen
+	first_screen:
+		enable: true
+		background_img: /images/bg.svg   # You can use local image or image external link
+		description: Keep writing and Keep loving.
 
-  # Scroll style settings
-  scroll:
-    progress_bar:
-      enable: false
-    percent:
-      enable: false
+	# Scroll style settings
+	scroll:
+		progress_bar:
+			enable: false
+		percent:
+			enable: false
 
 
 # ---------------------------------------------------------------------------------------
 # Social contact link
 # ---------------------------------------------------------------------------------------
 social_contact:
-  enable: false
-  links:
-    github:          # your GitHub URL
-    weixin:          # your WeChat QR-Code URL
-    qq:              # your QQ QR-Code URL
-    weibo:           # your WeiBo URL
-    zhihu:           # your ZhiHu URL
-    twitter:         # your twitter URL
-    facebook:        # your facebook URL
-    email:           # your email
+	enable: false
+	links:
+		github:          # your GitHub URL
+		weixin:          # your WeChat QR-Code URL
+		qq:              # your QQ QR-Code URL
+		weibo:           # your WeiBo URL
+		zhihu:           # your ZhiHu URL
+		twitter:         # your twitter URL
+		facebook:        # your facebook URL
+		email:           # your email
 
 
 # ---------------------------------------------------------------------------------------
 # Navigation menu
 # ---------------------------------------------------------------------------------------
 menu:
-  Home: /
-  Archives: /archives
-  Categories: /categories
-  # Tags: /tags
-  Links: /links
-  About: /about
-  # Changelog: /changelog
-  # ......
+	Home: /
+	Archives: /archives
+	Categories: /categories
+	# Tags: /tags
+	Links: /links
+	About: /about
+	# Changelog: /changelog
+	# ......
 
 
 # ---------------------------------------------------------------------------------------
 # Home page article block display settings
 # ---------------------------------------------------------------------------------------
 home_article:
-  category:
-    enable: false     # show category in home page article block
-    limit: 3          # max number of categories shown in home page article block
-  tag:
-    enable: false     # show tags in home page article block
-    limit: 5          # max number of tags shown in home page article block
+	category:
+		enable: false     # show category in home page article block
+		limit: 3          # max number of categories shown in home page article block
+	tag:
+		enable: false     # show tags in home page article block
+		limit: 5          # max number of tags shown in home page article block
 
 
 # ---------------------------------------------------------------------------------------
 # Post page Settings
 # ---------------------------------------------------------------------------------------
 post:
-  # Post word count
-  # Dependencies: hexo-wordcount (npm install hexo-wordcount)
-  # See: https://github.com/willin/hexo-wordcount
-  word_count:
-    enable: true
-    wordcount: true  # word count, one article
-    min2read: true   # time to read, one article
+	# Post word count
+	# Dependencies: hexo-wordcount (npm install hexo-wordcount)
+	# See: https://github.com/willin/hexo-wordcount
+	word_count:
+		enable: true
+		wordcount: true  # word count, one article
+		min2read: true   # time to read, one article
 
-  # Author label
-  author_label:
-    enable: true
-    auto: true  # if true, show Lv1, Lv2, Lv3... , If false, show custom label
-    # label array item can be one or more
-    custom_label_list: [ "Trainee", "Engineer", "Architect", "CTO", "BOSS" ]
+	# Author label
+	author_label:
+		enable: true
+		auto: true  # if true, show Lv1, Lv2, Lv3... , If false, show custom label
+		# label array item can be one or more
+		custom_label_list: [ "Trainee", "Engineer", "Architect", "CTO", "BOSS" ]
 
 
 # ---------------------------------------------------------------------------------------
 # Code copy
 # ---------------------------------------------------------------------------------------
 code_copy:
-  enable: true
-  style: mac        # values: default | mac
+	enable: true
+	style: mac        # values: default | mac
 
 
 # ---------------------------------------------------------------------------------------
 # Table of Contents in the Sidebar
 # ---------------------------------------------------------------------------------------
 toc:
-  enable: true
+	enable: true
 
-  # Automatically add list number to toc.
-  number: true
+	# Automatically add list number to toc.
+	number: true
 
-  # If true, all level of TOC in a post will be displayed, rather than the activated part of it.
-  expand_all: true
+	# If true, all level of TOC in a post will be displayed, rather than the activated part of it.
+	expand_all: true
 
-  # If true, open TOC every time when you enter the article page
-  init_open: true
+	# If true, open TOC every time when you enter the article page
+	init_open: true
 
 
 # ---------------------------------------------------------------------------------------
 # Post copyright info
 # ---------------------------------------------------------------------------------------
 copyright_info:
-  enable: true
+	enable: true
 
 
 # ---------------------------------------------------------------------------------------
 # Website count
 # ---------------------------------------------------------------------------------------
 website_count:
-  # busuanzi
-  # See: http://ibruce.info/2015/04/04/busuanzi/
-  busuanzi_count:
-    enable: true
-    site_uv: true
-    site_pv: true
-    page_pv: true
+	# busuanzi
+	# See: http://ibruce.info/2015/04/04/busuanzi/
+	busuanzi_count:
+		enable: true
+		site_uv: true
+		site_pv: true
+		page_pv: true
 
 # ---------------------------------------------------------------------------------------
 # Local Search
@@ -159,36 +159,36 @@ website_count:
 # See: https://github.com/theme-next/hexo-generator-searchdb
 # ---------------------------------------------------------------------------------------
 local_search:
-  enable: true
-  preload: true     # Preload the search data when the page loads
+	enable: true
+	preload: true     # Preload the search data when the page loads
 
 
 # ---------------------------------------------------------------------------------------
 # Comment plugin
 # ---------------------------------------------------------------------------------------
 comment:
-  enable: true
-  use: valine  # values: valine | gitalk | twikoo
+	enable: true
+	use: valine  # values: valine | gitalk | twikoo
 
-  # Valine
-  # See: https://github.com/xCss/Valine
-  valine:
-    appid: 7E3eTywAGKpp0RKGntSLvh6R-9Nh9j0Va   # your leancloud application appid
-    appkey: TkVVtjfDaBkxRJ35SSTcdllD           # your leancloud application appkey
-    placeholder: 😜 尽情吐槽吧~       # your placeholder
-  # Gitalk
-  # See: https://github.com/gitalk/gitalk
-  gitalk:
-    github_id:             # GitHub repo owner
-    repository:            # Repository name to store issues
-    client_id:             # GitHub Application Client ID
-    client_secret:         # GitHub Application Client Secret
+	# Valine
+	# See: https://github.com/xCss/Valine
+	valine:
+		appid: 7E3eTywAGKpp0RKGntSLvh6R-9Nh9j0Va   # your leancloud application appid
+		appkey: TkVVtjfDaBkxRJ35SSTcdllD           # your leancloud application appkey
+		placeholder: 😜 尽情吐槽吧~       # your placeholder
+	# Gitalk
+	# See: https://github.com/gitalk/gitalk
+	gitalk:
+		github_id:             # GitHub repo owner
+		repository:            # Repository name to store issues
+		client_id:             # GitHub Application Client ID
+		client_secret:         # GitHub Application Client Secret
 
-  # Twikoo
-  # See: https://github.com/imaegoo/twikoo
-  twikoo:
-    env_id:                # Tencent Cloud environment id
-    region:                # environment region. If select Guangzhou, fill in "ap-guangzhou".
+	# Twikoo
+	# See: https://github.com/imaegoo/twikoo
+	twikoo:
+		env_id:                # Tencent Cloud environment id
+		region:                # environment region. If select Guangzhou, fill in "ap-guangzhou".
 
 
 # ---------------------------------------------------------------------------------------
@@ -197,38 +197,38 @@ comment:
 # See: https://github.com/hexojs/hexo-generator-feed
 # ---------------------------------------------------------------------------------------
 rss:
-  enable: false
+	enable: false
 
 
 # ---------------------------------------------------------------------------------------
 # Lazyload image
 # ---------------------------------------------------------------------------------------
 lazyload:
-  enable: false
+	enable: false
 
 
 # ---------------------------------------------------------------------------------------
 # CDN
 # ---------------------------------------------------------------------------------------
 cdn:
-  enable: false
+	enable: false
 
 
 # ---------------------------------------------------------------------------------------
 # PJAX
 # ---------------------------------------------------------------------------------------
 pjax:
-  enable: true
+	enable: true
 
 
 # ---------------------------------------------------------------------------------------
 # Footer settings
 # ---------------------------------------------------------------------------------------
 footer:
-  since: 2020
+	since: 2020
 
 
 # ---------------------------------------------------------------------------------------
 # Keep version (Please don't modify)
 # ---------------------------------------------------------------------------------------
-version: 3.4.0
+version: 3.4.2
