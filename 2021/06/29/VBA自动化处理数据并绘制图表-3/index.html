@@ -9,7 +9,7 @@
     
     <title>
         
-            VBA自动化处理数据并绘制图表-2 |
+            VBA自动化处理数据并绘制图表-3 |
         
         Keep learning
     </title>
@@ -167,7 +167,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">VBA自动化处理数据并绘制图表-2</span>
+            <span class="title-hover-animation">VBA自动化处理数据并绘制图表-3</span>
         </div>
 
         
@@ -185,7 +185,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-06-17 14:23:32
+        <i class="fas fa-edit"></i>&nbsp;2021-06-29 08:23:32
     </span>
     
         <span class="article-categories article-meta-item">
@@ -228,20 +228,43 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="VBA自动化处理数据并绘制图表-2"><a href="#VBA自动化处理数据并绘制图表-2" class="headerlink" title="VBA自动化处理数据并绘制图表-2"></a>VBA自动化处理数据并绘制图表-2</h1><h2 id="VBA的一些介绍"><a href="#VBA的一些介绍" class="headerlink" title="VBA的一些介绍"></a>VBA的一些介绍</h2><p>前后用了一周左右的时间来完成这个功能，VBA相比其他语言来说，在EXCEL编辑上优势还是很大的。虽然python有很多轮子，但是VBA的录制宏功能不可谓之不强。当我想去实现一个功能时，可能我记不住属性，记不住方法。但是我手工操作一遍，<strong>后台的录制宏会自动写好代码</strong>。这时候我们要做的就是删除庸余的代码，添加循环即可。</p>
-<h2 id="筛选数据和复制粘贴到新的EXCEL文件中"><a href="#筛选数据和复制粘贴到新的EXCEL文件中" class="headerlink" title="筛选数据和复制粘贴到新的EXCEL文件中"></a>筛选数据和复制粘贴到新的EXCEL文件中</h2><h3 id="存储筛选条件"><a href="#存储筛选条件" class="headerlink" title="存储筛选条件"></a>存储筛选条件</h3><p>在VBA存储数据时，有数组和字典类型。我个人比较喜欢字典类型的存储。它是属于mapping关系。一个字典可以通过add方法添加item和key值。它的优势在于：</p>
+            <h1 id="VBA关于日期时间的处理"><a href="#VBA关于日期时间的处理" class="headerlink" title="VBA关于日期时间的处理"></a>VBA关于日期时间的处理</h1><h2 id="提取日期里的年月日"><a href="#提取日期里的年月日" class="headerlink" title="提取日期里的年月日"></a>提取日期里的年月日</h2><p>对于EXCEL里的日期，有常用函数year, month, day 来获取日期的年月日。在VBA里面也支持同样的函数。假如单元格A1里面的日期为2021/06/28。那我们可以用下面的方法获取年月日</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#x27;获取年</span></span><br><span class="line">year=Year(Range(<span class="string">&quot;A1&quot;</span>))</span><br><span class="line"><span class="comment">&#x27;获取月</span></span><br><span class="line">month=Month(Range(<span class="string">&quot;A1&quot;</span>))</span><br><span class="line"><span class="comment">&#x27;获取日</span></span><br><span class="line">day=Day(Range(<span class="string">&quot;A1&quot;</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="日期之间的运算"><a href="#日期之间的运算" class="headerlink" title="日期之间的运算"></a>日期之间的运算</h2><h3 id="两个日期之间的差"><a href="#两个日期之间的差" class="headerlink" title="两个日期之间的差"></a>两个日期之间的差</h3><p>这里包含几个种类，比如两个日期之间的天数、两个日期之间的月份差、两个日期之间的年份差。对于这个的运算可以使用VBA DateDiff()这个函数。</p>
+<blockquote>
+<p>DateDiff(interval, date1, date2 [,firstdayofweek[, firstweekofyear]])</p>
+<p><em>Interval</em> - 一个必需的参数。 它可以采用以下值。</p>
+<ul>
+<li><em>d</em> - 一年中的一天</li>
+<li><em>m</em> - 一年中的月份</li>
+<li><em>y</em> - 一年中的年份</li>
+<li><em>yyyy</em> - 年份</li>
+<li><em>w</em> - 工作日</li>
+<li><em>ww</em> - 星期</li>
+<li><em>q</em> - 季度</li>
+<li><em>h</em> - 小时</li>
+<li><em>m</em> - 分钟</li>
+<li><em>s</em> - 秒钟</li>
+</ul>
+</blockquote>
+<p>假如在A1和B1分列存储两个日期。那么获取他们的两个日期之间间隔可以用下列方式。</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#x27;天数的差异</span></span><br><span class="line">DateDiff(<span class="string">&quot;d&quot;</span>,range(<span class="string">&quot;A1&quot;</span>),Range(<span class="string">&quot;B1&quot;</span>))</span><br><span class="line"><span class="comment">&#x27;月份的差异</span></span><br><span class="line">DateDiff(<span class="string">&quot;m&quot;</span>,range(<span class="string">&quot;A1&quot;</span>),Range(<span class="string">&quot;B1&quot;</span>))</span><br><span class="line"><span class="comment">&#x27;年份的差异</span></span><br><span class="line">DateDiff(<span class="string">&quot;y&quot;</span>,range(<span class="string">&quot;A1&quot;</span>),Range(<span class="string">&quot;B1&quot;</span>))</span><br></pre></td></tr></table></figure>
+<p>这个函数的好处在于，我们不用分别取年月日然后在进行换算得到差值。</p>
+<h3 id="日期月份的增加"><a href="#日期月份的增加" class="headerlink" title="日期月份的增加"></a>日期月份的增加</h3><p>假如我希望得到一个序列，分别是<strong>2021/1/1,2021/2/1,2021/3/1…</strong>. 这里最简单的做法是用EXCEL数据拖动的方式来实现。但是如果条件改变了，要获得的每个月最后一天的日期，即<strong>2021/1/31,2021/2/28,2021/3/31…</strong> 这里又如何实现呢？</p>
+<p>在EXCEL里面有两个函数可以使用。分别是EDate()与EOMONTH()。这两个函数的解释如下。</p>
 <ol>
-<li>字典读取速度快</li>
-<li>取值方便dic(item)就可以快速获取值</li>
+<li>Edate() 是与指定日期 (start_date) 相隔（之前或之后）指示的月份数。 使用函数 EDATE 可以计算与发行日处于一月中同一天的到期日的日期。</li>
 </ol>
-<p>所以我在这里也使用了字典的来存取筛选条件。将需要筛选的值放到data sheet里面，使用字典进行存取。</p>
-<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#x27;创建一个字典</span></span><br><span class="line"><span class="keyword">Set</span> dic = CreateObject(<span class="string">&quot;scripting.dictionary&quot;</span>)</span><br><span class="line">Sheets(<span class="string">&quot;data&quot;</span>).Activate</span><br><span class="line">    <span class="comment">&#x27;循环读取值并存入字典中</span></span><br><span class="line">    <span class="keyword">For</span> i = <span class="number">1</span> <span class="keyword">To</span> Cells(Rows.Count, <span class="string">&quot;A&quot;</span>).<span class="keyword">End</span>(xlUp).row</span><br><span class="line">        dic.Add i, Cells(i, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">Next</span></span><br></pre></td></tr></table></figure>
-<h3 id="excel创建新的sheet与excel-文件"><a href="#excel创建新的sheet与excel-文件" class="headerlink" title="excel创建新的sheet与excel 文件"></a>excel创建新的sheet与excel 文件</h3><h4 id="创建sheet"><a href="#创建sheet" class="headerlink" title="创建sheet"></a>创建sheet</h4><p>我们可以使用sheets的add方法添加一个worksheet在Excel文件里</p>
-<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#x27;添加一个sheet 在sheets(data)前面</span></span><br><span class="line">Sheets.Add before:=Sheets(<span class="string">&quot;data&quot;</span>)</span><br><span class="line"><span class="comment">&#x27;重命名sheet 方便后面读取</span></span><br><span class="line">ActiveSheet.Name = <span class="string">&quot;Topdata&quot;</span></span><br></pre></td></tr></table></figure>
-<h4 id="创建workbook"><a href="#创建workbook" class="headerlink" title="创建workbook"></a>创建workbook</h4><p>使用workbooks的add方法添加一个excel文件，但是在重命名时却报错。后面就使用workbook的saveas方法来定义文件的名称</p>
-<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#x27;新增workbook</span></span><br><span class="line">Workbooks.Add</span><br><span class="line"><span class="comment">&#x27;另存为test.xlsx</span></span><br><span class="line">ActiveWorkbook.SaveAs Filename:=<span class="string">&quot;D:\test.xlsx&quot;</span></span><br><span class="line">ActiveWorkbook.Close</span><br></pre></td></tr></table></figure>
-<h3 id="筛选"><a href="#筛选" class="headerlink" title="筛选"></a>筛选</h3><p>我们可以使用循环来设定excel的filter。这里假设第一列为筛选区域，筛选的结果贴到sheets(2)里面去</p>
-<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i=<span class="number">1</span> <span class="keyword">to</span> dic.count</span><br><span class="line">    Sheets(<span class="string">&quot;Raw data&quot;</span>).Rows(<span class="string">&quot;1:1&quot;</span>).<span class="keyword">Select</span></span><br><span class="line">    Selection.AutoFilter</span><br><span class="line">    Selection.AutoFilter Field:=<span class="number">1</span>, Criteria1:=dic(i)</span><br><span class="line">    selection.copy sheets(<span class="number">2</span>).range(<span class="string">&quot;A1&quot;</span>)</span><br><span class="line"><span class="keyword">next</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">EDATE(start_date, months)</span><br><span class="line"><span class="comment">&#x27;如果计算2021/1/31后面的一个月的日期,这里会得到2021/2/28</span></span><br><span class="line">EDATE(<span class="string">&quot;2021/1/31&quot;</span>,<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Start_date必需。 一个代表开始日期的日期。 应使用 DATE 函数输入日期，或者将日期作为其他公式或函数的结果输入。例如，使用函数 DATE(2008,5,23) 输入 2008 年 5 月 23 日。 如果日期以文本形式输入，则会出现问题。<br>Months 必需。 start_date 之前或之后的月份数。 months 为正值将生成未来日期；为负值将生成过去日期。</p>
+</blockquote>
+<ol start="2">
+<li>EOMONTH() 可以计算正好在特定月份中最后一天到期的到期日。</li>
+</ol>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">EOMONTH(start_date, months)</span><br><span class="line"><span class="comment">&#x27;2021/1/1后面一个月的最后一天，及2021/2/28</span></span><br><span class="line">EOMONTH(<span class="string">&quot;2021/1/1&quot;</span>, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>到这里，前面的序列问题就很简单了。我们可以设定一个循环来获取。</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">Sub</span> GETDATE()</span><br><span class="line"><span class="comment">&#x27;设定循环</span></span><br><span class="line">    <span class="keyword">For</span> i = <span class="number">0</span> <span class="keyword">To</span> <span class="number">11</span></span><br><span class="line">	<span class="comment">&#x27;起始月份</span></span><br><span class="line">    dd = <span class="string">&quot;2021/1/1&quot;</span></span><br><span class="line">    <span class="comment">&#x27;VBA调用EXCEL函数EoMonth    </span></span><br><span class="line">    newdate = WorksheetFunction.EoMonth(dd, i)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">&#x27;若起始日期为1月最后一天2021/1/31，那么使用Edate()也可以</span></span><br><span class="line">    <span class="comment">&#x27;newdate = WorksheetFunction.Edate(dd, i)</span></span><br><span class="line">    <span class="comment">&#x27;输出日期 cdate()是将数字转换为日期格式</span></span><br><span class="line">    Debug.Print (<span class="built_in">CDate</span>(newdate))</span><br><span class="line">    <span class="keyword">Next</span>    </span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
         </div>
 
@@ -249,11 +272,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>本文标题：VBA自动化处理数据并绘制图表-2</li>
+        <li>本文标题：VBA自动化处理数据并绘制图表-3</li>
         <li>本文作者：cemon_liu</li>
-        <li>创建时间：2021-06-17 14:23:32</li>
+        <li>创建时间：2021-06-29 08:23:32</li>
         <li>
-            本文链接：https://blog.gooday.press/2021/06/17/VBA自动化处理数据并绘制图表-2/
+            本文链接：https://blog.gooday.press/2021/06/29/VBA自动化处理数据并绘制图表-3/
         </li>
         <li>
             版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -267,29 +290,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2021/06/29/VBA%E8%87%AA%E5%8A%A8%E5%8C%96%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%B9%B6%E7%BB%98%E5%88%B6%E5%9B%BE%E8%A1%A8-3/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">VBA自动化处理数据并绘制图表-3</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2021/06/15/VBA%E8%87%AA%E5%8A%A8%E5%8C%96%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%B9%B6%E7%BB%98%E5%88%B6%E5%9B%BE%E8%A1%A8/"
+                           href="/2021/06/17/VBA%E8%87%AA%E5%8A%A8%E5%8C%96%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%B9%B6%E7%BB%98%E5%88%B6%E5%9B%BE%E8%A1%A8-2/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">VBA自动化处理数据并绘制图表-1</span>
+                                <span class="post-nav-title-item">VBA自动化处理数据并绘制图表-2</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -495,7 +503,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#VBA%E8%87%AA%E5%8A%A8%E5%8C%96%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%B9%B6%E7%BB%98%E5%88%B6%E5%9B%BE%E8%A1%A8-2"><span class="nav-number">1.</span> <span class="nav-text">VBA自动化处理数据并绘制图表-2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#VBA%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.</span> <span class="nav-text">VBA的一些介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%9B%E9%80%89%E6%95%B0%E6%8D%AE%E5%92%8C%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%E5%88%B0%E6%96%B0%E7%9A%84EXCEL%E6%96%87%E4%BB%B6%E4%B8%AD"><span class="nav-number">1.2.</span> <span class="nav-text">筛选数据和复制粘贴到新的EXCEL文件中</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E7%AD%9B%E9%80%89%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.2.1.</span> <span class="nav-text">存储筛选条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#excel%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84sheet%E4%B8%8Eexcel-%E6%96%87%E4%BB%B6"><span class="nav-number">1.2.2.</span> <span class="nav-text">excel创建新的sheet与excel 文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAsheet"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">创建sheet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAworkbook"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">创建workbook</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%9B%E9%80%89"><span class="nav-number">1.2.3.</span> <span class="nav-text">筛选</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#VBA%E5%85%B3%E4%BA%8E%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">VBA关于日期时间的处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%90%E5%8F%96%E6%97%A5%E6%9C%9F%E9%87%8C%E7%9A%84%E5%B9%B4%E6%9C%88%E6%97%A5"><span class="nav-number">1.1.</span> <span class="nav-text">提取日期里的年月日</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E6%9C%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BF%90%E7%AE%97"><span class="nav-number">1.2.</span> <span class="nav-text">日期之间的运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E6%97%A5%E6%9C%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%B7%AE"><span class="nav-number">1.2.1.</span> <span class="nav-text">两个日期之间的差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A5%E6%9C%9F%E6%9C%88%E4%BB%BD%E7%9A%84%E5%A2%9E%E5%8A%A0"><span class="nav-number">1.2.2.</span> <span class="nav-text">日期月份的增加</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>
