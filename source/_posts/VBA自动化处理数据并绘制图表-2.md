@@ -60,7 +60,7 @@ ActiveWorkbook.Close
 
 ### 筛选
 
-我们可以使用循环来设定excel的filter。这里假设第一列为筛选区域，晒选的结果贴到sheets(2)里面去
+我们可以使用循环来设定excel的filter。这里假设第一列为筛选区域，筛选的结果贴到sheets(2)里面去
 
 ```vb
 for i=1 to dic.count
