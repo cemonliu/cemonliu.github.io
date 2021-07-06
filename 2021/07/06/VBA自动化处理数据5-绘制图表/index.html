@@ -9,7 +9,7 @@
     
     <title>
         
-            VBA自动化处理数据4-单元格格式设置 |
+            VBA自动化处理数据5-绘制图表 |
         
         Keep learning
     </title>
@@ -167,7 +167,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">VBA自动化处理数据4-单元格格式设置</span>
+            <span class="title-hover-animation">VBA自动化处理数据5-绘制图表</span>
         </div>
 
         
@@ -185,7 +185,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-07-01 08:23:32
+        <i class="fas fa-edit"></i>&nbsp;2021-07-06 08:23:32
     </span>
     
         <span class="article-categories article-meta-item">
@@ -228,27 +228,31 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="VBA处理EXCEL单元格格式"><a href="#VBA处理EXCEL单元格格式" class="headerlink" title="VBA处理EXCEL单元格格式"></a>VBA处理EXCEL单元格格式</h1><p>使用VBA可以快速处理一些格式设置。这里主要分三步</p>
+            <h1 id="VBA自动化处理数据5-绘制图表"><a href="#VBA自动化处理数据5-绘制图表" class="headerlink" title="VBA自动化处理数据5-绘制图表"></a>VBA自动化处理数据5-绘制图表</h1><p>自动化处理数据一共写了5期，从初始的构想到最终图表的绘制。本期为此系列总结最后一期。</p>
+<p>在绘制图表前需要思考的几个问题：</p>
 <ol>
-<li>循环EXCEL区域</li>
-<li>判定符合条件的单元格</li>
-<li>设定单元格格式</li>
+<li>选取一定区域的数据，用来生成图表</li>
+<li>将生成图表，放置到希望的位置上</li>
+<li>调整图表类型包含是否柱状图，折线图以及主副坐标轴</li>
+<li>格式化图表：填充颜色、设定图表标题、坐标轴标题</li>
 </ol>
-<h2 id="设置单元格格式"><a href="#设置单元格格式" class="headerlink" title="设置单元格格式"></a>设置单元格格式</h2><p>主要是针对填充单元格的颜色。使用的方法是Range().Interior.Color或者ColorIndex</p>
-<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sub</span> setcellcolor()</span><br><span class="line">    <span class="comment">&#x27;设置区域A1:A10的颜色为绿色</span></span><br><span class="line">    Range(<span class="string">&quot;A1:A10&quot;</span>).Interior.Color = vbGreen</span><br><span class="line">    <span class="comment">&#x27;设置区域A1:A10的颜色为2即白色</span></span><br><span class="line">    Range(<span class="string">&quot;A1:A10&quot;</span>).Interior.ColorIndex = <span class="number">2</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">sub</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>color也可以用RGB样式来引用。</p>
-<p>colorIndex是Excel内置的颜色排序，使用数字来对应不同的颜色。有56个颜色。</p>
-</blockquote>
-<p><img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/360%E6%88%AA%E5%9B%BE170010197210278.jpg" alt="Excel图片颜色"></p>
-<h2 id="设置字体样式"><a href="#设置字体样式" class="headerlink" title="设置字体样式"></a>设置字体样式</h2><p>常用的字体设置有是否加粗，字体类型，字体大小，颜色等。</p>
-<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sub</span> setfont()</span><br><span class="line">    <span class="comment">&#x27;设置字体颜色为白色&#x27;</span></span><br><span class="line">    Range(<span class="string">&quot;A1:A10&quot;</span>).Font.Color = vbWhite</span><br><span class="line">    <span class="comment">&#x27;设置字体加粗&#x27;</span></span><br><span class="line">    Range(<span class="string">&quot;A1:A10&quot;</span>).Font.Bold = <span class="literal">True</span></span><br><span class="line">	<span class="comment">&#x27;设置字体类型为Arial&#x27;</span></span><br><span class="line">    Range(<span class="string">&quot;A1:A10&quot;</span>).Font.name = <span class="string">&quot;Arial&quot;</span></span><br><span class="line">    <span class="comment">&#x27;设置字体大小为15&#x27;</span></span><br><span class="line">    Range(<span class="string">&quot;A1:A10&quot;</span>).Font.Size = <span class="number">15</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">sub</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="图表数据源"><a href="#图表数据源" class="headerlink" title="图表数据源"></a>图表数据源</h2><p>图表数据的来源，如果是完整的区域，可以直接使用range()来引用。如果是一个区域的某几行。那么就需要在绘制后删除其中的series序列</p>
+<h3 id="完整区域绘图"><a href="#完整区域绘图" class="headerlink" title="完整区域绘图"></a>完整区域绘图</h3><p><img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/image-20210706103805957.png" alt="image-20210706103805957"></p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">Sub</span> addchart()</span><br><span class="line">    <span class="comment">&#x27;生成一个折线图图表&#x27;</span></span><br><span class="line">    <span class="keyword">Set</span> chart2 = ActiveSheet.Shapes.AddChart2(XlChartType:=xlLineMarkers)</span><br><span class="line">    <span class="keyword">With</span> chart2.Chart</span><br><span class="line">        <span class="comment">&#x27;设置有标题并修改图表标题&#x27;</span></span><br><span class="line">        .HasTitle = <span class="literal">True</span></span><br><span class="line">        .ChartTitle.<span class="keyword">Text</span> = <span class="string">&quot;this is chart2&quot;</span></span><br><span class="line">        <span class="comment">&#x27;设置图表引用数据与数据绘图按行还是按列取数据&#x27;</span></span><br><span class="line">        <span class="comment">&#x27;.SetSourceData Source:=Range(&quot;c2:h6&quot;), PlotBy:=xlRows</span></span><br><span class="line">        .SetSourceData Source:=Range(<span class="string">&quot;c2:h6&quot;</span>), PlotBy:=xlColumns</span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">With</span>    </span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br></pre></td></tr></table></figure>
 
 
-<h2 id="设置边框样式"><a href="#设置边框样式" class="headerlink" title="设置边框样式"></a>设置边框样式</h2><p>边框使用Range的borders属性。</p>
-<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sub</span> testborder()</span><br><span class="line">    <span class="comment">&#x27;设置斜上线&#x27;</span></span><br><span class="line">    Range(<span class="string">&quot;D1&quot;</span>).Borders(xlDiagonalUp).LineStyle = xlDash</span><br><span class="line">    <span class="comment">&#x27;设置斜下线实线&#x27;</span></span><br><span class="line">    Range(<span class="string">&quot;D2&quot;</span>).Borders(xlDiagonalDown).LineStyle = xlContinuous</span><br><span class="line">    <span class="comment">&#x27;设置底部线点线&#x27;</span></span><br><span class="line">    Range(<span class="string">&quot;D3&quot;</span>).Borders(xlEdgeBottom).LineStyle = xlDash</span><br><span class="line">    <span class="comment">&#x27;设置左部线实线&#x27;</span></span><br><span class="line">    Range(<span class="string">&quot;D4&quot;</span>).Borders(xlEdgeLeft).LineStyle = xlContinuous</span><br><span class="line">    <span class="comment">&#x27;设置右部线点线&#x27;</span></span><br><span class="line">    Range(<span class="string">&quot;D5&quot;</span>).Borders(xlEdgeRight).LineStyle = xlDash</span><br><span class="line">    <span class="comment">&#x27;设置顶部线双实线&#x27;</span></span><br><span class="line">    Range(<span class="string">&quot;D6&quot;</span>).Borders(xlEdgeTop).LineStyle = xlDouble</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">sub</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/image-20210701103602112.png" alt="样式图片"></p>
-<h2 id="最后放上思维导图"><a href="#最后放上思维导图" class="headerlink" title="最后放上思维导图"></a>最后放上思维导图</h2><p><img src="C:\Users\cemon_liu\Desktop\image-20210701103706267.png" alt="思维导图"></p>
+
+
+<h2 id="图表位置"><a href="#图表位置" class="headerlink" title="图表位置"></a>图表位置</h2><p>我们在绘制出图表往往希望把图表放到指定的位置上。这里我们可以把位置区域选定好。然后设定图表的left,right,width,height属性来进行设定。</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#x27;假定放图表在K2到Q10&#x27;</span></span><br><span class="line">    <span class="keyword">Set</span> Rng = Range(<span class="string">&quot;K2:Q10&quot;</span>)    </span><br><span class="line">    <span class="keyword">With</span> chart2</span><br><span class="line">        .Left = Rng.Left</span><br><span class="line">        .Top = Rng.Top</span><br><span class="line">        .Width = Rng.Width</span><br><span class="line">        .Height = Rng.Height       </span><br><span class="line">        </span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">With</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/image-20210706110751153.png" alt="image-20210706110751153"></p>
+<h2 id="图表类型"><a href="#图表类型" class="headerlink" title="图表类型"></a>图表类型</h2><p>图表类型包含图表的样式，是柱状图还是折线图还是饼状图等等。图表类型较多参考官方链接<a class="link"   target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/office/vba/api/excel.xlcharttype" >https://docs.microsoft.com/zh-cn/office/vba/api/excel.xlcharttype<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Sub</span> changechartbyseries()</span><br><span class="line"><span class="comment">&#x27;获取图表</span></span><br><span class="line"><span class="keyword">Set</span> chart1 = ActiveSheet.ChartObjects(<span class="string">&quot;chartsample&quot;</span>).Chart</span><br><span class="line"><span class="keyword">With</span> chart1</span><br><span class="line">        <span class="comment">&#x27;修改第四个序列即D的数据为51类型柱状图 </span></span><br><span class="line">    .SeriesCollection(<span class="number">4</span>).ChartType = <span class="number">51</span></span><br><span class="line">     <span class="comment">&#x27;设置D的数据对应到副坐标轴&#x27;</span></span><br><span class="line">    .SeriesCollection(<span class="number">4</span>).AxisGroup = <span class="number">2</span></span><br><span class="line">     <span class="comment">&#x27;显示图例&#x27;</span></span><br><span class="line">    .HasLegend = <span class="literal">True</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">With</span></span><br><span class="line"><span class="comment">&#x27;修改图表标题&#x27;</span></span><br><span class="line">chart1.ChartTitle.<span class="keyword">Text</span> = <span class="string">&quot;change title&quot;</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/image-20210706112135640.png" alt="image-20210706112135640"></p>
+<h2 id="图表格式化"><a href="#图表格式化" class="headerlink" title="图表格式化"></a>图表格式化</h2><p>这里主要是使用的录制宏的功能来格式化图表，毕竟参数太多。无法一一记下来。当我们录制完宏之后，删除掉多余的信息即可。</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#x27;设置序列2的填充颜色&#x27;</span></span><br><span class="line">	ActiveChart.FullSeriesCollection(<span class="number">2</span>).Interior.Color = RGB(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>)</span><br><span class="line"><span class="comment">&#x27;设置序列1的线条颜色&#x27;    </span></span><br><span class="line">	ActiveChart.FullSeriesCollection(<span class="number">1</span>).format.Line.ForeColor.RGB = RGB(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line"><span class="comment">&#x27;针对柱状图调整柱子之间间距&#x27;    </span></span><br><span class="line">	ActiveChart.ChartGroups(<span class="number">1</span>).GapWidth = <span class="number">75</span></span><br><span class="line"><span class="comment">&#x27;调整主坐标轴的格式</span></span><br><span class="line">    <span class="keyword">With</span> chart1.Chart.Axes(xlValue, xlPrimary)</span><br><span class="line">        .CrossesAt = .MinimumScale</span><br><span class="line">        .TickLabels.Font.Size = <span class="number">8</span></span><br><span class="line">        .MajorGridlines.Border.ColorIndex = <span class="number">20</span></span><br><span class="line">        .HasTitle = <span class="literal">True</span></span><br><span class="line">		.AxisTitle.<span class="keyword">Text</span> = <span class="string">&quot; X value &quot;</span></span><br><span class="line">        .AxisTitle.Orientation = xlUpward</span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">With</span></span><br><span class="line"><span class="comment">&#x27;调整副坐标轴的格式&#x27;</span></span><br><span class="line">    <span class="keyword">With</span> chart1.Chart.Axes(xlValue, xlSecondary)</span><br><span class="line">        .CrossesAt = .MinimumScale</span><br><span class="line">        .TickLabels.Font.Size = <span class="number">8</span></span><br><span class="line">        .HasTitle = <span class="literal">True</span></span><br><span class="line">		.AxisTitle.<span class="keyword">Text</span> = <span class="string">&quot;X2 Value&quot;</span></span><br><span class="line">        .AxisTitle.Orientation = xlUpward</span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">With</span></span><br><span class="line"><span class="comment">&#x27;设置中间图表区域的格式去除栅格线&#x27;</span></span><br><span class="line">    ActiveChart.PlotArea.<span class="keyword">Select</span></span><br><span class="line">    <span class="keyword">With</span> Selection.format.Line</span><br><span class="line">        .Visible = msoTrue</span><br><span class="line">        .ForeColor.RGB = RGB(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">        .Weight = <span class="number">1</span></span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">With</span></span><br><span class="line"><span class="comment">&#x27;填充中间图表区颜色为灰色&#x27;</span></span><br><span class="line">    <span class="keyword">With</span> Selection.format.Fill</span><br><span class="line">        .Visible = msoTrue</span><br><span class="line">        .ForeColor.RGB = RGB(<span class="number">192</span>, <span class="number">192</span>, <span class="number">192</span>)</span><br><span class="line">        .Transparency = <span class="number">0</span></span><br><span class="line">        .Solid</span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">With</span></span><br><span class="line"><span class="comment">&#x27;设置图表标题和图例样式&#x27;</span></span><br><span class="line">    <span class="keyword">With</span> chart1.Chart</span><br><span class="line">        .HasLegend = <span class="literal">True</span></span><br><span class="line">        .Legend.Font.Size = <span class="number">8</span></span><br><span class="line">        .Legend.Font.ColorIndex = <span class="number">5</span></span><br><span class="line">        .Legend.Position = xlLegendPositionBottom</span><br><span class="line">        .HasTitle = <span class="literal">True</span></span><br><span class="line">		.ChartTitle.<span class="keyword">Text</span> = <span class="string">&quot;chart title&quot;</span></span><br><span class="line">        .SetElement (msoElementPrimaryValueGridLinesNone)</span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">With</span></span><br></pre></td></tr></table></figure>
 
         </div>
 
@@ -256,11 +260,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>本文标题：VBA自动化处理数据4-单元格格式设置</li>
+        <li>本文标题：VBA自动化处理数据5-绘制图表</li>
         <li>本文作者：cemon_liu</li>
-        <li>创建时间：2021-07-01 08:23:32</li>
+        <li>创建时间：2021-07-06 08:23:32</li>
         <li>
-            本文链接：https://blog.gooday.press/2021/07/01/VBA处理EXCEL单元格格式-4/
+            本文链接：https://blog.gooday.press/2021/07/06/VBA自动化处理数据5-绘制图表/
         </li>
         <li>
             版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -274,29 +278,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2021/07/06/VBA%E8%87%AA%E5%8A%A8%E5%8C%96%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE5-%E7%BB%98%E5%88%B6%E5%9B%BE%E8%A1%A8/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">VBA自动化处理数据5-绘制图表</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2021/06/29/VBA%E8%87%AA%E5%8A%A8%E5%8C%96%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%B9%B6%E7%BB%98%E5%88%B6%E5%9B%BE%E8%A1%A8-3/"
+                           href="/2021/07/01/VBA%E5%A4%84%E7%90%86EXCEL%E5%8D%95%E5%85%83%E6%A0%BC%E6%A0%BC%E5%BC%8F-4/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">VBA自动化处理数据并绘制图表-3</span>
+                                <span class="post-nav-title-item">VBA自动化处理数据4-单元格格式设置</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -502,7 +491,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#VBA%E5%A4%84%E7%90%86EXCEL%E5%8D%95%E5%85%83%E6%A0%BC%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">VBA处理EXCEL单元格格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%8D%95%E5%85%83%E6%A0%BC%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">设置单元格格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%AD%97%E4%BD%93%E6%A0%B7%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">设置字体样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E8%BE%B9%E6%A1%86%E6%A0%B7%E5%BC%8F"><span class="nav-number">1.3.</span> <span class="nav-text">设置边框样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%90%8E%E6%94%BE%E4%B8%8A%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE"><span class="nav-number">1.4.</span> <span class="nav-text">最后放上思维导图</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#VBA%E8%87%AA%E5%8A%A8%E5%8C%96%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE5-%E7%BB%98%E5%88%B6%E5%9B%BE%E8%A1%A8"><span class="nav-number">1.</span> <span class="nav-text">VBA自动化处理数据5-绘制图表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E8%A1%A8%E6%95%B0%E6%8D%AE%E6%BA%90"><span class="nav-number">1.1.</span> <span class="nav-text">图表数据源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E5%8C%BA%E5%9F%9F%E7%BB%98%E5%9B%BE"><span class="nav-number">1.1.1.</span> <span class="nav-text">完整区域绘图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E8%A1%A8%E4%BD%8D%E7%BD%AE"><span class="nav-number">1.2.</span> <span class="nav-text">图表位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E8%A1%A8%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.3.</span> <span class="nav-text">图表类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E8%A1%A8%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-number">1.4.</span> <span class="nav-text">图表格式化</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
