@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="cemon_liu">
+    
+    <title>
+        
+            VBA自动化处理数据并绘制图表-3 |
+        
+        Keep learning
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/avatar.svg","favicon":"https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Keep learning
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">VBA自动化处理数据并绘制图表-3</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">cemon_liu</span>
+                        
+                            <span class="author-label">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-06-29 08:23:32
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/">编程学习</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/VBA/">VBA</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="VBA关于日期时间的处理"><a href="#VBA关于日期时间的处理" class="headerlink" title="VBA关于日期时间的处理"></a>VBA关于日期时间的处理</h1><h2 id="提取日期里的年月日"><a href="#提取日期里的年月日" class="headerlink" title="提取日期里的年月日"></a>提取日期里的年月日</h2><p>对于EXCEL里的日期，有常用函数year, month, day 来获取日期的年月日。在VBA里面也支持同样的函数。假如单元格A1里面的日期为2021/06/28。那我们可以用下面的方法获取年月日</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#x27;获取年</span></span><br><span class="line">year=Year(Range(<span class="string">&quot;A1&quot;</span>))</span><br><span class="line"><span class="comment">&#x27;获取月</span></span><br><span class="line">month=Month(Range(<span class="string">&quot;A1&quot;</span>))</span><br><span class="line"><span class="comment">&#x27;获取日</span></span><br><span class="line">day=Day(Range(<span class="string">&quot;A1&quot;</span>))</span><br></pre></td></tr></table></figure>
+
+<h2 id="日期之间的运算"><a href="#日期之间的运算" class="headerlink" title="日期之间的运算"></a>日期之间的运算</h2><h3 id="两个日期之间的差"><a href="#两个日期之间的差" class="headerlink" title="两个日期之间的差"></a>两个日期之间的差</h3><p>这里包含几个种类，比如两个日期之间的天数、两个日期之间的月份差、两个日期之间的年份差。对于这个的运算可以使用VBA DateDiff()这个函数。</p>
+<blockquote>
+<p>DateDiff(interval, date1, date2 [,firstdayofweek[, firstweekofyear]])</p>
+<p><em>Interval</em> - 一个必需的参数。 它可以采用以下值。</p>
+<ul>
+<li><em>d</em> - 一年中的一天</li>
+<li><em>m</em> - 一年中的月份</li>
+<li><em>y</em> - 一年中的年份</li>
+<li><em>yyyy</em> - 年份</li>
+<li><em>w</em> - 工作日</li>
+<li><em>ww</em> - 星期</li>
+<li><em>q</em> - 季度</li>
+<li><em>h</em> - 小时</li>
+<li><em>m</em> - 分钟</li>
+<li><em>s</em> - 秒钟</li>
+</ul>
+</blockquote>
+<p>假如在A1和B1分列存储两个日期。那么获取他们的两个日期之间间隔可以用下列方式。</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#x27;天数的差异</span></span><br><span class="line">DateDiff(<span class="string">&quot;d&quot;</span>,range(<span class="string">&quot;A1&quot;</span>),Range(<span class="string">&quot;B1&quot;</span>))</span><br><span class="line"><span class="comment">&#x27;月份的差异</span></span><br><span class="line">DateDiff(<span class="string">&quot;m&quot;</span>,range(<span class="string">&quot;A1&quot;</span>),Range(<span class="string">&quot;B1&quot;</span>))</span><br><span class="line"><span class="comment">&#x27;年份的差异</span></span><br><span class="line">DateDiff(<span class="string">&quot;y&quot;</span>,range(<span class="string">&quot;A1&quot;</span>),Range(<span class="string">&quot;B1&quot;</span>))</span><br></pre></td></tr></table></figure>
+
+<p>这个函数的好处在于，我们不用分别取年月日然后在进行换算得到差值。</p>
+<h3 id="日期月份的增加"><a href="#日期月份的增加" class="headerlink" title="日期月份的增加"></a>日期月份的增加</h3><p>假如我希望得到一个序列，分别是<strong>2021/1/1,2021/2/1,2021/3/1…</strong>. 这里最简单的做法是用EXCEL数据拖动的方式来实现。但是如果条件改变了，要获得的每个月最后一天的日期，即<strong>2021/1/31,2021/2/28,2021/3/31…</strong> 这里又如何实现呢？</p>
+<p>在EXCEL里面有两个函数可以使用。分别是EDate()与EOMONTH()。这两个函数的解释如下。</p>
+<ol>
+<li>Edate() 是与指定日期 (start_date) 相隔（之前或之后）指示的月份数。 使用函数 EDATE 可以计算与发行日处于一月中同一天的到期日的日期。</li>
+</ol>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">EDATE(start_date, months)</span><br><span class="line"><span class="comment">&#x27;如果计算2021/1/31后面的一个月的日期,这里会得到2021/2/28</span></span><br><span class="line">EDATE(<span class="string">&quot;2021/1/31&quot;</span>,<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Start_date必需。 一个代表开始日期的日期。 应使用 DATE 函数输入日期，或者将日期作为其他公式或函数的结果输入。例如，使用函数 DATE(2008,5,23) 输入 2008 年 5 月 23 日。 如果日期以文本形式输入，则会出现问题。<br>Months 必需。 start_date 之前或之后的月份数。 months 为正值将生成未来日期；为负值将生成过去日期。</p>
+</blockquote>
+<ol start="2">
+<li>EOMONTH() 可以计算正好在特定月份中最后一天到期的到期日。</li>
+</ol>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">EOMONTH(start_date, months)</span><br><span class="line"><span class="comment">&#x27;2021/1/1后面一个月的最后一天，及2021/2/28</span></span><br><span class="line">EOMONTH(<span class="string">&quot;2021/1/1&quot;</span>, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>到这里，前面的序列问题就很简单了。我们可以设定一个循环来获取。</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">Sub</span> GETDATE()</span><br><span class="line"><span class="comment">&#x27;设定循环</span></span><br><span class="line">    <span class="keyword">For</span> i = <span class="number">0</span> <span class="keyword">To</span> <span class="number">11</span></span><br><span class="line">	<span class="comment">&#x27;起始月份</span></span><br><span class="line">    dd = <span class="string">&quot;2021/1/1&quot;</span></span><br><span class="line">    <span class="comment">&#x27;VBA调用EXCEL函数EoMonth    </span></span><br><span class="line">    newdate = WorksheetFunction.EoMonth(dd, i)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">&#x27;若起始日期为1月最后一天2021/1/31，那么使用Edate()也可以</span></span><br><span class="line">    <span class="comment">&#x27;newdate = WorksheetFunction.Edate(dd, i)</span></span><br><span class="line">    <span class="comment">&#x27;输出日期 cdate()是将数字转换为日期格式</span></span><br><span class="line">    Debug.Print (<span class="built_in">CDate</span>(newdate))</span><br><span class="line">    <span class="keyword">Next</span>    </span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：VBA自动化处理数据并绘制图表-3</li>
+        <li>本文作者：cemon_liu</li>
+        <li>创建时间：2021-06-29 08:23:32</li>
+        <li>
+            本文链接：https://blog.gooday.press/2021/06/29/VBA自动化处理数据并绘制图表-3/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/07/01/VBA%E5%A4%84%E7%90%86EXCEL%E5%8D%95%E5%85%83%E6%A0%BC%E6%A0%BC%E5%BC%8F-4/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">VBA自动化处理数据4-单元格格式设置</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/06/17/VBA%E8%87%AA%E5%8A%A8%E5%8C%96%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%B9%B6%E7%BB%98%E5%88%B6%E5%9B%BE%E8%A1%A8-2/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">VBA自动化处理数据并绘制图表-2</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: '7E3eTywAGKpp0RKGntSLvh6R-9Nh9j0Va',
+                    appKey: 'TkVVtjfDaBkxRJ35SSTcdllD',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜 尽情吐槽吧~',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'cemon_liu';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('true') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">cemon_liu</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#VBA%E5%85%B3%E4%BA%8E%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">VBA关于日期时间的处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%90%E5%8F%96%E6%97%A5%E6%9C%9F%E9%87%8C%E7%9A%84%E5%B9%B4%E6%9C%88%E6%97%A5"><span class="nav-number">1.1.</span> <span class="nav-text">提取日期里的年月日</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E6%9C%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BF%90%E7%AE%97"><span class="nav-number">1.2.</span> <span class="nav-text">日期之间的运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E6%97%A5%E6%9C%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%B7%AE"><span class="nav-number">1.2.1.</span> <span class="nav-text">两个日期之间的差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A5%E6%9C%9F%E6%9C%88%E4%BB%BD%E7%9A%84%E5%A2%9E%E5%8A%A0"><span class="nav-number">1.2.2.</span> <span class="nav-text">日期月份的增加</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

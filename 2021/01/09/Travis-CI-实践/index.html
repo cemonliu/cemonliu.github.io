@@ -13,16 +13,20 @@
         
         Keep learning
     </title>
-    <link rel="stylesheet" href="/css/style.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/logo.svg">
-    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/avatar.svg","favicon":"https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.0"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/avatar.svg","favicon":"https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
@@ -49,6 +53,7 @@
 
     <div class="header-content">
         <div class="left">
+            
             <a class="logo-title" href="/">
                 Keep learning
             </a>
@@ -175,7 +180,7 @@
                     <div class="author">
                         <span class="name">cemon_liu</span>
                         
-                            <span class="author-label">Lv2</span>
+                            <span class="author-label">Lv3</span>
                         
                     </div>
                     <div class="meta-info">
@@ -220,6 +225,7 @@
 <p><img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/image-20210109143705570.png" alt="image-20210109143705570">  </p>
 <h2 id="blog-目录下新建文件-travis-yml-具体设置如下"><a href="#blog-目录下新建文件-travis-yml-具体设置如下" class="headerlink" title="blog 目录下新建文件 .travis.yml. 具体设置如下"></a>blog 目录下新建文件 .travis.yml. 具体设置如下</h2><p><strong>主要修改的是分支名称</strong>  </p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编译语言、环境</span></span><br><span class="line"><span class="attr">dist:</span> <span class="string">xenial</span></span><br><span class="line"><span class="attr">os:</span> <span class="string">linux</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">node_js</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Node.js 版本</span></span><br><span class="line"><span class="attr">node_js:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="number">12</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 只有 hexo 分支检出更改才触发 CI</span></span><br><span class="line"><span class="attr">branches:</span></span><br><span class="line">  <span class="attr">only:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">backup</span></span><br><span class="line"></span><br><span class="line"><span class="attr">before_install:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">export</span> <span class="string">TZ=&#x27;Asia/Shanghai&#x27;</span> <span class="comment"># 配置时区为东八区 UTC+8</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">npm</span> <span class="string">install</span> <span class="string">hexo-cli</span>      <span class="comment"># 安装 hexo</span></span><br><span class="line"></span><br><span class="line"><span class="attr">install:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">npm</span> <span class="string">install</span> <span class="comment"># 安装依赖</span></span><br><span class="line"></span><br><span class="line"><span class="attr">script:</span> <span class="comment"># 执行脚本，清除缓存，生成静态文件</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">hexo</span> <span class="string">clean</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">hexo</span> <span class="string">generate</span></span><br><span class="line"></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">strategy:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">provider:</span> <span class="string">pages</span></span><br><span class="line">  <span class="attr">skip_cleanup:</span> <span class="literal">true</span>      <span class="comment"># 跳过清理</span></span><br><span class="line">  <span class="attr">token:</span> <span class="string">$GH_TOKEN</span>        <span class="comment"># GitHub Token 变量</span></span><br><span class="line">  <span class="attr">keep_history:</span> <span class="literal">true</span>      <span class="comment"># 保持推送记录，以增量提交的方式</span></span><br><span class="line">  <span class="attr">local_dir:</span> <span class="string">public</span>       <span class="comment"># 需要推送到 GitHub 的静态文件目录</span></span><br><span class="line">  <span class="attr">target_branch:</span> <span class="string">master</span>   <span class="comment"># 推送的目标分支 local_dir -&gt; master 分支</span></span><br><span class="line">  <span class="attr">on:</span></span><br><span class="line">    <span class="attr">branch:</span> <span class="string">backup</span> <span class="comment"># 工作分支</span></span><br></pre></td></tr></table></figure>
+
   <br/>
 
 <h2 id="设置完成后，将文件-git到仓库，travis会自动运行"><a href="#设置完成后，将文件-git到仓库，travis会自动运行" class="headerlink" title="设置完成后，将文件 git到仓库，travis会自动运行"></a>设置完成后，将文件 git到仓库，travis会自动运行</h2><p><img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/image-20210109143547434.png" alt="image-20210109143547434">  </p>
@@ -397,8 +403,9 @@
             </div>
         
         <div class="theme-info info-item">
-            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.0</a>
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
         </div>
+        
     </div>
 </footer>
 
@@ -521,29 +528,51 @@
 
 
 
-<script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/header-shrink.js"></script><script src="/js/back2top.js"></script><script src="/js/dark-light-toggle.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
 
 
-    <script src="/js/local-search.js"></script>
+
+    
+<script src="/js/local-search.js"></script>
 
 
 
-    <script src="/js/code-copy.js"></script>
+
+    
+<script src="/js/code-copy.js"></script>
+
 
 
 
 
 <div class="post-scripts pjax">
     
-        <script src="/js/left-side-toggle.js"></script><script src="/js/libs/anime.min.js"></script><script src="/js/toc.js"></script>
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
     
 </div>
 
 
-    <script src="/js/libs/pjax.min.js"></script>
+    
+<script src="/js/libs/pjax.min.js"></script>
+
 <script>
     window.addEventListener('DOMContentLoaded', () => {
-        const pjax = new Pjax({
+        window.pjax = new Pjax({
             selectors: [
                 'head title',
                 '.page-container',
@@ -565,7 +594,7 @@
 
         document.addEventListener('pjax:complete', () => {
             KEEP.utils.pjaxProgressBarEnd();
-            pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
             KEEP.refresh();
         });
     });

@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="cemon_liu">
+    
+    <title>
+        
+            VBA自动化处理数据并绘制图表-2 |
+        
+        Keep learning
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/avatar.svg","favicon":"https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Keep learning
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">VBA自动化处理数据并绘制图表-2</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">cemon_liu</span>
+                        
+                            <span class="author-label">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-06-17 14:23:32
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/">编程学习</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/VBA/">VBA</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="VBA自动化处理数据并绘制图表-2"><a href="#VBA自动化处理数据并绘制图表-2" class="headerlink" title="VBA自动化处理数据并绘制图表-2"></a>VBA自动化处理数据并绘制图表-2</h1><h2 id="VBA的一些介绍"><a href="#VBA的一些介绍" class="headerlink" title="VBA的一些介绍"></a>VBA的一些介绍</h2><p>前后用了一周左右的时间来完成这个功能，VBA相比其他语言来说，在EXCEL编辑上优势还是很大的。虽然python有很多轮子，但是VBA的录制宏功能不可谓之不强。当我想去实现一个功能时，可能我记不住属性，记不住方法。但是我手工操作一遍，<strong>后台的录制宏会自动写好代码</strong>。这时候我们要做的就是删除庸余的代码，添加循环即可。</p>
+<h2 id="筛选数据和复制粘贴到新的EXCEL文件中"><a href="#筛选数据和复制粘贴到新的EXCEL文件中" class="headerlink" title="筛选数据和复制粘贴到新的EXCEL文件中"></a>筛选数据和复制粘贴到新的EXCEL文件中</h2><h3 id="存储筛选条件"><a href="#存储筛选条件" class="headerlink" title="存储筛选条件"></a>存储筛选条件</h3><p>在VBA存储数据时，有数组和字典类型。我个人比较喜欢字典类型的存储。它是属于mapping关系。一个字典可以通过add方法添加item和key值。它的优势在于：</p>
+<ol>
+<li>字典读取速度快</li>
+<li>取值方便dic(item)就可以快速获取值</li>
+</ol>
+<p>所以我在这里也使用了字典的来存取筛选条件。将需要筛选的值放到data sheet里面，使用字典进行存取。</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#x27;创建一个字典</span></span><br><span class="line"><span class="keyword">Set</span> dic = CreateObject(<span class="string">&quot;scripting.dictionary&quot;</span>)</span><br><span class="line">Sheets(<span class="string">&quot;data&quot;</span>).Activate</span><br><span class="line">    <span class="comment">&#x27;循环读取值并存入字典中</span></span><br><span class="line">    <span class="keyword">For</span> i = <span class="number">1</span> <span class="keyword">To</span> Cells(Rows.Count, <span class="string">&quot;A&quot;</span>).<span class="keyword">End</span>(xlUp).row</span><br><span class="line">        dic.Add i, Cells(i, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">Next</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="excel创建新的sheet与excel-文件"><a href="#excel创建新的sheet与excel-文件" class="headerlink" title="excel创建新的sheet与excel 文件"></a>excel创建新的sheet与excel 文件</h3><h4 id="创建sheet"><a href="#创建sheet" class="headerlink" title="创建sheet"></a>创建sheet</h4><p>我们可以使用sheets的add方法添加一个worksheet在Excel文件里</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#x27;添加一个sheet 在sheets(data)前面</span></span><br><span class="line">Sheets.Add before:=Sheets(<span class="string">&quot;data&quot;</span>)</span><br><span class="line"><span class="comment">&#x27;重命名sheet 方便后面读取</span></span><br><span class="line">ActiveSheet.Name = <span class="string">&quot;Topdata&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="创建workbook"><a href="#创建workbook" class="headerlink" title="创建workbook"></a>创建workbook</h4><p>使用workbooks的add方法添加一个excel文件，但是在重命名时却报错。后面就使用workbook的saveas方法来定义文件的名称</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#x27;新增workbook</span></span><br><span class="line">Workbooks.Add</span><br><span class="line"><span class="comment">&#x27;另存为test.xlsx</span></span><br><span class="line">ActiveWorkbook.SaveAs Filename:=<span class="string">&quot;D:\test.xlsx&quot;</span></span><br><span class="line">ActiveWorkbook.Close</span><br></pre></td></tr></table></figure>
+
+<h3 id="筛选"><a href="#筛选" class="headerlink" title="筛选"></a>筛选</h3><p>我们可以使用循环来设定excel的filter。这里假设第一列为筛选区域，筛选的结果贴到sheets(2)里面去</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i=<span class="number">1</span> <span class="keyword">to</span> dic.count</span><br><span class="line">    Sheets(<span class="string">&quot;Raw data&quot;</span>).Rows(<span class="string">&quot;1:1&quot;</span>).<span class="keyword">Select</span></span><br><span class="line">    Selection.AutoFilter</span><br><span class="line">    Selection.AutoFilter Field:=<span class="number">1</span>, Criteria1:=dic(i)</span><br><span class="line">    selection.copy sheets(<span class="number">2</span>).range(<span class="string">&quot;A1&quot;</span>)</span><br><span class="line"><span class="keyword">next</span></span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：VBA自动化处理数据并绘制图表-2</li>
+        <li>本文作者：cemon_liu</li>
+        <li>创建时间：2021-06-17 14:23:32</li>
+        <li>
+            本文链接：https://blog.gooday.press/2021/06/17/VBA自动化处理数据并绘制图表-2/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/06/29/VBA%E8%87%AA%E5%8A%A8%E5%8C%96%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%B9%B6%E7%BB%98%E5%88%B6%E5%9B%BE%E8%A1%A8-3/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">VBA自动化处理数据并绘制图表-3</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/06/15/VBA%E8%87%AA%E5%8A%A8%E5%8C%96%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%B9%B6%E7%BB%98%E5%88%B6%E5%9B%BE%E8%A1%A8/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">VBA自动化处理数据并绘制图表-1</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: '7E3eTywAGKpp0RKGntSLvh6R-9Nh9j0Va',
+                    appKey: 'TkVVtjfDaBkxRJ35SSTcdllD',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜 尽情吐槽吧~',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'cemon_liu';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('true') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">cemon_liu</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#VBA%E8%87%AA%E5%8A%A8%E5%8C%96%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%B9%B6%E7%BB%98%E5%88%B6%E5%9B%BE%E8%A1%A8-2"><span class="nav-number">1.</span> <span class="nav-text">VBA自动化处理数据并绘制图表-2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#VBA%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.</span> <span class="nav-text">VBA的一些介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%9B%E9%80%89%E6%95%B0%E6%8D%AE%E5%92%8C%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%E5%88%B0%E6%96%B0%E7%9A%84EXCEL%E6%96%87%E4%BB%B6%E4%B8%AD"><span class="nav-number">1.2.</span> <span class="nav-text">筛选数据和复制粘贴到新的EXCEL文件中</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E7%AD%9B%E9%80%89%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.2.1.</span> <span class="nav-text">存储筛选条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#excel%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84sheet%E4%B8%8Eexcel-%E6%96%87%E4%BB%B6"><span class="nav-number">1.2.2.</span> <span class="nav-text">excel创建新的sheet与excel 文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAsheet"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">创建sheet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAworkbook"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">创建workbook</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%9B%E9%80%89"><span class="nav-number">1.2.3.</span> <span class="nav-text">筛选</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
