@@ -28,80 +28,17 @@
 
 
 <body>
-.progress-bar-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: $z-index-9;
+<div class="progress-bar-container">
+    
 
-  if (hexo-config('pjax.enable') == true) {
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
 
-    .pjax-progress-bar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 2px;
-      width: 0;
-      background: var(--pjax-progress-bar-color);
-      visibility: hidden;
-      opacity: 0;
-      z-index: $z-index-8;
-      transition-t("width", "0", "0.1", "linear");
-
-
-      &.show {
-        opacity: 1;
-        visibility: visible;
-      }
-    }
-
-
-    .pjax-progress-icon {
-      position: absolute;
-      top: 0;
-      right: 0;
-      z-index: $z-index-8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 7px 6px 0 0;
-      visibility: hidden;
-      font-size: 1.1rem;
-      color: var(--default-text-color);
-
-      +keep-tablet() {
-        padding: 6px 5px 0 0;
-        font-size: 1rem;
-      }
-
-      &.show {
-        visibility: visible;
-      }
-    }
-
-  }
-
-  if (hexo-config('style.scroll.progress_bar.enable') == true) {
-
-    .scroll-progress-bar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0;
-      height: $scroll-progress-bar-height;
-      visibility: hidden;
-      z-index: $z-index-7;
-      background: var(--primary-color);
-      transition-t("width", "0", "0.1", "linear");
-
-      &.hide {
-        display: none !important;
-      }
-    }
-
-  }
-}
 
 <main class="page-container">
 
@@ -281,6 +218,35 @@
                 
                     <div class="home-content-container fade-in-down-animation">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2021/09/11/hexo%E4%B8%8Egit%E6%90%AD%E9%85%8D%E9%97%AE%E9%A2%98/">
+                        hexo与git搭配问题
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        Hexo github action部署修改配置之前用Hexo部署的时候一直把源代码放在公共仓库的。今天看到大家都把代码放到私有仓库再透过github Action来部署。Hexo的具体的教程。按照教程可以轻松的配置出来。
+问题在于当我使用了两个仓库...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sat Sep 11 2021 15:35:07 GMT+0800">2021-09-11</span></span>
+        
+        
+    </div>
+
+    <a href="/2021/09/11/hexo%E4%B8%8Egit%E6%90%AD%E9%85%8D%E9%97%AE%E9%A2%98/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
         
             <li class="home-article-item">
 
@@ -560,35 +526,6 @@ Excel raw data为从系统自动产生的数据
     </div>
 
     <a href="/2021/05/25/python%E5%8C%85httpx%E5%AD%A6%E4%B9%A0/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2021/03/03/%E7%94%9F%E6%B4%BB%E8%89%B0%E9%9A%BE/">
-                        生活艰难
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        2021年 开年不顺事情的发展过程从2020年末到2021年初，生活真的是起起伏伏。比电视剧还要精彩。真的是新年不顺，不知道这种状况要持续到什么时候。
-最先开始是工作中被投诉，原因也是来自于莫须有的问题。导致工作变动，还好在可接受范围内。但是不幸好像...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Mar 03 2021 14:28:10 GMT+0800">2021-03-03</span></span>
-        
-        
-    </div>
-
-    <a href="/2021/03/03/%E7%94%9F%E6%B4%BB%E8%89%B0%E9%9A%BE/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
