@@ -9,7 +9,7 @@
     
     <title>
         
-            hexo与git搭配问题 |
+            python实现自动登录 |
         
         Keep learning
     </title>
@@ -168,7 +168,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">hexo与git搭配问题</span>
+            <span class="title-hover-animation">python实现自动登录</span>
         </div>
 
         
@@ -186,7 +186,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-09-11 15:35:07
+        <i class="fas fa-edit"></i>&nbsp;2021-10-20 15:50:39
     </span>
     
         <span class="article-categories article-meta-item">
@@ -218,13 +218,30 @@
         
 
         <div class="article-content markdown-body">
-            <h2 id="Hexo-github-action部署修改配置"><a href="#Hexo-github-action部署修改配置" class="headerlink" title="Hexo github action部署修改配置"></a>Hexo github action部署修改配置</h2><p>之前用Hexo部署的时候一直把源代码放在公共仓库的。今天看到大家都把代码放到私有仓库再透过github Action来部署。<a class="link"   target="_blank" rel="noopener" href="https://juejin.cn/post/6943895271751286821" >Hexo的具体的教程<i class="fas fa-external-link-alt"></i></a>。按照教程可以轻松的配置出来。</p>
-<p>问题在于当我使用了两个仓库分别放源码和网页文件时，出现了在使用<code>hexo deploy</code> 和<code>hexo backup</code>命令时始终push到一个仓库的问题。经过几次测试。解决方案如下，</p>
-<p>1.要在git里面新增一个额外的remote连接。<code>git remote add origin &lt;remote-url&gt;  </code>.</p>
-<p>2.修改_config.yml</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span> </span><br><span class="line">    <span class="attr">github:</span> <span class="string">git@github.com:cemonliu/XXXX1,master</span>  <span class="comment">#deploy链接的是github</span></span><br><span class="line"><span class="attr">backup:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span></span><br><span class="line">    <span class="attr">github2:</span> <span class="string">git@github.com:cemonliu/XXXX2.git,master</span>  <span class="comment">#这里需要另外链接一个github2</span></span><br></pre></td></tr></table></figure>
+            <p>电脑连接无线网时要做二次验证，即先输入无线密码连接无线，然后会弹出网页要求在网页输入账号和密码。每天连接都是这样比较麻烦，所以考虑使用自动化运行。思路如下：</p>
+<ol>
+<li>bat调用命令power-shell </li>
+<li>使用power-shell script 运用python程序</li>
+<li>python使用request库访问URL 并post请求</li>
+</ol>
+<p>那为何不是bat直接调用python呢？正常的情况下可以直接调用。但是不知我的电脑是不是环境设置有问题。在VS code中terminal里面使用的power-shell都可以正常运用，直接在cmd里面运用python就报错。所以不得不中转一下。</p>
+<p>新建一个g.bat 调用power-shell命令，wifi.ps1为power shell命令档</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powershell wifi.ps1</span><br></pre></td></tr></table></figure>
 
-<p>里面的名字是在git建立远程链接时设定的。经过这个小小的修改，后续就可以愉快的deploy和back up了。</p>
+<p>新建powershell命令档</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;D:/ProgramData/Anaconda3/python.exe e:/wifi.py</span><br></pre></td></tr></table></figure>
+
+<p>调用python命令来运行python文件</p>
+<p>新建wifi.py文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">&#x27;https://XXXXXXX/login.html&#x27;</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/x-www-form-urlencoded&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) \</span></span><br><span class="line"><span class="string">    Chrome/94.0.4606.81 Safari/537.36&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">data = &#123;</span><br><span class="line">    <span class="string">&#x27;network_name&#x27;</span>: <span class="string">&#x27;wifi&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;username&#x27;</span>: <span class="string">&#x27;xxxxx&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;password&#x27;</span>: <span class="string">&#x27;xxxxx&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">res = requests.post(url=url, headers=headers, data=data, verify=<span class="literal">False</span>)</span><br><span class="line">print(res.request.body)</span><br><span class="line">print(res.status_code)</span><br></pre></td></tr></table></figure>
+
+<p>使用requests库的<code>post(url,headers,data,verify=False)</code>.在调试过程中发现下面两个问题：</p>
+<ol>
+<li>post的data类型比较多，要注意识别。这里使用比较通用的form类型。所以数据采用<code>key:value</code>模式。</li>
+<li>报错SSL connection问题，增加<code>verify=False</code>可以跳过错误。</li>
+</ol>
+<p>最后的设定，使用uTools将bat文件添加到本地命令启动。这样后面连接无线网之后，直接按<code>alt+space</code>，输入g回车即可自动认证。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic/202110201646611.png"></p>
 
         </div>
 
@@ -232,11 +249,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>本文标题：hexo与git搭配问题</li>
+        <li>本文标题：python实现自动登录</li>
         <li>本文作者：cemon_liu</li>
-        <li>创建时间：2021-09-11 15:35:07</li>
+        <li>创建时间：2021-10-20 15:50:39</li>
         <li>
-            本文链接：https://blog.gooday.press/2021/09/11/hexo与git搭配问题/
+            本文链接：https://blog.gooday.press/2021/10/20/python实现自动登录/
         </li>
         <li>
             版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -253,13 +270,13 @@
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2021/10/14/batch%E8%87%AA%E5%8A%A8%E5%86%99%E5%85%A5hosts/"
+                           href="/2021/10/27/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%8E%A8%E9%80%81/"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">bat文件学习</span>
+                                <span class="post-nav-title-item">企业微信消息python推送学习</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
@@ -269,10 +286,10 @@
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2021/08/25/Hexo%E5%91%BD%E4%BB%A4/"
+                           href="/2021/10/15/anaconda%E4%BF%AE%E5%A4%8D/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Hexo命令失效</span>
+                                <span class="post-nav-title-item">anaconda重装修复</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -478,7 +495,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-github-action%E9%83%A8%E7%BD%B2%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">Hexo github action部署修改配置</span></a></li></ol>
+        
     </div>
 </div>
         </aside>

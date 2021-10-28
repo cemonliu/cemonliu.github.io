@@ -9,7 +9,7 @@
     
     <title>
         
-            hexo与git搭配问题 |
+            企业微信消息python推送学习 |
         
         Keep learning
     </title>
@@ -168,7 +168,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">hexo与git搭配问题</span>
+            <span class="title-hover-animation">企业微信消息python推送学习</span>
         </div>
 
         
@@ -186,7 +186,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-09-11 15:35:07
+        <i class="fas fa-edit"></i>&nbsp;2021-10-27 15:50:39
     </span>
     
         <span class="article-categories article-meta-item">
@@ -218,13 +218,32 @@
         
 
         <div class="article-content markdown-body">
-            <h2 id="Hexo-github-action部署修改配置"><a href="#Hexo-github-action部署修改配置" class="headerlink" title="Hexo github action部署修改配置"></a>Hexo github action部署修改配置</h2><p>之前用Hexo部署的时候一直把源代码放在公共仓库的。今天看到大家都把代码放到私有仓库再透过github Action来部署。<a class="link"   target="_blank" rel="noopener" href="https://juejin.cn/post/6943895271751286821" >Hexo的具体的教程<i class="fas fa-external-link-alt"></i></a>。按照教程可以轻松的配置出来。</p>
-<p>问题在于当我使用了两个仓库分别放源码和网页文件时，出现了在使用<code>hexo deploy</code> 和<code>hexo backup</code>命令时始终push到一个仓库的问题。经过几次测试。解决方案如下，</p>
-<p>1.要在git里面新增一个额外的remote连接。<code>git remote add origin &lt;remote-url&gt;  </code>.</p>
-<p>2.修改_config.yml</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span> </span><br><span class="line">    <span class="attr">github:</span> <span class="string">git@github.com:cemonliu/XXXX1,master</span>  <span class="comment">#deploy链接的是github</span></span><br><span class="line"><span class="attr">backup:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span></span><br><span class="line">    <span class="attr">github2:</span> <span class="string">git@github.com:cemonliu/XXXX2.git,master</span>  <span class="comment">#这里需要另外链接一个github2</span></span><br></pre></td></tr></table></figure>
-
-<p>里面的名字是在git建立远程链接时设定的。经过这个小小的修改，后续就可以愉快的deploy和back up了。</p>
+            <p>之前用了很多推送服务比如方糖或者微信公众号等，但是最近公司网络增加了诸多限制，都不能访问网络了。偶然发现公司使用了企业微信，所以在网络上开放了权限，那么公司内部的一些监控消息就可以通过企业微信去进行推送。</p>
+<ol>
+<li><p>首先去访问企业微信官网api的信息推送<a class="link"   target="_blank" rel="noopener" href="https://work.weixin.qq.com/api/doc/90000/90003/90556" >api介绍<i class="fas fa-external-link-alt"></i></a>.主要动作有两个部分获取token以及调用api推送消息</p>
+<ul>
+<li><p>获取token 这里主要是要准备corpid以及corpsecret,需要管理员权限才能获得secret.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic/202110272002815.png" alt="官网介绍"></p>
+</li>
+<li><p>推送消息接口 使用post方法去传送data, 认证需要access_token。需要注意的是token是有有效期的。如果在有效期内不需要重新获取。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic/202110272005731.png"></p>
+</li>
+</ul>
+</li>
+</ol>
+<ol start="2">
+<li><p>具体的实现方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests,json</span><br><span class="line"><span class="keyword">from</span> pprint <span class="keyword">import</span> pprint </span><br><span class="line"><span class="comment">#设置企业id以及secret</span></span><br><span class="line">ID=<span class="string">&#x27;XXXX&#x27;</span></span><br><span class="line">SECRET=<span class="string">&#x27;XXX&#x27;</span></span><br><span class="line">url=<span class="string">f&#x27;https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=<span class="subst">&#123;ID&#125;</span>&amp;corpsecret=<span class="subst">&#123;SECRET&#125;</span>&#x27;</span></span><br><span class="line"><span class="comment"># 获取token</span></span><br><span class="line">res=requests.get(url=url)</span><br><span class="line"><span class="comment"># json.loads将字符串转为json</span></span><br><span class="line">ACCESS_TOKEN=json.loads(res.text)[<span class="string">&#x27;access_token&#x27;</span>]</span><br><span class="line"><span class="comment">#发送消息url</span></span><br><span class="line">newsurl=<span class="string">f&quot;https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=<span class="subst">&#123;ACCESS_TOKEN&#125;</span>&quot;</span></span><br><span class="line"><span class="comment">#可以推送到部门2</span></span><br><span class="line"><span class="comment">#可以获取人员id个人推送 间隔用 |</span></span><br><span class="line"><span class="comment">#agentid为企业添加自定义应用</span></span><br><span class="line">data=&#123;</span><br><span class="line">   <span class="string">&quot;touser&quot;</span> : <span class="string">&quot;userid&quot;</span>,</span><br><span class="line">   <span class="string">&quot;toparty&quot;</span> : <span class="string">&quot;&quot;</span>,</span><br><span class="line">   <span class="string">&quot;totag&quot;</span> : <span class="string">&quot;&quot;</span>,</span><br><span class="line">   <span class="string">&quot;msgtype&quot;</span> : <span class="string">&quot;text&quot;</span>,</span><br><span class="line">   <span class="string">&quot;agentid&quot;</span> : <span class="number">1000002</span>,</span><br><span class="line">   <span class="string">&quot;text&quot;</span> : &#123;</span><br><span class="line">       <span class="string">&quot;content&quot;</span> : <span class="string">&quot;推送信息测试&quot;</span></span><br><span class="line">   &#125;,</span><br><span class="line">   <span class="string">&quot;safe&quot;</span>:<span class="number">0</span>,</span><br><span class="line">   <span class="string">&quot;enable_id_trans&quot;</span>: <span class="number">0</span>,</span><br><span class="line">   <span class="string">&quot;enable_duplicate_check&quot;</span>: <span class="number">0</span>,</span><br><span class="line">   <span class="string">&quot;duplicate_check_interval&quot;</span>: <span class="number">1800</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># json.dumps将字典转为json</span></span><br><span class="line">res2=requests.post(url=newsurl,data=json.dumps(data))</span><br><span class="line">print(res2.json()[<span class="string">&#x27;errmsg&#x27;</span>])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以加强的部分</p>
+<ul>
+<li><p>将token存储起来，不用每次重复获取</p>
+</li>
+<li><p>发送信息，可以设定参数，比如人员名单，信息类型</p>
+</li>
+</ul>
+</li>
+</ol>
 
         </div>
 
@@ -232,11 +251,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>本文标题：hexo与git搭配问题</li>
+        <li>本文标题：企业微信消息python推送学习</li>
         <li>本文作者：cemon_liu</li>
-        <li>创建时间：2021-09-11 15:35:07</li>
+        <li>创建时间：2021-10-27 15:50:39</li>
         <li>
-            本文链接：https://blog.gooday.press/2021/09/11/hexo与git搭配问题/
+            本文链接：https://blog.gooday.press/2021/10/27/企业微信推送/
         </li>
         <li>
             版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -253,13 +272,13 @@
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2021/10/14/batch%E8%87%AA%E5%8A%A8%E5%86%99%E5%85%A5hosts/"
+                           href="/2021/10/28/%E5%85%B3%E4%BA%8E%E6%95%99%E8%82%B2%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">bat文件学习</span>
+                                <span class="post-nav-title-item">关于教育的一些思考</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
@@ -269,10 +288,10 @@
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2021/08/25/Hexo%E5%91%BD%E4%BB%A4/"
+                           href="/2021/10/20/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Hexo命令失效</span>
+                                <span class="post-nav-title-item">python实现自动登录</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -478,7 +497,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-github-action%E9%83%A8%E7%BD%B2%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">Hexo github action部署修改配置</span></a></li></ol>
+        
     </div>
 </div>
         </aside>
