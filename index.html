@@ -5,164 +5,176 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="keywords" content="Hexo Theme Keep">
     <meta name="description" content="Hexo Theme Keep">
-    <meta name="author" content="cemon_liu">
+    <meta name="author" content="Cemon_Liu">
     
     <title>
         
-        Keep learning
+        Keep Learning
     </title>
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/logo.svg">
     
-<link rel="stylesheet" href="/css/font-awesome.min.css">
+        <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/logo.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
 
-    <script id="hexo-configurations">
-    let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/avatar.svg","favicon":"https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.3"};
-    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Keep Learning","author":"Cemon_Liu","avatar":"https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/avatar.svg","logo":"/images/logo.svg","favicon":"https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/logo.svg"},"menu":{"home":"/                       || fa-solid fa-home","archives":"/archives           || fa-solid fa-box-archive","categories":"/categories     || fa-solid fa-layer-group","links":"/links               || fa-solid fa-link","about":"/about               || fa-solid fa-user-graduate"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":true},"social_contact":{"enable":false,"links":{"github":"https://github.com/cemonliu","weixin":"https://img.gooday.press/blog-img202407261036331.jpg","qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"cemonliu@gmail.com"}},"scroll":{"progress_bar":true,"percent":true,"hide_header":true},"home":{"announcement":null,"category":true,"tag":false,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"twikoo","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":"https://twikoo.gooday.press","region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{"links":[{"title":"大佬们"},{"name":"XPoet","link":"https://xpoet.cn/","description":"所有命运的馈赠，早已在暗中标好价格。","avatar":"https://cdn.jsdelivr.net/gh/XPoet/image-hosting@master/common-use/avatar.jpg"},{"name":"不知名艺术家","link":"https://jinzhanqi.com/","description":"love artist, love code.","avatar":"https://s3.ax1x.com/2020/11/17/DVvkB4.jpg"},{"name":"爱·绮梦","link":"https://x.iqimeng.com/","description":"学而时习之 不亦说乎","avatar":"https://x.iqimeng.com/images/avatar.jpg"},{"name":"MurphyChen","link":"https://mphy.gitee.io","description":"与其临渊羡鱼，不如退而结网。","avatar":"https://cdn.jsdelivr.net/gh/hacker-c/Picture-Bed@main/avatar.jpg"},{"name":"免费v2ray节点","link":"https://www.v2rayfree.eu.org/","description":"免费v2ray节点订阅自助获取","avatar":"https://www.v2rayfree.eu.org/images/avatar.png"}]},"version":"4.2.0"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.2.0"></head>
 
 
 <body>
 <div class="progress-bar-container">
     
-
+        <span class="scroll-progress-bar"></span>
     
-        <span class="pjax-progress-bar"></span>
-        <span class="pjax-progress-icon">
-            <i class="fas fa-circle-notch fa-spin"></i>
-        </span>
+
     
 </div>
 
 
-<main class="page-container">
 
+<main class="page-container border-box">
+    <!-- home first screen  -->
     
-        <div class="first-screen-container flex-center fade-in-down-animation">
-    <div class="content flex-center">
-        <div class="description">
-            Keep writing and Keep loving.
+        
+<div class="first-screen-container border-box flex-center fade-in-down-animation">
+    <div class="first-screen-content border-box">
+        <div class="top-placeholder border-box"></div>
+
+        <div class="middle-placeholder border-box">
+            
+                <div class="description border-box">
+                    
+                        <div class="desc-item border-box"><span class="desc hitokoto"></span><span class="cursor">｜</span></div>
+                    
+                </div>
+            
+
+            
+                <script async 
+                        src="https://v1.hitokoto.cn/?encode=js"
+                >
+                </script>
+            
         </div>
-        
-            <div class="s-icon-list">
-                
-                    
-                        
-                            <span class="s-icon-item github">
-                                <a target="_blank" href="https://github.com/cemonliu">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </span>
-                        
-                    
-                
-                    
-                        
-                            <span class="s-icon-item weixin">
-                                <a target="_blank" href="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/qrcode_for_gh_e6dfcbef2e95_344.jpg">
-                                    <i class="fab fa-weixin"></i>
-                                </a>
-                            </span>
-                        
-                    
-                
-                    
-                
-                    
-                
-                    
-                
-                    
-                
-                    
-                
-                    
-                        
-                            <span class="s-icon-item email">
-                                <a href="mailto:cemon_liu@126.com">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
-                            </span>
-                        
-                    
-                
-            </div>
-        
+
+        <div class="bottom-placeholder border-box">
+            
+        </div>
     </div>
 </div>
 
     
 
-    <div class="page-main-content">
-
+    <!-- page content -->
+    <div class="page-main-content border-box is-home">
         <div class="page-main-content-top">
-            <header class="header-wrapper">
-
-    <div class="header-content has-first-screen">
-        <div class="left">
             
-            <a class="logo-title" href="/">
-                Keep learning
+<header class="header-wrapper transparent-1">
+
+    <div class="border-box header-content has-first-screen">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Keep Learning
             </a>
         </div>
 
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
                     
-                        <li class="menu-item">
-                            <a class="active"
-                               href="/"
-                            >
+                        
+                        <li class="menu-item flex-start border-box active">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
                                 首页
+                                
                             </a>
+                            
                         </li>
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
                                 归档
+                                
                             </a>
+                            
                         </li>
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/categories"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                
                                 分类
+                                
                             </a>
+                            
                         </li>
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/links"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/links">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-link"></i>
+                                
                                 友链
+                                
                             </a>
+                            
                         </li>
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/about"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
                                 关于
+                                
                             </a>
+                            
                         </li>
                     
                     
                         <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
+                            <i class="menu-text-color fas search fa-search"></i>
                         </li>
                     
                 </ul>
             </div>
-            <div class="mobile">
+            <div class="mobile border-box flex-start">
                 
                     <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
                 
@@ -174,31 +186,86 @@
     </div>
 
     <div class="header-drawer">
-        <ul class="drawer-menu-list">
+        <ul class="drawer-menu-list border-box">
             
-                <li class="drawer-menu-item flex-center">
-                    <a class="active"
-                       href="/">首页</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu active">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">归档</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/categories">分类</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                </span>
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/links">友链</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/links">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-link"></i>
+                                </span>
+                            
+                            友链
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/about">关于</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            关于
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
         </ul>
@@ -211,383 +278,742 @@
 
         </div>
 
-        <div class="page-main-content-middle">
+        <div class="page-main-content-middle border-box">
 
-            <div class="main-content">
-
+            <div class="main-content border-box">
                 
+
                     <div class="home-content-container fade-in-down-animation">
-    <ul class="home-article-list">
+    
+    <ul class="home-post-list border-box">
         
-            <li class="home-article-item">
+            <li class="home-post-item">
 
                 
 
-                <h3 class="home-article-title">
-                    <a href="/2021/10/28/%E5%85%B3%E4%BA%8E%E6%95%99%E8%82%B2%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/">
-                        关于教育的一些思考
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
+                <div class="home-post-item-bottom border-box">
                     
-                        教育的反思昨天晚上因为数学背的不好，又把女儿训了一顿。起因是数学老师反馈她在做数学题时太慢，基本上是班级倒数了。所以连续几个晚上就开始给她加餐背数学。可是不管怎么教，就是背不会。虽然心态还没到崩溃的地步，但是也急的拍桌子。
-现在反思起来，好像自己犯了...
-                    
-                </div>
+                    <h3 class="home-post-title border-box">
+                        <a href="/2024/07/27/2024%E5%B9%B4%E4%B8%AD%E6%80%BB%E7%BB%93/">
+                            2024年中总结反思
+                        </a>
+                    </h3>
 
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Oct 28 2021 09:40:39 GMT+0800">2021-10-28</span></span>
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            2024年中总结反思
+凡事预则立，不预则废
+
+任何事情，如果我们有规划，总要比没有规划会强那么一点点。至少当我们无所事事时，可以打开我们的计划表，从中挑选那么几项去完成。
+以往在规划的时候都是使用云笔记，多端同步。由于网络的限制，今年开始转向本地化笔...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fa-solid fa-file-circle-plus"></i>&nbsp;<span class="home-post-history"
+                                                                                data-updated="Sat Jul 27 2024 14:47:55 GMT+0800"
+                >2024-07-27 14:47:55</span>
+            </span>
+        
+
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E5%BF%83%E6%83%85%E9%9A%8F%E7%AC%94/">心情随笔</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+
+        
+        
         
         
     </div>
 
-    <a href="/2021/10/28/%E5%85%B3%E4%BA%8E%E6%95%99%E8%82%B2%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    
+        <a class="home-read-more" href="/2024/07/27/2024%E5%B9%B4%E4%B8%AD%E6%80%BB%E7%BB%93/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
 </div>
 
+                </div>
             </li>
         
-            <li class="home-article-item">
+            <li class="home-post-item">
 
                 
 
-                <h3 class="home-article-title">
-                    <a href="/2021/10/27/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%8E%A8%E9%80%81/">
-                        企业微信消息python推送学习
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
+                <div class="home-post-item-bottom border-box">
                     
-                        之前用了很多推送服务比如方糖或者微信公众号等，但是最近公司网络增加了诸多限制，都不能访问网络了。偶然发现公司使用了企业微信，所以在网络上开放了权限，那么公司内部的一些监控消息就可以通过企业微信去进行推送。
+                    <h3 class="home-post-title border-box">
+                        <a href="/2024/06/30/%E5%93%AA%E5%90%92%E9%9D%A2%E6%9D%BF%E4%BB%A3%E7%90%86/">
+                            哪吒面板配置caddy代理
+                        </a>
+                    </h3>
 
-首先去访问企业微信官网api的信息推送ap...
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            哪吒面板哪吒面板主要是用来监控服务器的运行状态的。可以从面板上监控各个服务器的信息。而且有内置ssh terminal,可以连接进去运行指令。界面也比较美观。比如监控Serv00的服务器。
+
+配置代理一般的代理配置都是使用其他面板自带的后台来配置，比...
+                        
+                    </div>
+
                     
-                </div>
 
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Oct 27 2021 15:50:39 GMT+0800">2021-10-27</span></span>
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fa-solid fa-file-circle-plus"></i>&nbsp;<span class="home-post-history"
+                                                                                data-updated="Sun Jun 30 2024 12:20:39 GMT+0800"
+                >2024-06-30 12:20:39</span>
+            </span>
+        
+
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/">技术分享</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+
+        
+        
         
         
     </div>
 
-    <a href="/2021/10/27/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%8E%A8%E9%80%81/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    
+        <a class="home-read-more" href="/2024/06/30/%E5%93%AA%E5%90%92%E9%9D%A2%E6%9D%BF%E4%BB%A3%E7%90%86/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
 </div>
 
+                </div>
             </li>
         
-            <li class="home-article-item">
+            <li class="home-post-item">
 
                 
 
-                <h3 class="home-article-title">
-                    <a href="/2021/10/20/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95/">
-                        python实现自动登录
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
+                <div class="home-post-item-bottom border-box">
                     
-                        电脑连接无线网时要做二次验证，即先输入无线密码连接无线，然后会弹出网页要求在网页输入账号和密码。每天连接都是这样比较麻烦，所以考虑使用自动化运行。思路如下：
+                    <h3 class="home-post-title border-box">
+                        <a href="/2024/06/29/Utools%E4%BD%BF%E7%94%A8%E8%87%AA%E5%8A%A8%E5%8C%96hexo%E5%A4%87%E4%BB%BD/">
+                            Utools使用自动化更新hexo
+                        </a>
+                    </h3>
 
-bat调用命令power-shell 
-使用power-shell script 运用py...
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            Utools自动化脚本hexo备份思路
+之前一直是使用cmd命令，进入hexo blog里面执行命令。突然在想是否可以做一个脚本进行执行。
+
+utools本身自带自动化脚本,命令使用的是javascript语言,自己不会就只能找chatgpt来帮忙了...
+                        
+                    </div>
+
                     
-                </div>
 
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Oct 20 2021 15:50:39 GMT+0800">2021-10-20</span></span>
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fa-solid fa-file-circle-plus"></i>&nbsp;<span class="home-post-history"
+                                                                                data-updated="Sat Jun 29 2024 12:20:39 GMT+0800"
+                >2024-06-29 12:20:39</span>
+            </span>
+        
+
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/">技术分享</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+
+        
+        
         
         
     </div>
 
-    <a href="/2021/10/20/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    
+        <a class="home-read-more" href="/2024/06/29/Utools%E4%BD%BF%E7%94%A8%E8%87%AA%E5%8A%A8%E5%8C%96hexo%E5%A4%87%E4%BB%BD/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
 </div>
 
+                </div>
             </li>
         
-            <li class="home-article-item">
+            <li class="home-post-item">
 
                 
 
-                <h3 class="home-article-title">
-                    <a href="/2021/10/15/anaconda%E4%BF%AE%E5%A4%8D/">
-                        anaconda重装修复
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
+                <div class="home-post-item-bottom border-box">
                     
-                        电脑升级Win后面，原有的安装信息都丢失了，但是之前装的anaconda数据还存在，所以就打算直接修复一下。
+                    <h3 class="home-post-title border-box">
+                        <a href="/2024/05/20/%E8%B6%8A%E5%8D%97%E4%B9%8B%E8%A1%8C/">
+                            越南之行
+                        </a>
+                    </h3>
 
-使用下面命令修改channels,防止联网报http连接错误
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            越南之行记录
+越南这次出差，从上海直飞河内机场，大约三个半小时就可以到达。机场到公司和酒店一个小时。所以整个行程就像国内游。唯一的差异就是在机场和通关部分要复杂一些。航班整体环境还可以，越南航空VN530&#x2F;531，空间感觉还算挺大。  
 
-12345conda config --add channels http...
+...
+                        
+                    </div>
+
                     
-                </div>
 
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Oct 15 2021 17:50:39 GMT+0800">2021-10-15</span></span>
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fa-solid fa-file-circle-plus"></i>&nbsp;<span class="home-post-history"
+                                                                                data-updated="Mon May 20 2024 13:32:10 GMT+0800"
+                >2024-05-20 13:32:10</span>
+            </span>
+        
+
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E5%BF%83%E6%83%85%E9%9A%8F%E7%AC%94/">心情随笔</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+
+        
+        
         
         
     </div>
 
-    <a href="/2021/10/15/anaconda%E4%BF%AE%E5%A4%8D/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    
+        <a class="home-read-more" href="/2024/05/20/%E8%B6%8A%E5%8D%97%E4%B9%8B%E8%A1%8C/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
 </div>
 
+                </div>
             </li>
         
-            <li class="home-article-item">
+            <li class="home-post-item">
 
                 
 
-                <h3 class="home-article-title">
-                    <a href="/2021/10/14/batch%E8%87%AA%E5%8A%A8%E5%86%99%E5%85%A5hosts/">
-                        bat文件学习
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
+                <div class="home-post-item-bottom border-box">
                     
-                        学习编程时，有时要访问github，以及在使用一些加速代理时要配置hosts文件,所以最初就写了一个host.bat文件来写入，并且设置登录时自动运行。
-1234567@echo. &gt;&gt;C:\Windows\System32\Driver...
-                    
-                </div>
+                    <h3 class="home-post-title border-box">
+                        <a href="/2024/04/13/PowerBI-RankX/">
+                            PowerBI RankX应用
+                        </a>
+                    </h3>
 
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Oct 14 2021 08:50:39 GMT+0800">2021-10-14</span></span>
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            
+RankX的用法
+定义
+当使用RANKX函数时，它将返回基于给定表达式的排序顺序的数字。RANKX函数可用于创建动态的排名指标。以下是RANKX函数的基本语法示例：RANKX(, , [value], [order], [ties])  
+
+&lt...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fa-solid fa-file-circle-plus"></i>&nbsp;<span class="home-post-history"
+                                                                                data-updated="Sat Apr 13 2024 18:08:41 GMT+0800"
+                >2024-04-13 18:08:41</span>
+            </span>
+        
+
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/">技术分享</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+
+        
+        
         
         
     </div>
 
-    <a href="/2021/10/14/batch%E8%87%AA%E5%8A%A8%E5%86%99%E5%85%A5hosts/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    
+        <a class="home-read-more" href="/2024/04/13/PowerBI-RankX/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
 </div>
 
+                </div>
             </li>
         
-            <li class="home-article-item">
+            <li class="home-post-item">
 
                 
 
-                <h3 class="home-article-title">
-                    <a href="/2021/09/11/hexo%E4%B8%8Egit%E6%90%AD%E9%85%8D%E9%97%AE%E9%A2%98/">
-                        hexo与git搭配问题
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
+                <div class="home-post-item-bottom border-box">
                     
-                        Hexo github action部署修改配置之前用Hexo部署的时候一直把源代码放在公共仓库的。今天看到大家都把代码放到私有仓库再透过github Action来部署。Hexo的具体的教程。按照教程可以轻松的配置出来。
-问题在于当我使用了两个仓库...
-                    
-                </div>
+                    <h3 class="home-post-title border-box">
+                        <a href="/2024/03/16/Debian%E5%AE%89%E8%A3%85%E5%92%8CSSH%E9%85%8D%E7%BD%AE/">
+                            Debian安装和SSH配置
+                        </a>
+                    </h3>
 
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sat Sep 11 2021 15:35:07 GMT+0800">2021-09-11</span></span>
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            Linux debian配置和启动升级在VPS上面安装好debian系统后，需要进行的一些设置。
+123//获取更新并升级sudo apt-get updatesudo apt upgrade
+
+安装dockerdebian用起来没有centos的简...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fa-solid fa-file-circle-plus"></i>&nbsp;<span class="home-post-history"
+                                                                                data-updated="Sat Mar 16 2024 18:03:51 GMT+0800"
+                >2024-03-16 18:03:51</span>
+            </span>
+        
+
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/">技术分享</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+
+        
+        
         
         
     </div>
 
-    <a href="/2021/09/11/hexo%E4%B8%8Egit%E6%90%AD%E9%85%8D%E9%97%AE%E9%A2%98/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    
+        <a class="home-read-more" href="/2024/03/16/Debian%E5%AE%89%E8%A3%85%E5%92%8CSSH%E9%85%8D%E7%BD%AE/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
 </div>
 
+                </div>
             </li>
         
-            <li class="home-article-item">
+            <li class="home-post-item">
 
                 
 
-                <h3 class="home-article-title">
-                    <a href="/2021/08/25/Hexo%E5%91%BD%E4%BB%A4/">
-                        Hexo命令失效
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
+                <div class="home-post-item-bottom border-box">
                     
-                        修改系统变量path最近WIN10电脑频繁出现问题，先是桌面图标丢失了。接着好多程序莫名失效。很多天没更新文章。打开hexo命令也都丢失了。经调试发现，原来文件安装是正常的。在升级系统时导致系统path里的路径丢失，所以很多指令找不到。
-通过系统设置...
-                    
-                </div>
+                    <h3 class="home-post-title border-box">
+                        <a href="/2024/03/02/PowerBI%E5%85%B3%E8%81%94%E6%80%A7%E5%88%86%E6%9E%90/">
+                            Powerbi分析数据关联性
+                        </a>
+                    </h3>
 
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Aug 25 2021 10:50:39 GMT+0800">2021-08-25</span></span>
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            关联度分析理论在数据挖掘和关联规则分析中，置信度（confidence）和提升度（lift）是两个重要的指标。
+
+置信度（confidence）是指在关联规则分析中，条件A发生的情况下，事件B也发生的概率。数学上可以表示为：置信度 &#x3D; P(...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fa-solid fa-file-circle-plus"></i>&nbsp;<span class="home-post-history"
+                                                                                data-updated="Sat Mar 02 2024 18:28:25 GMT+0800"
+                >2024-03-02 18:28:25</span>
+            </span>
+        
+
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/">技术分享</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+
+        
+        
         
         
     </div>
 
-    <a href="/2021/08/25/Hexo%E5%91%BD%E4%BB%A4/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    
+        <a class="home-read-more" href="/2024/03/02/PowerBI%E5%85%B3%E8%81%94%E6%80%A7%E5%88%86%E6%9E%90/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
 </div>
 
+                </div>
             </li>
         
-            <li class="home-article-item">
+            <li class="home-post-item">
 
                 
 
-                <h3 class="home-article-title">
-                    <a href="/2021/08/25/Notion%E5%AD%A6%E4%B9%A0-1/">
-                        Notion API学习应用-1
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
+                <div class="home-post-item-bottom border-box">
                     
-                        抓取豆瓣书单并存到Notion里面在notion开放Notion API 之后，一直在思考对于我能够有什么应用场景。主要思考的有几个方向。
+                    <h3 class="home-post-title border-box">
+                        <a href="/2024/01/23/%E8%B7%A8%E8%B6%8A%E6%B2%9F%E9%80%9A/">
+                            跨越沟通-亲子教育
+                        </a>
+                    </h3>
 
-建立一个读书清单并且具有相应的图书封面以及读书感受
-针对一些循环任务可以使用程序自动来设定，而不是要重复建立...
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            昆山教育局举办的一个活动讲座，介绍了沟通中的遇到的一些问题。在讲座中有整理了一些信息用于学习记录。
+脑内有乾坤家长更换角色，体验一下孩子每天的感受。这个是老师在现场做的一个小活动，我印象特别深刻。家长扮演孩子，老师扮演家长。从早上起床、吃早饭、上学、...
+                        
+                    </div>
+
                     
-                </div>
 
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Aug 25 2021 10:50:39 GMT+0800">2021-08-25</span></span>
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fa-solid fa-file-circle-plus"></i>&nbsp;<span class="home-post-history"
+                                                                                data-updated="Tue Jan 23 2024 11:15:31 GMT+0800"
+                >2024-01-23 11:15:31</span>
+            </span>
+        
+
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E7%9F%A5%E8%A1%8C%E5%90%88%E4%B8%80/">知行合一</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+
+        
+        
         
         
     </div>
 
-    <a href="/2021/08/25/Notion%E5%AD%A6%E4%B9%A0-1/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    
+        <a class="home-read-more" href="/2024/01/23/%E8%B7%A8%E8%B6%8A%E6%B2%9F%E9%80%9A/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
 </div>
 
+                </div>
             </li>
         
-            <li class="home-article-item">
+            <li class="home-post-item">
 
                 
 
-                <h3 class="home-article-title">
-                    <a href="/2021/07/06/VBA%E8%87%AA%E5%8A%A8%E5%8C%96%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE5-%E7%BB%98%E5%88%B6%E5%9B%BE%E8%A1%A8/">
-                        VBA自动化处理数据5-绘制图表
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
+                <div class="home-post-item-bottom border-box">
                     
-                        VBA自动化处理数据5-绘制图表自动化处理数据一共写了5期，从初始的构想到最终图表的绘制。本期为此系列总结最后一期。
-在绘制图表前需要思考的几个问题：
+                    <h3 class="home-post-title border-box">
+                        <a href="/2023/12/09/python%E7%94%9F%E6%88%90%E8%AE%A1%E7%AE%97%E9%A2%98/">
+                            Python生成特定的乘法题
+                        </a>
+                    </h3>
 
-选取一定区域的数据，用来生成图表
-将生成图表，放置到希望的位置上
-调整图表类型包含是否柱状图，折...
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            
+在辅导女儿数学作业时，发现她对于一些乘法运算经常算错。所以我就再思考，是不是可以针对特定的类型，用编程遍历所有的题目，然后做出练习题。
+
+题目要求一个三位数与一个一位数相乘， 
+
+其中三位数和的十位，百位在乘以乘数后必须有进位，即大于10
+十位乘以...
+                        
+                    </div>
+
                     
-                </div>
 
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Jul 06 2021 08:23:32 GMT+0800">2021-07-06</span></span>
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fa-solid fa-file-circle-plus"></i>&nbsp;<span class="home-post-history"
+                                                                                data-updated="Sat Dec 09 2023 09:05:05 GMT+0800"
+                >2023-12-09 09:05:05</span>
+            </span>
+        
+
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/">技术分享</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+
+        
+        
         
         
     </div>
 
-    <a href="/2021/07/06/VBA%E8%87%AA%E5%8A%A8%E5%8C%96%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE5-%E7%BB%98%E5%88%B6%E5%9B%BE%E8%A1%A8/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    
+        <a class="home-read-more" href="/2023/12/09/python%E7%94%9F%E6%88%90%E8%AE%A1%E7%AE%97%E9%A2%98/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
 </div>
 
+                </div>
             </li>
         
-            <li class="home-article-item">
+            <li class="home-post-item">
 
                 
 
-                <h3 class="home-article-title">
-                    <a href="/2021/07/01/VBA%E5%A4%84%E7%90%86EXCEL%E5%8D%95%E5%85%83%E6%A0%BC%E6%A0%BC%E5%BC%8F-4/">
-                        VBA自动化处理数据4-单元格格式设置
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
+                <div class="home-post-item-bottom border-box">
                     
-                        VBA处理EXCEL单元格格式使用VBA可以快速处理一些格式设置。这里主要分三步
+                    <h3 class="home-post-title border-box">
+                        <a href="/2023/12/05/%E5%84%BF%E7%AB%A5%E8%87%AA%E4%B8%BB%E5%AD%A6%E4%B9%A0/">
+                            培养有主动性的孩子课程学习笔记
+                        </a>
+                    </h3>
 
-循环EXCEL区域
-判定符合条件的单元格
-设定单元格格式
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            让孩子快速写作业
+第一个任务20s快速启动，任务小，能量低
+化大为小
+从容易的开始
+加入静心（写作业前的准备，小启动）
 
-设置单元格格式主要是针对填充单元格的颜色。使用的方法是Range().Interior.Color或者Co...
+
+用清单法搞定顺序，释放大脑
+先做简单 喜欢的
+顺序基本固定
+孩子自主决定顺序
+孩子自己整理清单
+
+
+用打勾法给大脑提供及时奖励...
+                        
+                    </div>
+
                     
-                </div>
 
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Jul 01 2021 08:23:32 GMT+0800">2021-07-01</span></span>
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fa-solid fa-file-circle-plus"></i>&nbsp;<span class="home-post-history"
+                                                                                data-updated="Tue Dec 05 2023 10:07:50 GMT+0800"
+                >2023-12-05 10:07:50</span>
+            </span>
+        
+
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E7%9F%A5%E8%A1%8C%E5%90%88%E4%B8%80/">知行合一</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+
+        
+        
         
         
     </div>
 
-    <a href="/2021/07/01/VBA%E5%A4%84%E7%90%86EXCEL%E5%8D%95%E5%85%83%E6%A0%BC%E6%A0%BC%E5%BC%8F-4/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    
+        <a class="home-read-more" href="/2023/12/05/%E5%84%BF%E7%AB%A5%E8%87%AA%E4%B8%BB%E5%AD%A6%E4%B9%A0/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
 </div>
 
+                </div>
             </li>
         
     </ul>
-
-    <div class="home-paginator">
-        <div class="paginator">
     
+    <div class="paginator border-box flex-center">
+        <div class="border-box first-page paginator-btn not-allow">
+            <a class="border-box"><i class="fa-solid fa-angle-double-left"></i></a>
+        </div>
 
-    
-        <a class="next btn"
-           href="/page/2/"
-        >下一页</a>
-    
-</div>
+        <div class="border-box paginator-btn">
+            <a class="border-box"
+               href="/"
+            ><i class="fa-solid fa-chevron-left"></i></a>
+        </div>
 
+
+        <div class="page-number-box border-box flex-center">
+            <input class="page-number-input border-box base-style"
+                   type="number"
+                   value="1"
+                   min="1"
+                   max="7"
+            /><span class="delimiter base-style">/</span><span class="base-style">7</span>
+        </div>
+
+
+        <div class="border-box paginator-btn allowed">
+            <a class="border-box"
+               href="/page/2/"
+            ><i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+
+        <div class="border-box last-page paginator-btn allowed">
+            <a class="border-box"><i class="fa-solid fa-angle-double-right"></i></a>
+        </div>
     </div>
+
+
+
+
 </div>
 
 
                 
             </div>
-
         </div>
 
-        <div class="page-main-content-bottom">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
+        <div class="page-main-content-bottom border-box">
             
-              <span>2020</span>&nbsp;-&nbsp;
-            
-            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">cemon_liu</a>
-        </div>
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2024
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
-        <div class="theme-info info-item">
-            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
-        </div>
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Cemon_Liu</a>
         
     </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">访客数</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">访问量</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
 </footer>
 
         </div>
     </div>
 
+    <!-- post tools -->
     
 
-    <div class="right-bottom-side-tools">
-        <div class="side-tools-container">
-    <ul class="side-tools-list">
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box side-tools-show-handle">
+    <ul class="side-tools-list side-tools-show-handle border-box">
         <li class="tools-item tool-font-adjust-plus flex-center">
             <i class="fas fa-search-plus"></i>
         </li>
@@ -596,45 +1022,47 @@ bat调用命令power-shell
             <i class="fas fa-search-minus"></i>
         </li>
 
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
-
-        <li class="tools-item tool-dark-light-toggle flex-center">
-            <i class="fas fa-moon"></i>
-        </li>
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
 
         <!-- rss -->
         
 
-        
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="fas fa-arrow-up"></i>
-            </li>
-        
-
+        <!-- to bottom -->
         <li class="tools-item tool-scroll-to-bottom flex-center">
             <i class="fas fa-arrow-down"></i>
         </li>
     </ul>
 
-    <ul class="exposed-tools-list">
+    <ul class="exposed-tools-list border-box">
+        
+
+        
+
         <li class="tools-item tool-toggle-show flex-center">
             <i class="fas fa-cog fa-spin"></i>
         </li>
-        
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
     </ul>
 </div>
 
     </div>
 
-    
-
-    <div class="image-viewer-container">
-    <img src="">
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
 </div>
 
 
+    <!-- local search -->
     
         <div class="search-pop-overlay">
     <div class="popup search-popup">
@@ -652,7 +1080,7 @@ bat调用命令power-shell
                        class="search-input"
                 >
             </div>
-            <span class="popup-btn-close">
+            <span class="close-popup-btn">
                 <i class="fas fa-times"></i>
             </span>
         </div>
@@ -666,74 +1094,74 @@ bat调用命令power-shell
 
     
 
+    <!-- tablet toc -->
+    
 </main>
 
 
 
 
 
-<script src="/js/utils.js"></script>
 
-<script src="/js/main.js"></script>
+<!-- common js -->
+
+<script src="/js/utils.js"></script>
 
 <script src="/js/header-shrink.js"></script>
 
 <script src="/js/back2top.js"></script>
 
-<script src="/js/dark-light-toggle.js"></script>
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
 
 
+<!-- local search -->
 
     
 <script src="/js/local-search.js"></script>
 
 
 
+<!-- lazyload -->
 
     
-<script src="/js/code-copy.js"></script>
+<script src="/js/lazyload.js"></script>
 
 
 
+<div class="">
+    <!-- home page -->
+    
+        
+<script src="/js/page/home-page.js"></script>
 
+    
 
-<div class="post-scripts pjax">
+    <!-- post page -->
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
     
 </div>
 
+<!-- mermaid -->
 
-    
-<script src="/js/libs/pjax.min.js"></script>
 
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-        window.pjax = new Pjax({
-            selectors: [
-                'head title',
-                '.page-container',
-                '.pjax'
-            ],
-            history: true,
-            debug: false,
-            cacheBust: false,
-            timeout: 0,
-            analytics: false,
-            currentUrlFullReload: false,
-            scrollRestoration: false,
-            // scrollTo: true,
-        });
-
-        document.addEventListener('pjax:send', () => {
-            KEEP.utils.pjaxProgressBarStart();
-        });
-
-        document.addEventListener('pjax:complete', () => {
-            KEEP.utils.pjaxProgressBarEnd();
-            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
-            KEEP.refresh();
-        });
-    });
-</script>
+<!-- pjax -->
 
 
 
