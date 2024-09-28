@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Cemon_Liu">
+    
+    <title>
+        
+            PowerBI使用SVG |
+        
+        Keep Learning
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/logo.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Keep Learning","author":"Cemon_Liu","avatar":"https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/avatar.svg","logo":"/images/logo.svg","favicon":"https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/logo.svg"},"menu":{"home":"/                       || fa-solid fa-home","archives":"/archives/           || fa-solid fa-box-archive","categories":"/categories/     || fa-solid fa-layer-group","links":"/links/               || fa-solid fa-link","about":"/about/               || fa-solid fa-user-graduate"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":true},"social_contact":{"enable":false,"links":{"github":"https://github.com/cemonliu","weixin":"https://img.gooday.press/blog-img202407261036331.jpg","qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"cemonliu@gmail.com"}},"scroll":{"progress_bar":true,"percent":true,"hide_header":true},"home":{"announcement":null,"category":true,"tag":false,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"twikoo","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":"https://twikoo.gooday.press","region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{"links":[{"title":"大佬们"},{"name":"XPoet","link":"https://xpoet.cn/","description":"所有命运的馈赠，早已在暗中标好价格。","avatar":"https://cdn.jsdelivr.net/gh/XPoet/image-hosting@master/common-use/avatar.jpg"},{"name":"不知名艺术家","link":"https://jinzhanqi.com/","description":"love artist, love code.","avatar":"https://s3.ax1x.com/2020/11/17/DVvkB4.jpg"},{"name":"爱·绮梦","link":"https://x.iqimeng.com/","description":"学而时习之 不亦说乎","avatar":"https://x.iqimeng.com/images/avatar.jpg"},{"name":"MurphyChen","link":"https://mphy.gitee.io","description":"与其临渊羡鱼，不如退而结网。","avatar":"https://cdn.jsdelivr.net/gh/hacker-c/Picture-Bed@main/avatar.jpg"},{"name":"免费v2ray节点","link":"https://www.v2rayfree.eu.org/","description":"免费v2ray节点订阅自助获取","avatar":"https://www.v2rayfree.eu.org/images/avatar.png"}]},"version":"4.2.3"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Keep Learning
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首页
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                归档
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                
+                                分类
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/links/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-link"></i>
+                                
+                                友链
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                关于
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                </span>
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/links/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-link"></i>
+                                </span>
+                            
+                            友链
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            关于
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        PowerBI使用SVG
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Cemon_Liu</span>
+                                
+                                    <span class="author-badge">Lv5</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2024-09-14 16:15:30</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Sat Sep 14 2024 18:29:34 GMT+0800">2024-09-14 18:29:34</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/">技术分享</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h2 id="PowerBI使用SVG绘制图表"><a href="#PowerBI使用SVG绘制图表" class="headerlink" title="PowerBI使用SVG绘制图表"></a>PowerBI使用SVG绘制图表</h2><p>八月底更新的一篇关于PowerBI函数的用法还上了推荐。所以看起来，现在这个使用人群还不少。<br>所以今天更新一个帮别人绘制图形的思路和制作方法。</p>
+<h3 id="Powerbi制作要求"><a href="#Powerbi制作要求" class="headerlink" title="Powerbi制作要求"></a>Powerbi制作要求</h3><p>在powerBI 里面绘制一个图形，用统计值和标准值去做对比。针对比对的大小，分别用红绿灯填充。</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://img.gooday.press/blog-img202409141800663.png"
+                        alt="图一"
+                 ></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://img.gooday.press/blog-img202409141757793.png"
+                        alt="图二"
+                 ></p>
+<p>我们来分析一下这个图:</p>
+<ol>
+<li>X轴使用的是时间维度</li>
+<li>Y轴这里比较奇怪，使用的是产品名称维度</li>
+<li>在图表中的值，没有大小区分，只是有颜色的差异。</li>
+<li>在图一中，我们可以切换统计的维度，就是统计值可以是最大值，最小值，平均值等。</li>
+</ol>
+<h3 id="PowerBi制作思路"><a href="#PowerBi制作思路" class="headerlink" title="PowerBi制作思路"></a>PowerBi制作思路</h3><p>大部分人看到这个图的第一想法就是，这不就是散布图么？ 看起来难度不大。但是当我们实操的时候会发现，X轴可以放上去，Y轴是放不上去产品名称的。为何呢？问了下GPT回答如下：</p>
+<blockquote>
+<p>如果你尝试在Y轴上放置非数值型数据（如产品类型），可能会遇到数据类型限制：<br>散点图要求X轴和Y轴的数据是<strong>数值型</strong>，以便能够在二维平面上<strong>精确定位每个数据点</strong>的位置。<br>非数值数据（如文本或类别）无法直接用于散点图的数值轴。</p>
+</blockquote>
+<p><strong>原来散点图会要求Y轴必须是数据类型来做匹配。</strong></p>
+<h4 id="使用charticulator插件绘制"><a href="#使用charticulator插件绘制" class="headerlink" title="使用charticulator插件绘制"></a>使用charticulator插件绘制</h4><p>遇到上面的问题之后，我想到的第一个思路就是用这个制图神器去实现这个效果。先放上制作成品。</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://img.gooday.press/blog-img202409141808834.png"
+                        alt="charticulator制作"
+                 ></p>
+<p>在这个插件里面，取消了对Y轴的限制，所以我们可以直接把产品类型放进去。自动会生成原点图。我们需要配置的是将比较的结果返回的字符串匹配到颜色上面去。如下图所示。</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://img.gooday.press/blog-img202409141817062.png"
+                        alt="颜色匹配"
+                 ></p>
+<p>这样我们基本上就可以制作完成。有一个缺陷是，当我们使用字段参数时，图形会要求我们重新匹配传入的值，所以在使用过程中有些不方便。当然我们也可以做成多个图来展示。</p>
+<h4 id="填SVG到矩阵里面实现"><a href="#填SVG到矩阵里面实现" class="headerlink" title="填SVG到矩阵里面实现"></a>填SVG到矩阵里面实现</h4><p>使用另外一个思路也可以实现，因为红绿灯显示，我们可以制作两个SVG，放入返回的结果里面去。这样在矩阵里面就可以展示红绿灯了，而且这样做的好处是可以支持字段参数。制作的成品效果如下：</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://img.gooday.press/blog-img202409141821622.png"
+                        alt="SVG填充"
+                 ></p>
+<p>这个步骤要比上面的复杂一些。</p>
+<ol>
+<li>写两个DAX函数用于对应红色和蓝色的SVG.</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">BlueCircleSVG = </span><br><span class="line">&quot;data:image/svg+xml;utf8,&lt;svg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; width=&#x27;20&#x27; height=&#x27;20&#x27;&gt;</span><br><span class="line">&lt;circle cx=&#x27;10&#x27; cy=&#x27;10&#x27; r=&#x27;10&#x27; fill=&#x27;blue&#x27; /&gt;</span><br><span class="line">&lt;/svg&gt;&quot;</span><br><span class="line"></span><br><span class="line">RedCircleSVG = </span><br><span class="line">&quot;data:image/svg+xml;utf8,&lt;svg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; width=&#x27;20&#x27; height=&#x27;20&#x27;&gt;</span><br><span class="line">&lt;circle cx=&#x27;10&#x27; cy=&#x27;10&#x27; r=&#x27;10&#x27; fill=&#x27;red&#x27; /&gt;</span><br><span class="line">&lt;/svg&gt;&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>替换原DAX中返回的”Red” 和”Blue”为对应的SVG度量值</p>
+</li>
+<li><p><strong>修改数据格式</strong>，这一步最重要，不然你会在矩阵里面看到的一大串文字。选中相应的度量值，然后修改为如下样式：</p>
+</li>
+</ol>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://img.gooday.press/blog-img202409141824088.png"
+                        alt="数据格式"
+                 ></p>
+<ol start="4">
+<li>将对应的度量值拖入矩阵即可展示出成果。</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>在展示数据时，我们可能会遇到各种局限，而使用<strong>charticulator</strong>可以帮助我们破除这些限制。当然它本身也有限制，传入的一些值动态变换能力不够。所以我们可以考虑用变通的方法来实现最终的目的。</p>
+<p>这次制作我也是第一次正式使用SVG去填充一些信息。在上面的第三步由于只修改了SVG默认的格式，返回值DAX忘记修改了，所以在显示的时候一直是文字而不是图形。</p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                    </div>
+                    <div>
+                        
+                            <div class="post-share-container border-box">
+    <ul class="share-list-wrap border-box">
+        <li class="qq share-item border-box flex-center tooltip"
+            data-tooltip-content="分享到 QQ"
+        >
+            <i class="fa-brands fa-qq"></i>
+        </li>
+        <li class="wechat share-item border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="分享到微信"
+            data-tooltip-img-tip="微信扫一扫"
+            data-tooltip-img-style="background-color: #fff; top: -10px; padding: 0.6rem 0.6rem 0.1rem 0.6rem;"
+        >
+            <i class="fa-brands fa-weixin"></i>
+        </li>
+        <li class="weibo share-item border-box flex-center tooltip"
+            data-tooltip-content="分享到微博"
+        >
+            <i class="fa-brands fa-weibo"></i>
+        </li>
+    </ul>
+</div>
+
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2024/09/28/PowerBI-Rankx%E7%94%A8%E6%B3%95/"
+                                   title="PowerBI-Rankx用法"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">PowerBI-Rankx用法</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2024/09/07/%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8A%A8%E6%9C%BA/"
+                                   title="学习动机记录"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">学习动机记录</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="twikoo-container">
+        <div id="twikoo-comment"></div>
+        <script 
+                src="//cdn.jsdelivr.net/npm/twikoo@1.6.36/dist/twikoo.all.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script 
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initTwikoo = () => {
+            if (window?.twikoo) {
+              twikoo.init({
+                el: '#twikoo-comment',
+                envId: 'https://twikoo.gooday.press',
+                region: '',
+                lang: 'zh-CN' || 'zh-CN'
+              })
+              window.KeepCommentPlugin.hideLoading()
+            } else {
+              setTimeout(() => {
+                window.KeepCommentPlugin.initTwikoo()
+              }, 1000)
+            }
+          }
+
+          if ('false' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initTwikoo()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initTwikoo)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PowerBI%E4%BD%BF%E7%94%A8SVG%E7%BB%98%E5%88%B6%E5%9B%BE%E8%A1%A8"><span class="nav-number">1.</span> <span class="nav-text">PowerBI使用SVG绘制图表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Powerbi%E5%88%B6%E4%BD%9C%E8%A6%81%E6%B1%82"><span class="nav-number">1.1.</span> <span class="nav-text">Powerbi制作要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PowerBi%E5%88%B6%E4%BD%9C%E6%80%9D%E8%B7%AF"><span class="nav-number">1.2.</span> <span class="nav-text">PowerBi制作思路</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8charticulator%E6%8F%92%E4%BB%B6%E7%BB%98%E5%88%B6"><span class="nav-number">1.2.1.</span> <span class="nav-text">使用charticulator插件绘制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A1%ABSVG%E5%88%B0%E7%9F%A9%E9%98%B5%E9%87%8C%E9%9D%A2%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.2.2.</span> <span class="nav-text">填SVG到矩阵里面实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2024
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Cemon_Liu</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">访客数</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">访问量</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PowerBI%E4%BD%BF%E7%94%A8SVG%E7%BB%98%E5%88%B6%E5%9B%BE%E8%A1%A8"><span class="nav-number">1.</span> <span class="nav-text">PowerBI使用SVG绘制图表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Powerbi%E5%88%B6%E4%BD%9C%E8%A6%81%E6%B1%82"><span class="nav-number">1.1.</span> <span class="nav-text">Powerbi制作要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PowerBi%E5%88%B6%E4%BD%9C%E6%80%9D%E8%B7%AF"><span class="nav-number">1.2.</span> <span class="nav-text">PowerBi制作思路</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8charticulator%E6%8F%92%E4%BB%B6%E7%BB%98%E5%88%B6"><span class="nav-number">1.2.1.</span> <span class="nav-text">使用charticulator插件绘制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A1%ABSVG%E5%88%B0%E7%9F%A9%E9%98%B5%E9%87%8C%E9%9D%A2%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.2.2.</span> <span class="nav-text">填SVG到矩阵里面实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+            
+<script src="/js/post/share.js"></script>
+
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>

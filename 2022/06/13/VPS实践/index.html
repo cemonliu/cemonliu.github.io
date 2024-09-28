@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Cemon_Liu">
+    
+    <title>
+        
+            VPS实践练习 |
+        
+        Keep Learning
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/logo.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Keep Learning","author":"Cemon_Liu","avatar":"https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/avatar.svg","logo":"/images/logo.svg","favicon":"https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/logo.svg"},"menu":{"home":"/                       || fa-solid fa-home","archives":"/archives/           || fa-solid fa-box-archive","categories":"/categories/     || fa-solid fa-layer-group","links":"/links/               || fa-solid fa-link","about":"/about/               || fa-solid fa-user-graduate"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":true},"social_contact":{"enable":false,"links":{"github":"https://github.com/cemonliu","weixin":"https://img.gooday.press/blog-img202407261036331.jpg","qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"cemonliu@gmail.com"}},"scroll":{"progress_bar":true,"percent":true,"hide_header":true},"home":{"announcement":null,"category":true,"tag":false,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"twikoo","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":"https://twikoo.gooday.press","region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{"links":[{"title":"大佬们"},{"name":"XPoet","link":"https://xpoet.cn/","description":"所有命运的馈赠，早已在暗中标好价格。","avatar":"https://cdn.jsdelivr.net/gh/XPoet/image-hosting@master/common-use/avatar.jpg"},{"name":"不知名艺术家","link":"https://jinzhanqi.com/","description":"love artist, love code.","avatar":"https://s3.ax1x.com/2020/11/17/DVvkB4.jpg"},{"name":"爱·绮梦","link":"https://x.iqimeng.com/","description":"学而时习之 不亦说乎","avatar":"https://x.iqimeng.com/images/avatar.jpg"},{"name":"MurphyChen","link":"https://mphy.gitee.io","description":"与其临渊羡鱼，不如退而结网。","avatar":"https://cdn.jsdelivr.net/gh/hacker-c/Picture-Bed@main/avatar.jpg"},{"name":"免费v2ray节点","link":"https://www.v2rayfree.eu.org/","description":"免费v2ray节点订阅自助获取","avatar":"https://www.v2rayfree.eu.org/images/avatar.png"}]},"version":"4.2.3"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Keep Learning
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首页
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                归档
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                
+                                分类
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/links/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-link"></i>
+                                
+                                友链
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                关于
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                </span>
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/links/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-link"></i>
+                                </span>
+                            
+                            友链
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            关于
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        VPS实践练习
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Cemon_Liu</span>
+                                
+                                    <span class="author-badge">Lv5</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2022-06-13 13:50:39</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Thu Jun 08 2023 14:43:10 GMT+0800">2023-06-08 14:43:10</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/">技术分享</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h1 id="VPS-安装SSR并关闭SSH密码登录"><a href="#VPS-安装SSR并关闭SSH密码登录" class="headerlink" title="VPS 安装SSR并关闭SSH密码登录"></a>VPS 安装SSR并关闭SSH密码登录</h1><p>最近有看到VPS促销推荐，所以就在网上买了最便宜的一款体验一下9.9美金&#x2F;年。买VPS的主要目的是打算测试下ShadowSocksR软件以及使用Nginx代理notion加速。</p>
+<blockquote>
+<p>当然便宜了，配置同样也是一般，不过只是为了偶尔体验练习，也还凑合。</p>
+</blockquote>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://img.gooday.press/blog-img202206131420995.png"
+                       
+                 ></p>
+<h2 id="ShadowSocksR安装"><a href="#ShadowSocksR安装" class="headerlink" title="ShadowSocksR安装"></a>ShadowSocksR安装</h2><p>文章大部分参考<a class="link"   target="_blank" rel="noopener" href="https://goodyoutubers.com/kexueshangwang/" >10分钟搞定<i class="fas fa-external-link-alt"></i></a>，修改了部分在安装中报错的部分。</p>
+<blockquote>
+<p>http proxy 与Socks5代理的差异， http代理只能走浏览器使用，而Socks5可以让电脑软件都走代理服务器<br>汇总命令如下：</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">yum install dnf</span><br><span class="line">dnf update -y</span><br><span class="line"><span class="built_in">sudo</span> dnf install git python3 nano wget firewalld -y</span><br><span class="line"><span class="built_in">cd</span> /usr/local;</span><br><span class="line"><span class="built_in">sudo</span> git <span class="built_in">clone</span> -b manyuser https://github.com/shadowsocksrr/shadowsocksr.git</span><br><span class="line"><span class="built_in">cd</span> /usr/local/shadowsocksr;</span><br><span class="line"><span class="built_in">sudo</span> bash initcfg.sh</span><br><span class="line"><span class="built_in">sudo</span> nano /usr/local/shadowsocksr/user-config.json</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>将server_port 改成一个2千以上、4万以下的数字，比如6538或者31322（请自行更改）</li>
+<li>将password改的复杂一点，8位以上，并包含大小写、数字与符号</li>
+<li>将method改为none。</li>
+<li>将protocol改为auth_chain_a。</li>
+<li>将obfs改为plain。</li>
+</ul>
+<p><strong>配置服务</strong></p>
+<p><code>sudo nano /etc/systemd/system/shadowsocksr.service</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">[</span>Unit<span class="punctuation">]</span></span><br><span class="line">Description=server</span><br><span class="line">After=network.target</span><br><span class="line">Wants=network.target</span><br><span class="line"></span><br><span class="line"><span class="punctuation">[</span>Service<span class="punctuation">]</span></span><br><span class="line">Type=forking</span><br><span class="line">PIDFile=/var/run/shadowsocksr.pid</span><br><span class="line">ExecStart=/usr/bin/python3 /usr/local/shadowsocksr/shadowsocks/server.py --pid-file /var/run/shadowsocksr.pid -c /usr/local/shadowsocksr/user-config.json -d start</span><br><span class="line">ExecStop=/usr/bin/python3 /usr/local/shadowsocksr/shadowsocks/server.py --pid-file /var/run/shadowsocksr.pid -c /usr/local/shadowsocksr/user-config.json -d stop</span><br><span class="line">ExecReload=/bin/kill -HUP $MAINPID</span><br><span class="line">KillMode=process</span><br><span class="line">Restart=always</span><br><span class="line"></span><br><span class="line"><span class="punctuation">[</span>Install<span class="punctuation">]</span></span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+<p>启动服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable shadowsocksr; </span><br><span class="line">sudo systemctl start shadowsocksr</span><br></pre></td></tr></table></figure>
+
+<p>启动防火墙<br><code>systemctl enable firewalld.service; systemctl start firewalld.service</code></p>
+<p>添加允许前面设置的端口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo firewall-cmd --permanent --add-port= 31322/tcp; </span><br><span class="line">sudo firewall-cmd --permanent --add-port=31322/udp; </span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-service=http; </span><br><span class="line">sudo firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+
+<h2 id="关闭SSH的密码登录"><a href="#关闭SSH的密码登录" class="headerlink" title="关闭SSH的密码登录"></a>关闭SSH的密码登录</h2><p>在做这部分的时候，自己把自己坑了。就是放入ssh key还未设置好，就把密码登录给关掉了。结果导致无法登录，使用rescue模式也没找回来。最后只能重装系统，把前面的动作再做一遍。</p>
+<h3 id="生成key"><a href="#生成key" class="headerlink" title="生成key"></a>生成key</h3><p><code>ssh-keygen -t rsa</code><br>一路回车，就可以看到生成的两个文件，id_rsa为私匙，id_rsa.pub为公匙。私匙下载到本机保存。<br>导入公匙到VPS<br><code>cat /root/.ssh/id_rsa.pub &gt;&gt; /root/.ssh/authorized_keys</code></p>
+<p>修改SSH的配置文件<br><code>vi /etc/ssh/sshd_config</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">RSAAuthentication yes</span><br><span class="line">PubkeyAuthentication yes</span><br><span class="line">AuthorizedKeysFile .ssh/authorized_keys</span><br><span class="line"></span><br><span class="line">PasswordAuthentication no</span><br></pre></td></tr></table></figure>
+<p>重启ssh服务<br><code>service sshd restart</code><br>到这里，服务器就只能用私匙登录了。再也不同看到每次登录时一堆login fail信息了。</p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                    </div>
+                    <div>
+                        
+                            <div class="post-share-container border-box">
+    <ul class="share-list-wrap border-box">
+        <li class="qq share-item border-box flex-center tooltip"
+            data-tooltip-content="分享到 QQ"
+        >
+            <i class="fa-brands fa-qq"></i>
+        </li>
+        <li class="wechat share-item border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="分享到微信"
+            data-tooltip-img-tip="微信扫一扫"
+            data-tooltip-img-style="background-color: #fff; top: -10px; padding: 0.6rem 0.6rem 0.1rem 0.6rem;"
+        >
+            <i class="fa-brands fa-weixin"></i>
+        </li>
+        <li class="weibo share-item border-box flex-center tooltip"
+            data-tooltip-content="分享到微博"
+        >
+            <i class="fa-brands fa-weibo"></i>
+        </li>
+    </ul>
+</div>
+
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2022/06/29/%E9%9D%A2%E8%AF%95%E5%BF%83%E5%BE%97/"
+                                   title="面试心得"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">面试心得</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2022/05/29/Git%E7%94%A8%E6%B3%95/"
+                                   title="Git常用命令学习"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Git常用命令学习</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="twikoo-container">
+        <div id="twikoo-comment"></div>
+        <script 
+                src="//cdn.jsdelivr.net/npm/twikoo@1.6.36/dist/twikoo.all.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script 
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initTwikoo = () => {
+            if (window?.twikoo) {
+              twikoo.init({
+                el: '#twikoo-comment',
+                envId: 'https://twikoo.gooday.press',
+                region: '',
+                lang: 'zh-CN' || 'zh-CN'
+              })
+              window.KeepCommentPlugin.hideLoading()
+            } else {
+              setTimeout(() => {
+                window.KeepCommentPlugin.initTwikoo()
+              }, 1000)
+            }
+          }
+
+          if ('false' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initTwikoo()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initTwikoo)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#VPS-%E5%AE%89%E8%A3%85SSR%E5%B9%B6%E5%85%B3%E9%97%ADSSH%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95"><span class="nav-number">1.</span> <span class="nav-text">VPS 安装SSR并关闭SSH密码登录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ShadowSocksR%E5%AE%89%E8%A3%85"><span class="nav-number">1.1.</span> <span class="nav-text">ShadowSocksR安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%97%ADSSH%E7%9A%84%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95"><span class="nav-number">1.2.</span> <span class="nav-text">关闭SSH的密码登录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90key"><span class="nav-number">1.2.1.</span> <span class="nav-text">生成key</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2024
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Cemon_Liu</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">访客数</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">访问量</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#VPS-%E5%AE%89%E8%A3%85SSR%E5%B9%B6%E5%85%B3%E9%97%ADSSH%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95"><span class="nav-number">1.</span> <span class="nav-text">VPS 安装SSR并关闭SSH密码登录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ShadowSocksR%E5%AE%89%E8%A3%85"><span class="nav-number">1.1.</span> <span class="nav-text">ShadowSocksR安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%97%ADSSH%E7%9A%84%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95"><span class="nav-number">1.2.</span> <span class="nav-text">关闭SSH的密码登录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90key"><span class="nav-number">1.2.1.</span> <span class="nav-text">生成key</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+            
+<script src="/js/post/share.js"></script>
+
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>

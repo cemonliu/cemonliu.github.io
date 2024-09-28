@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Cemon_Liu">
+    
+    <title>
+        
+            VBA自动化处理数据并绘制图表-2 |
+        
+        Keep Learning
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/logo.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Keep Learning","author":"Cemon_Liu","avatar":"https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/avatar.svg","logo":"/images/logo.svg","favicon":"https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/logo.svg"},"menu":{"home":"/                       || fa-solid fa-home","archives":"/archives/           || fa-solid fa-box-archive","categories":"/categories/     || fa-solid fa-layer-group","links":"/links/               || fa-solid fa-link","about":"/about/               || fa-solid fa-user-graduate"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":true},"social_contact":{"enable":false,"links":{"github":"https://github.com/cemonliu","weixin":"https://img.gooday.press/blog-img202407261036331.jpg","qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"cemonliu@gmail.com"}},"scroll":{"progress_bar":true,"percent":true,"hide_header":true},"home":{"announcement":null,"category":true,"tag":false,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"twikoo","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":"https://twikoo.gooday.press","region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{"links":[{"title":"大佬们"},{"name":"XPoet","link":"https://xpoet.cn/","description":"所有命运的馈赠，早已在暗中标好价格。","avatar":"https://cdn.jsdelivr.net/gh/XPoet/image-hosting@master/common-use/avatar.jpg"},{"name":"不知名艺术家","link":"https://jinzhanqi.com/","description":"love artist, love code.","avatar":"https://s3.ax1x.com/2020/11/17/DVvkB4.jpg"},{"name":"爱·绮梦","link":"https://x.iqimeng.com/","description":"学而时习之 不亦说乎","avatar":"https://x.iqimeng.com/images/avatar.jpg"},{"name":"MurphyChen","link":"https://mphy.gitee.io","description":"与其临渊羡鱼，不如退而结网。","avatar":"https://cdn.jsdelivr.net/gh/hacker-c/Picture-Bed@main/avatar.jpg"},{"name":"免费v2ray节点","link":"https://www.v2rayfree.eu.org/","description":"免费v2ray节点订阅自助获取","avatar":"https://www.v2rayfree.eu.org/images/avatar.png"}]},"version":"4.2.3"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Keep Learning
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首页
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                归档
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                
+                                分类
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/links/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-link"></i>
+                                
+                                友链
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                关于
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                </span>
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/links/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-link"></i>
+                                </span>
+                            
+                            友链
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            关于
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        VBA自动化处理数据并绘制图表-2
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Cemon_Liu</span>
+                                
+                                    <span class="author-badge">Lv5</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2021-06-17 14:23:32</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Thu Jun 08 2023 14:40:44 GMT+0800">2023-06-08 14:40:44</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E7%9F%A5%E8%A1%8C%E5%90%88%E4%B8%80/">知行合一</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/VBA/">VBA</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h1 id="VBA自动化处理数据并绘制图表-2"><a href="#VBA自动化处理数据并绘制图表-2" class="headerlink" title="VBA自动化处理数据并绘制图表-2"></a>VBA自动化处理数据并绘制图表-2</h1><h2 id="VBA的一些介绍"><a href="#VBA的一些介绍" class="headerlink" title="VBA的一些介绍"></a>VBA的一些介绍</h2><p>前后用了一周左右的时间来完成这个功能，VBA相比其他语言来说，在EXCEL编辑上优势还是很大的。虽然python有很多轮子，但是VBA的录制宏功能不可谓之不强。当我想去实现一个功能时，可能我记不住属性，记不住方法。但是我手工操作一遍，<strong>后台的录制宏会自动写好代码</strong>。这时候我们要做的就是删除庸余的代码，添加循环即可。</p>
+<h2 id="筛选数据和复制粘贴到新的EXCEL文件中"><a href="#筛选数据和复制粘贴到新的EXCEL文件中" class="headerlink" title="筛选数据和复制粘贴到新的EXCEL文件中"></a>筛选数据和复制粘贴到新的EXCEL文件中</h2><h3 id="存储筛选条件"><a href="#存储筛选条件" class="headerlink" title="存储筛选条件"></a>存储筛选条件</h3><p>在VBA存储数据时，有数组和字典类型。我个人比较喜欢字典类型的存储。它是属于mapping关系。一个字典可以通过add方法添加item和key值。它的优势在于：</p>
+<ol>
+<li>字典读取速度快</li>
+<li>取值方便dic(item)就可以快速获取值</li>
+</ol>
+<p>所以我在这里也使用了字典的来存取筛选条件。将需要筛选的值放到data sheet里面，使用字典进行存取。</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#x27;创建一个字典</span></span><br><span class="line"><span class="keyword">Set</span> dic = CreateObject(<span class="string">&quot;scripting.dictionary&quot;</span>)</span><br><span class="line">Sheets(<span class="string">&quot;data&quot;</span>).Activate</span><br><span class="line">    <span class="comment">&#x27;循环读取值并存入字典中</span></span><br><span class="line">    <span class="keyword">For</span> i = <span class="number">1</span> <span class="keyword">To</span> Cells(Rows.Count, <span class="string">&quot;A&quot;</span>).<span class="keyword">End</span>(xlUp).row</span><br><span class="line">        dic.Add i, Cells(i, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">Next</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="excel创建新的sheet与excel-文件"><a href="#excel创建新的sheet与excel-文件" class="headerlink" title="excel创建新的sheet与excel 文件"></a>excel创建新的sheet与excel 文件</h3><h4 id="创建sheet"><a href="#创建sheet" class="headerlink" title="创建sheet"></a>创建sheet</h4><p>我们可以使用sheets的add方法添加一个worksheet在Excel文件里</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#x27;添加一个sheet 在sheets(data)前面</span></span><br><span class="line">Sheets.Add before:=Sheets(<span class="string">&quot;data&quot;</span>)</span><br><span class="line"><span class="comment">&#x27;重命名sheet 方便后面读取</span></span><br><span class="line">ActiveSheet.Name = <span class="string">&quot;Topdata&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="创建workbook"><a href="#创建workbook" class="headerlink" title="创建workbook"></a>创建workbook</h4><p>使用workbooks的add方法添加一个excel文件，但是在重命名时却报错。后面就使用workbook的saveas方法来定义文件的名称</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#x27;新增workbook</span></span><br><span class="line">Workbooks.Add</span><br><span class="line"><span class="comment">&#x27;另存为test.xlsx</span></span><br><span class="line">ActiveWorkbook.SaveAs Filename:=<span class="string">&quot;D:\test.xlsx&quot;</span></span><br><span class="line">ActiveWorkbook.Close</span><br></pre></td></tr></table></figure>
+
+<h3 id="筛选"><a href="#筛选" class="headerlink" title="筛选"></a>筛选</h3><p>我们可以使用循环来设定excel的filter。这里假设第一列为筛选区域，筛选的结果贴到sheets(2)里面去</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i=<span class="number">1</span> <span class="keyword">to</span> dic.count</span><br><span class="line">    Sheets(<span class="string">&quot;Raw data&quot;</span>).Rows(<span class="string">&quot;1:1&quot;</span>).<span class="keyword">Select</span></span><br><span class="line">    Selection.AutoFilter</span><br><span class="line">    Selection.AutoFilter Field:=<span class="number">1</span>, Criteria1:=dic(i)</span><br><span class="line">    selection.copy sheets(<span class="number">2</span>).range(<span class="string">&quot;A1&quot;</span>)</span><br><span class="line"><span class="keyword">next</span></span><br></pre></td></tr></table></figure>
+
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/VBA/">VBA</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                            <div class="post-share-container border-box">
+    <ul class="share-list-wrap border-box">
+        <li class="qq share-item border-box flex-center tooltip"
+            data-tooltip-content="分享到 QQ"
+        >
+            <i class="fa-brands fa-qq"></i>
+        </li>
+        <li class="wechat share-item border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="分享到微信"
+            data-tooltip-img-tip="微信扫一扫"
+            data-tooltip-img-style="background-color: #fff; top: -10px; padding: 0.6rem 0.6rem 0.1rem 0.6rem;"
+        >
+            <i class="fa-brands fa-weixin"></i>
+        </li>
+        <li class="weibo share-item border-box flex-center tooltip"
+            data-tooltip-content="分享到微博"
+        >
+            <i class="fa-brands fa-weibo"></i>
+        </li>
+    </ul>
+</div>
+
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2021/06/29/VBA%E8%87%AA%E5%8A%A8%E5%8C%96%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%B9%B6%E7%BB%98%E5%88%B6%E5%9B%BE%E8%A1%A8-3/"
+                                   title="VBA自动化处理数据并绘制图表-3"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">VBA自动化处理数据并绘制图表-3</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2021/06/15/VBA%E8%87%AA%E5%8A%A8%E5%8C%96%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%B9%B6%E7%BB%98%E5%88%B6%E5%9B%BE%E8%A1%A8/"
+                                   title="VBA自动化处理数据并绘制图表-1"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">VBA自动化处理数据并绘制图表-1</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="twikoo-container">
+        <div id="twikoo-comment"></div>
+        <script 
+                src="//cdn.jsdelivr.net/npm/twikoo@1.6.36/dist/twikoo.all.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script 
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initTwikoo = () => {
+            if (window?.twikoo) {
+              twikoo.init({
+                el: '#twikoo-comment',
+                envId: 'https://twikoo.gooday.press',
+                region: '',
+                lang: 'zh-CN' || 'zh-CN'
+              })
+              window.KeepCommentPlugin.hideLoading()
+            } else {
+              setTimeout(() => {
+                window.KeepCommentPlugin.initTwikoo()
+              }, 1000)
+            }
+          }
+
+          if ('false' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initTwikoo()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initTwikoo)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#VBA%E8%87%AA%E5%8A%A8%E5%8C%96%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%B9%B6%E7%BB%98%E5%88%B6%E5%9B%BE%E8%A1%A8-2"><span class="nav-number">1.</span> <span class="nav-text">VBA自动化处理数据并绘制图表-2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#VBA%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.</span> <span class="nav-text">VBA的一些介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%9B%E9%80%89%E6%95%B0%E6%8D%AE%E5%92%8C%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%E5%88%B0%E6%96%B0%E7%9A%84EXCEL%E6%96%87%E4%BB%B6%E4%B8%AD"><span class="nav-number">1.2.</span> <span class="nav-text">筛选数据和复制粘贴到新的EXCEL文件中</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E7%AD%9B%E9%80%89%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.2.1.</span> <span class="nav-text">存储筛选条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#excel%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84sheet%E4%B8%8Eexcel-%E6%96%87%E4%BB%B6"><span class="nav-number">1.2.2.</span> <span class="nav-text">excel创建新的sheet与excel 文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAsheet"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">创建sheet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAworkbook"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">创建workbook</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%9B%E9%80%89"><span class="nav-number">1.2.3.</span> <span class="nav-text">筛选</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2024
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Cemon_Liu</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">访客数</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">访问量</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#VBA%E8%87%AA%E5%8A%A8%E5%8C%96%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%B9%B6%E7%BB%98%E5%88%B6%E5%9B%BE%E8%A1%A8-2"><span class="nav-number">1.</span> <span class="nav-text">VBA自动化处理数据并绘制图表-2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#VBA%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.</span> <span class="nav-text">VBA的一些介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%9B%E9%80%89%E6%95%B0%E6%8D%AE%E5%92%8C%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%E5%88%B0%E6%96%B0%E7%9A%84EXCEL%E6%96%87%E4%BB%B6%E4%B8%AD"><span class="nav-number">1.2.</span> <span class="nav-text">筛选数据和复制粘贴到新的EXCEL文件中</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E7%AD%9B%E9%80%89%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.2.1.</span> <span class="nav-text">存储筛选条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#excel%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84sheet%E4%B8%8Eexcel-%E6%96%87%E4%BB%B6"><span class="nav-number">1.2.2.</span> <span class="nav-text">excel创建新的sheet与excel 文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAsheet"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">创建sheet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAworkbook"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">创建workbook</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%9B%E9%80%89"><span class="nav-number">1.2.3.</span> <span class="nav-text">筛选</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+            
+<script src="/js/post/share.js"></script>
+
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>

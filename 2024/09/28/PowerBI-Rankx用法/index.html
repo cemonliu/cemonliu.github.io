@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Cemon_Liu">
+    
+    <title>
+        
+            PowerBI-Rankx用法 |
+        
+        Keep Learning
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/logo.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Keep Learning","author":"Cemon_Liu","avatar":"https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/avatar.svg","logo":"/images/logo.svg","favicon":"https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/logo.svg"},"menu":{"home":"/                       || fa-solid fa-home","archives":"/archives/           || fa-solid fa-box-archive","categories":"/categories/     || fa-solid fa-layer-group","links":"/links/               || fa-solid fa-link","about":"/about/               || fa-solid fa-user-graduate"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":true},"social_contact":{"enable":false,"links":{"github":"https://github.com/cemonliu","weixin":"https://img.gooday.press/blog-img202407261036331.jpg","qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"cemonliu@gmail.com"}},"scroll":{"progress_bar":true,"percent":true,"hide_header":true},"home":{"announcement":null,"category":true,"tag":false,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"twikoo","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":"https://twikoo.gooday.press","region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{"links":[{"title":"大佬们"},{"name":"XPoet","link":"https://xpoet.cn/","description":"所有命运的馈赠，早已在暗中标好价格。","avatar":"https://cdn.jsdelivr.net/gh/XPoet/image-hosting@master/common-use/avatar.jpg"},{"name":"不知名艺术家","link":"https://jinzhanqi.com/","description":"love artist, love code.","avatar":"https://s3.ax1x.com/2020/11/17/DVvkB4.jpg"},{"name":"爱·绮梦","link":"https://x.iqimeng.com/","description":"学而时习之 不亦说乎","avatar":"https://x.iqimeng.com/images/avatar.jpg"},{"name":"MurphyChen","link":"https://mphy.gitee.io","description":"与其临渊羡鱼，不如退而结网。","avatar":"https://cdn.jsdelivr.net/gh/hacker-c/Picture-Bed@main/avatar.jpg"},{"name":"免费v2ray节点","link":"https://www.v2rayfree.eu.org/","description":"免费v2ray节点订阅自助获取","avatar":"https://www.v2rayfree.eu.org/images/avatar.png"}]},"version":"4.2.3"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Keep Learning
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首页
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                归档
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                
+                                分类
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/links/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-link"></i>
+                                
+                                友链
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                关于
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                </span>
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/links/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-link"></i>
+                                </span>
+                            
+                            友链
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            关于
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        PowerBI-Rankx用法
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Cemon_Liu</span>
+                                
+                                    <span class="author-badge">Lv5</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2024-09-28 18:36:10</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Sat Sep 28 2024 19:01:28 GMT+0800">2024-09-28 19:01:28</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/">技术分享</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h1 id="PowerBI-Rankx用法实践"><a href="#PowerBI-Rankx用法实践" class="headerlink" title="PowerBI Rankx用法实践"></a>PowerBI Rankx用法实践</h1><blockquote>
+<p>本周在PowerBI学习群遇到一个关于排名的问题，用了很久时间去思考，结果还是没完成。后面看到其他人写的公式用法。故学习记录一下。</p>
+</blockquote>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>模拟的数据如下，公司在不同的时期有不同的消费。要获取在当前筛选时期下的排名以及当前时期上一个时期的排名。<br><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://img.gooday.press/blog-img202409281841877.png"
+                        alt="data"
+                 ></p>
+<p>结果应该是下图<br>当我选择第四期，显示第四期排名和第三期排名。<br><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://img.gooday.press/blog-img202409281843755.png"
+                        alt="结果"
+                 ></p>
+<h2 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h2><p>Powerbi排名函数使用的<code>Rankx</code>，具体用法如下：<br>PowerBI 中的 RANKX 函数是一个迭代函数,用于计算某列数据在分组内的排名。它的基本语法如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">RANKX(</span><br><span class="line">&lt;表&gt;,</span><br><span class="line">&lt;表达式&gt;,</span><br><span class="line">&lt;值&gt;,</span><br><span class="line">&lt;排序方式&gt;,</span><br><span class="line">&lt;排序上下文&gt;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>各参数的含义:</p>
+<p>&lt;表&gt;:要计算排名的表或表达式<br>&lt;表达式&gt;:要计算排名的列<br>&lt;值&gt;:指定用于排名的值<br>&lt;排序方式&gt;:排序方式,可选desc降序或asc升序,默认为asc<br>&lt;排序上下文&gt;:指定分组依据,可使用ALLSELECTED()表示无分组</p>
+<h3 id="错误方式"><a href="#错误方式" class="headerlink" title="错误方式"></a>错误方式</h3><p>实现思路为获取当前的期数，然后构造一个当前期数-1的table用于rankx运算。在rankx里面，第一个参数放的filtertable, 第二个参数计算当前上下文金额的总和。 这个也是问了各个AI工具之后都建议的用法。实际产生的结果却是不符合预期。 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">环比-2 = </span><br><span class="line">VAR currentPeriod = SELECTEDVALUE(Demo[Period])  -- 获取当前期数</span><br><span class="line">var targetPeriod=currentPeriod-1</span><br><span class="line"></span><br><span class="line">var filtertable=FILTER(</span><br><span class="line">            ALL(Demo), </span><br><span class="line">           Demo[Period] =  targetPeriod</span><br><span class="line">        ) -- 过滤出当前期数的数据</span><br><span class="line"> var result=  RANKX(</span><br><span class="line">        filtertable,</span><br><span class="line">  CALCULATE(sum(Demo[Cost])),  -- 在当前上下文中计算金额的总和</span><br><span class="line">  ,DESC      </span><br><span class="line">    )</span><br><span class="line">return result</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+<h3 id="正确方式"><a href="#正确方式" class="headerlink" title="正确方式"></a>正确方式</h3><p>这里获取期数的方式是一样的，唯一调整的是 <code>rankx</code>函数的第一个参数调整为<code>all(Demo[company])</code>，将筛选条件放到后面计算cost的函数里面去。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">环比-demon = </span><br><span class="line">VAR currentPeriod = SELECTEDVALUE(Demo[Period])  -- 获取当前期数</span><br><span class="line">var targetPeriod=currentPeriod-1</span><br><span class="line"> var result=  RANKX(</span><br><span class="line">        ALL(Demo[company]),</span><br><span class="line">  CALCULATE(sum(Demo[Cost]),Demo[Period]=targetPeriod),  -- 在当前上下文中计算金额的总和</span><br><span class="line">  ,DESC</span><br><span class="line">      </span><br><span class="line">    )</span><br><span class="line">return result</span><br></pre></td></tr></table></figure>
+<p>放一张两个DAX运行差异结果。可以看到第三期A1本来是第六名，在错误的方式里面却是第一名。</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://img.gooday.press/blog-img202409281853305.png"
+                       
+                 ></p>
+<h2 id="差异反思"><a href="#差异反思" class="headerlink" title="差异反思"></a>差异反思</h2><p>在使用<code>rankx</code>的时候应该要注意第一个参数，<strong>一般是要排名的维度</strong>，当我们要做一些分组排名时，可能要使用<code>all</code>,<code>allexcept</code>去做一些资料筛选去重。当我们放入了filtertable时，此时的数据变得复杂了，进而导致最终的结果与预期不一致。有人说这个会将他们上一期的cost拿到这一期来进行排名。但是实际结果看起来也不像。</p>
+<p>对于DAX上下文的理解一直是学习Powerbi中的弱势，学会了就是实现各种复杂功能的利器，不然就要靠前期的数据调整来避免这种问题。后面要多实践这种逻辑。</p>
+<p>如果你也有遇到类似的问题，欢迎留言关注。</p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                    </div>
+                    <div>
+                        
+                            <div class="post-share-container border-box">
+    <ul class="share-list-wrap border-box">
+        <li class="qq share-item border-box flex-center tooltip"
+            data-tooltip-content="分享到 QQ"
+        >
+            <i class="fa-brands fa-qq"></i>
+        </li>
+        <li class="wechat share-item border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="分享到微信"
+            data-tooltip-img-tip="微信扫一扫"
+            data-tooltip-img-style="background-color: #fff; top: -10px; padding: 0.6rem 0.6rem 0.1rem 0.6rem;"
+        >
+            <i class="fa-brands fa-weixin"></i>
+        </li>
+        <li class="weibo share-item border-box flex-center tooltip"
+            data-tooltip-content="分享到微博"
+        >
+            <i class="fa-brands fa-weibo"></i>
+        </li>
+    </ul>
+</div>
+
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2024/09/14/PowerBI%E4%BD%BF%E7%94%A8SVG/"
+                                   title="PowerBI使用SVG"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">PowerBI使用SVG</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="twikoo-container">
+        <div id="twikoo-comment"></div>
+        <script 
+                src="//cdn.jsdelivr.net/npm/twikoo@1.6.36/dist/twikoo.all.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script 
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initTwikoo = () => {
+            if (window?.twikoo) {
+              twikoo.init({
+                el: '#twikoo-comment',
+                envId: 'https://twikoo.gooday.press',
+                region: '',
+                lang: 'zh-CN' || 'zh-CN'
+              })
+              window.KeepCommentPlugin.hideLoading()
+            } else {
+              setTimeout(() => {
+                window.KeepCommentPlugin.initTwikoo()
+              }, 1000)
+            }
+          }
+
+          if ('false' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initTwikoo()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initTwikoo)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PowerBI-Rankx%E7%94%A8%E6%B3%95%E5%AE%9E%E8%B7%B5"><span class="nav-number">1.</span> <span class="nav-text">PowerBI Rankx用法实践</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">实现过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E6%96%B9%E5%BC%8F"><span class="nav-number">1.2.1.</span> <span class="nav-text">错误方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E7%A1%AE%E6%96%B9%E5%BC%8F"><span class="nav-number">1.2.2.</span> <span class="nav-text">正确方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%AE%E5%BC%82%E5%8F%8D%E6%80%9D"><span class="nav-number">1.3.</span> <span class="nav-text">差异反思</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2024
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Cemon_Liu</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">访客数</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">访问量</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PowerBI-Rankx%E7%94%A8%E6%B3%95%E5%AE%9E%E8%B7%B5"><span class="nav-number">1.</span> <span class="nav-text">PowerBI Rankx用法实践</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">实现过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E6%96%B9%E5%BC%8F"><span class="nav-number">1.2.1.</span> <span class="nav-text">错误方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E7%A1%AE%E6%96%B9%E5%BC%8F"><span class="nav-number">1.2.2.</span> <span class="nav-text">正确方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%AE%E5%BC%82%E5%8F%8D%E6%80%9D"><span class="nav-number">1.3.</span> <span class="nav-text">差异反思</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+            
+<script src="/js/post/share.js"></script>
+
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>

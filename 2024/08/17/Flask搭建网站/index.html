@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Cemon_Liu">
+    
+    <title>
+        
+            Flask搭建网站 |
+        
+        Keep Learning
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/logo.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Keep Learning","author":"Cemon_Liu","avatar":"https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/avatar.svg","logo":"/images/logo.svg","favicon":"https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/logo.svg"},"menu":{"home":"/                       || fa-solid fa-home","archives":"/archives/           || fa-solid fa-box-archive","categories":"/categories/     || fa-solid fa-layer-group","links":"/links/               || fa-solid fa-link","about":"/about/               || fa-solid fa-user-graduate"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":true},"social_contact":{"enable":false,"links":{"github":"https://github.com/cemonliu","weixin":"https://img.gooday.press/blog-img202407261036331.jpg","qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"cemonliu@gmail.com"}},"scroll":{"progress_bar":true,"percent":true,"hide_header":true},"home":{"announcement":null,"category":true,"tag":false,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"twikoo","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":"https://twikoo.gooday.press","region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{"links":[{"title":"大佬们"},{"name":"XPoet","link":"https://xpoet.cn/","description":"所有命运的馈赠，早已在暗中标好价格。","avatar":"https://cdn.jsdelivr.net/gh/XPoet/image-hosting@master/common-use/avatar.jpg"},{"name":"不知名艺术家","link":"https://jinzhanqi.com/","description":"love artist, love code.","avatar":"https://s3.ax1x.com/2020/11/17/DVvkB4.jpg"},{"name":"爱·绮梦","link":"https://x.iqimeng.com/","description":"学而时习之 不亦说乎","avatar":"https://x.iqimeng.com/images/avatar.jpg"},{"name":"MurphyChen","link":"https://mphy.gitee.io","description":"与其临渊羡鱼，不如退而结网。","avatar":"https://cdn.jsdelivr.net/gh/hacker-c/Picture-Bed@main/avatar.jpg"},{"name":"免费v2ray节点","link":"https://www.v2rayfree.eu.org/","description":"免费v2ray节点订阅自助获取","avatar":"https://www.v2rayfree.eu.org/images/avatar.png"}]},"version":"4.2.3"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Keep Learning
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首页
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                归档
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                
+                                分类
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/links/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-link"></i>
+                                
+                                友链
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                关于
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                </span>
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/links/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-link"></i>
+                                </span>
+                            
+                            友链
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            关于
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        Flask搭建网站
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Cemon_Liu</span>
+                                
+                                    <span class="author-badge">Lv5</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2024-08-17 13:17:57</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Sat Aug 17 2024 14:10:59 GMT+0800">2024-08-17 14:10:59</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/">技术分享</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h2 id="Flask-搭建网站记录"><a href="#Flask-搭建网站记录" class="headerlink" title="Flask 搭建网站记录"></a>Flask 搭建网站记录</h2><h3 id="建站目的"><a href="#建站目的" class="headerlink" title="建站目的"></a>建站目的</h3><p>主要目的是用于维护资料的方便性。可以加一些验证减少人员的错误。</p>
+<ol>
+<li>自动生成新的id,而不是靠人去自己找，杜绝重复</li>
+<li>资料放在db,不会存在太多版本，资料是一致的</li>
+<li>有上传和下载excel的功能，方便批量生成ID</li>
+<li>有query功能，可以针对特定的资料进行编辑</li>
+</ol>
+<h3 id="文件目录"><a href="#文件目录" class="headerlink" title="文件目录"></a>文件目录</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">-app</span><br><span class="line">    - templates</span><br><span class="line">        - login.html</span><br><span class="line">        - index.html</span><br><span class="line">        - base.html</span><br><span class="line">        - upload.html</span><br><span class="line">        - query.html</span><br><span class="line">    - run.py</span><br><span class="line">    - query.py</span><br><span class="line">    - upload.py</span><br><span class="line">    - db.py</span><br><span class="line">    - auth.py</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="使用的功能"><a href="#使用的功能" class="headerlink" title="使用的功能"></a>使用的功能</h3><h4 id="Blueprint"><a href="#Blueprint" class="headerlink" title="Blueprint"></a>Blueprint</h4><p>由于有好几个功能，最初的设计是全部放到一个主文件里面去。但是由于后面功能的增加，感觉不是太便捷。所以修改为使用蓝图进行配置。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> upload</span><br><span class="line"><span class="keyword">import</span> auth</span><br><span class="line"><span class="keyword">import</span> query</span><br><span class="line"></span><br><span class="line">app.register_blueprint(upload.bp)</span><br><span class="line">app.register_blueprint(auth.bp)</span><br><span class="line">app.register_blueprint(query.bp)</span><br><span class="line"></span><br><span class="line">auth.py 配置</span><br><span class="line">bp = Blueprint(<span class="string">&#x27;auth&#x27;</span>, __name__)</span><br></pre></td></tr></table></figure>
+<p>配置的时候比较简单，需要注意的是使用的时候要修改一些URL的引用。比如我<code>auth.py</code> 里面有个<code>login</code> 方法。如果未登录时，都要跳转回这里，需要使用<code>redirect(url_for(&#39;auth.login&#39;))</code>。</p>
+<p>在每个文件里面可以是用同样的变量名<code>bp</code>，这样比较方便在主函数的调用注册。</p>
+<h4 id="db的使用"><a href="#db的使用" class="headerlink" title="db的使用"></a>db的使用</h4><p>最初用的Pymysql 可以做SQL的简单增删改查。但是处理文件时，我使用了pandas库，而pandas默认只能支持sqlalchemy。所以在切分文件时，改成了全部使用sqlalchemy.</p>
+<p>DB的初始化是参考官网的一个sample去初始化的。这里的调试遇到的最大问题。就是如果在主函数初始化，在其他文件去调用DB时，会报循环引用错误。就是app.py import upload.py, 而upload.py又引用的app.py里面的一个函数或者变量。最终导致一直报错。这种情形如果都写一个文件里面，不会出现。</p>
+<p>解决方式是，在主函数里面，初始化DB <code>db.init_db(app)</code>。原始范例里面init_db_command 是一个命令行命令，当它被执行时，Flask 会自动创建并推送应用上下文，因此在这个命令中调用 init_db 不会有上下文问题。而如果要直接使用init_db函数只是注册了命令，实际的数据库初始化是在命令行调用时执行的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> g</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_db</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Connect to the application&#x27;s configured database. The connection</span></span><br><span class="line"><span class="string">    is unique for each request and will be reused if this is called</span></span><br><span class="line"><span class="string">    again.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;db&quot;</span> <span class="keyword">not</span> <span class="keyword">in</span> g:</span><br><span class="line">        g.db = create_engine(<span class="string">&quot;mysql+pymysql://root:mysql@localhost/powerbi&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> g.db</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">close_db</span>(<span class="params">e=<span class="literal">None</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;If this request connected to the database, close the</span></span><br><span class="line"><span class="string">    connection.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    db = g.pop(<span class="string">&quot;db&quot;</span>, <span class="literal">None</span>)</span><br><span class="line">    <span class="keyword">if</span> db <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        db.close()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">init_db</span>(<span class="params">app</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Clear existing data and create new tables.&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">with</span> app.app_context()</span><br><span class="line">        db = get_db()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># with current_app.open_resource(&quot;schema.sql&quot;) as f:</span></span><br><span class="line">    <span class="comment">#     db.executescript(f.read().decode(&quot;utf8&quot;))</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>当我们在其他文件需要引用数据库时，直接import这个db文件的get_db方法即可。返回的是一个SQLAlchemy的engine</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> db <span class="keyword">import</span> get_db</span><br><span class="line">db=get_db()</span><br></pre></td></tr></table></figure>
+<h4 id="其他文件的逻辑实现"><a href="#其他文件的逻辑实现" class="headerlink" title="其他文件的逻辑实现"></a>其他文件的逻辑实现</h4><p>这里实现就比较简单的，大多是数据的增删改查。附上几个简单的用法。</p>
+<ul>
+<li><p>搭配pandas使用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用pandas查询资料获取结果</span></span><br><span class="line">query = <span class="string">&quot;SELECT * FROM dpn_status WHERE Substitute = %(substitute_id)s&quot;</span></span><br><span class="line">params = &#123;<span class="string">&#x27;substitute_id&#x27;</span>: <span class="built_in">id</span>&#125;</span><br><span class="line">results = pd.read_sql_query(query, con=db_engine, params=params)</span><br><span class="line"><span class="built_in">print</span>(results)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>直接执行sql，需要注意SQL语句要搭配text()函数，不然无法执行</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> db.connect() <span class="keyword">as</span> conn:</span><br><span class="line">  query = text(</span><br><span class="line">  <span class="string">&#x27;&#x27;&#x27;SELECT * FROM dpn_status WHERE Substitute = :sub LIMIT 1&#x27;&#x27;&#x27;</span></span><br><span class="line">  )</span><br><span class="line">  result = conn.execute(query, &#123;</span><br><span class="line">  <span class="string">&#x27;sub&#x27;</span>: substitutes[<span class="number">0</span>]</span><br><span class="line">  &#125;).fetchone()</span><br><span class="line">  <span class="built_in">print</span>(result)</span><br><span class="line">  conn.execute(</span><br><span class="line">  text(</span><br><span class="line">  <span class="string">&#x27;&#x27;&#x27;INSERT INTO dpn_status (DPN, 71PN,Substitute,Model,Region,Series,MP,EOP,EOW,WarrantyPeriod) VALUES (:DPN,:71PN,:Substitute,:Model,:Region,:Series,:MP,:EOP,:EOW,:WarrantyPeriod)&#x27;&#x27;&#x27;</span></span><br><span class="line">  ), &#123;</span><br><span class="line">  <span class="string">&quot;DPN&quot;</span>: dpns[i],</span><br><span class="line">  <span class="string">&quot;71PN&quot;</span>: pn71s[i],</span><br><span class="line">  <span class="string">&quot;Substitute&quot;</span>: substitutes[i],</span><br><span class="line">  <span class="string">&quot;Model&quot;</span>: result[<span class="number">4</span>],</span><br><span class="line">  <span class="string">&quot;Region&quot;</span>: regions[i],</span><br><span class="line">  <span class="string">&quot;Series&quot;</span>: result[<span class="number">6</span>],</span><br><span class="line">  <span class="string">&quot;MP&quot;</span>: result[<span class="number">7</span>],</span><br><span class="line">  <span class="string">&quot;EOP&quot;</span>: result[<span class="number">8</span>],</span><br><span class="line">  <span class="string">&quot;EOW&quot;</span>: result[<span class="number">9</span>],</span><br><span class="line">  <span class="string">&quot;WarrantyPeriod&quot;</span>: result[<span class="number">10</span>]</span><br><span class="line">  &#125;)</span><br><span class="line">  conn.commit()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>删除资料,参数的搭配使用</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">query = text(<span class="string">&quot;DELETE FROM dpn_status where id = :id&quot;</span>)</span><br><span class="line">result = db_engine.connect().execute(query, &#123;<span class="string">&#x27;id&#x27;</span>: <span class="built_in">id</span>&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="不足和思考"><a href="#不足和思考" class="headerlink" title="不足和思考"></a>不足和思考</h3><p>整体实现这个功能大约用了两周的时间。对于框架的使用还是不够熟悉，特别是数据库的初始化部分。现在回想一下，整个思路清晰多了。当然这里还有一些不足，比如我的登录验证是使用的明文密码存储来验证。文件的版本管控没有搭配git。</p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                    </div>
+                    <div>
+                        
+                            <div class="post-share-container border-box">
+    <ul class="share-list-wrap border-box">
+        <li class="qq share-item border-box flex-center tooltip"
+            data-tooltip-content="分享到 QQ"
+        >
+            <i class="fa-brands fa-qq"></i>
+        </li>
+        <li class="wechat share-item border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="分享到微信"
+            data-tooltip-img-tip="微信扫一扫"
+            data-tooltip-img-style="background-color: #fff; top: -10px; padding: 0.6rem 0.6rem 0.1rem 0.6rem;"
+        >
+            <i class="fa-brands fa-weixin"></i>
+        </li>
+        <li class="weibo share-item border-box flex-center tooltip"
+            data-tooltip-content="分享到微博"
+        >
+            <i class="fa-brands fa-weibo"></i>
+        </li>
+    </ul>
+</div>
+
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2024/09/07/%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8A%A8%E6%9C%BA/"
+                                   title="学习动机记录"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">学习动机记录</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2024/07/29/PowerbI_Calculate-1/"
+                                   title="PowerBI Calculate用法"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">PowerBI Calculate用法</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="twikoo-container">
+        <div id="twikoo-comment"></div>
+        <script 
+                src="//cdn.jsdelivr.net/npm/twikoo@1.6.36/dist/twikoo.all.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script 
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initTwikoo = () => {
+            if (window?.twikoo) {
+              twikoo.init({
+                el: '#twikoo-comment',
+                envId: 'https://twikoo.gooday.press',
+                region: '',
+                lang: 'zh-CN' || 'zh-CN'
+              })
+              window.KeepCommentPlugin.hideLoading()
+            } else {
+              setTimeout(() => {
+                window.KeepCommentPlugin.initTwikoo()
+              }, 1000)
+            }
+          }
+
+          if ('false' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initTwikoo()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initTwikoo)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Flask-%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99%E8%AE%B0%E5%BD%95"><span class="nav-number">1.</span> <span class="nav-text">Flask 搭建网站记录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E7%AB%99%E7%9B%AE%E7%9A%84"><span class="nav-number">1.1.</span> <span class="nav-text">建站目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95"><span class="nav-number">1.2.</span> <span class="nav-text">文件目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="nav-number">1.3.</span> <span class="nav-text">使用的功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Blueprint"><span class="nav-number">1.3.1.</span> <span class="nav-text">Blueprint</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#db%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">1.3.2.</span> <span class="nav-text">db的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%96%87%E4%BB%B6%E7%9A%84%E9%80%BB%E8%BE%91%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.3.3.</span> <span class="nav-text">其他文件的逻辑实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E8%B6%B3%E5%92%8C%E6%80%9D%E8%80%83"><span class="nav-number">1.4.</span> <span class="nav-text">不足和思考</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2024
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Cemon_Liu</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">访客数</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">访问量</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Flask-%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99%E8%AE%B0%E5%BD%95"><span class="nav-number">1.</span> <span class="nav-text">Flask 搭建网站记录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E7%AB%99%E7%9B%AE%E7%9A%84"><span class="nav-number">1.1.</span> <span class="nav-text">建站目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95"><span class="nav-number">1.2.</span> <span class="nav-text">文件目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="nav-number">1.3.</span> <span class="nav-text">使用的功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Blueprint"><span class="nav-number">1.3.1.</span> <span class="nav-text">Blueprint</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#db%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">1.3.2.</span> <span class="nav-text">db的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%96%87%E4%BB%B6%E7%9A%84%E9%80%BB%E8%BE%91%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.3.3.</span> <span class="nav-text">其他文件的逻辑实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E8%B6%B3%E5%92%8C%E6%80%9D%E8%80%83"><span class="nav-number">1.4.</span> <span class="nav-text">不足和思考</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+            
+<script src="/js/post/share.js"></script>
+
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>

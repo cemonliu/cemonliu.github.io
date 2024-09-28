@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Cemon_Liu">
+    
+    <title>
+        
+            Notion API学习应用-1 |
+        
+        Keep Learning
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/logo.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Keep Learning","author":"Cemon_Liu","avatar":"https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/avatar.svg","logo":"/images/logo.svg","favicon":"https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/logo.svg"},"menu":{"home":"/                       || fa-solid fa-home","archives":"/archives/           || fa-solid fa-box-archive","categories":"/categories/     || fa-solid fa-layer-group","links":"/links/               || fa-solid fa-link","about":"/about/               || fa-solid fa-user-graduate"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":true},"social_contact":{"enable":false,"links":{"github":"https://github.com/cemonliu","weixin":"https://img.gooday.press/blog-img202407261036331.jpg","qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"cemonliu@gmail.com"}},"scroll":{"progress_bar":true,"percent":true,"hide_header":true},"home":{"announcement":null,"category":true,"tag":false,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"twikoo","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":"https://twikoo.gooday.press","region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{"links":[{"title":"大佬们"},{"name":"XPoet","link":"https://xpoet.cn/","description":"所有命运的馈赠，早已在暗中标好价格。","avatar":"https://cdn.jsdelivr.net/gh/XPoet/image-hosting@master/common-use/avatar.jpg"},{"name":"不知名艺术家","link":"https://jinzhanqi.com/","description":"love artist, love code.","avatar":"https://s3.ax1x.com/2020/11/17/DVvkB4.jpg"},{"name":"爱·绮梦","link":"https://x.iqimeng.com/","description":"学而时习之 不亦说乎","avatar":"https://x.iqimeng.com/images/avatar.jpg"},{"name":"MurphyChen","link":"https://mphy.gitee.io","description":"与其临渊羡鱼，不如退而结网。","avatar":"https://cdn.jsdelivr.net/gh/hacker-c/Picture-Bed@main/avatar.jpg"},{"name":"免费v2ray节点","link":"https://www.v2rayfree.eu.org/","description":"免费v2ray节点订阅自助获取","avatar":"https://www.v2rayfree.eu.org/images/avatar.png"}]},"version":"4.2.3"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Keep Learning
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首页
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                归档
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                
+                                分类
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/links/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-link"></i>
+                                
+                                友链
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                关于
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                </span>
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/links/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-link"></i>
+                                </span>
+                            
+                            友链
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            关于
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        Notion API学习应用-1
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Cemon_Liu</span>
+                                
+                                    <span class="author-badge">Lv5</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2021-08-25 10:50:39</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Thu Jun 08 2023 14:44:47 GMT+0800">2023-06-08 14:44:47</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/">技术分享</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h2 id="抓取豆瓣书单并存到Notion里面"><a href="#抓取豆瓣书单并存到Notion里面" class="headerlink" title="抓取豆瓣书单并存到Notion里面"></a>抓取豆瓣书单并存到Notion里面</h2><p>在notion开放<a class="link"   target="_blank" rel="noopener" href="https://developers.notion.com/reference/intro" >Notion API<i class="fas fa-external-link-alt"></i></a> 之后，一直在思考对于我能够有什么应用场景。主要思考的有几个方向。</p>
+<ol>
+<li>建立一个读书清单并且具有相应的图书封面以及读书感受</li>
+<li>针对一些循环任务可以使用程序自动来设定，而不是要重复建立</li>
+</ol>
+<p>所以第一个任务是读书清单的建立。目前在读的一些书，如果要找到完整的信息，在豆瓣读书里比较容易获得。所以我的想法是，使用爬虫抓取豆瓣里的个人书单信息。然后将这些重要信息按照notion的格式要求，透过API更新到Notion里面。具体成品参考<a class="link"   target="_blank" rel="noopener" href="https://www.notion.so/cemonblog/d81057c4e95047ac8a23faec402dfbe0" >Notion书单<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="使用python抓取豆瓣书单"><a href="#使用python抓取豆瓣书单" class="headerlink" title="使用python抓取豆瓣书单"></a>使用python抓取豆瓣书单</h3><p>本次没有使用之前的requests包去抓取资料，而是使用requests_html去进行获取Html内容并进行数据解析。</p>
+<blockquote>
+<p>requests-html 具有以下特性</p>
+<ul>
+<li>完全支持 JavaScript </li>
+<li>CSS 选择器</li>
+<li>XPath 选择器</li>
+<li>模拟用户代理（如同真正的网络浏览器）</li>
+<li>自动跟踪重定向连接池</li>
+<li>cookie 持久化</li>
+</ul>
+</blockquote>
+<p>使用 <code>pip install requests-html</code>进行安装。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> requests_html <span class="keyword">import</span> HTMLSession</span><br><span class="line">session=HTMLSession()</span><br><span class="line"><span class="comment"># header头要放入自己的cookie，不然无法读取</span></span><br><span class="line">headers=&#123;</span><br><span class="line"><span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Cookie&#x27;</span>: <span class="string">&#x27;&#x27;</span>&#125;</span><br><span class="line"><span class="comment"># url为要解析的地址 请修改为自己的豆瓣地址</span></span><br><span class="line">url=<span class="string">&#x27;https://book.douban.com/people/45774109/collect&#x27;</span></span><br><span class="line"><span class="comment"># 使用get获取url的html内容</span></span><br><span class="line">data=session.get(url=url,headers=headers)</span><br><span class="line"><span class="comment"># 使用xpath获取书籍信息</span></span><br><span class="line">booklist=data.html.xpath(<span class="string">&#x27;//li[@class=&quot;subject-item&quot;]&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 循环获取每本书的信息</span></span><br><span class="line"><span class="keyword">for</span> book <span class="keyword">in</span> booklist:</span><br><span class="line">    <span class="comment">#书名</span></span><br><span class="line">    bookname=book.xpath(<span class="string">&#x27;//h2/a/@title&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">    <span class="built_in">print</span>(bookname)</span><br><span class="line">    <span class="comment">#引用书籍封面</span></span><br><span class="line">    picurl=book.xpath(<span class="string">&#x27;//img/@src&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line"><span class="comment">#     print(picurl)</span></span><br><span class="line">    <span class="comment">#作者</span></span><br><span class="line">    author=book.xpath(<span class="string">&#x27;//div[@class=&quot;pub&quot;]&#x27;</span>)[<span class="number">0</span>].text.split(<span class="string">&#x27;/&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">    <span class="comment">#读完日期</span></span><br><span class="line">    finishdate=book.xpath(<span class="string">&#x27;//span[@class=&quot;date&quot;]&#x27;</span>)[<span class="number">0</span>].text.split(<span class="string">&#x27; &#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">    <span class="comment">#是否在读</span></span><br><span class="line">    status=book.xpath(<span class="string">&#x27;//span[@class=&quot;date&quot;]&#x27;</span>)[<span class="number">0</span>].text.split(<span class="string">&#x27; &#x27;</span>)[<span class="number">1</span>]</span><br><span class="line">    <span class="comment"># 调用自定义方法去存储信息到notion</span></span><br><span class="line">    createdoubanpage(bookname,author,finishdate,picurl,status)</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+<h3 id="使用Notion-API-存储数据"><a href="#使用Notion-API-存储数据" class="headerlink" title="使用Notion API 存储数据"></a>使用Notion API 存储数据</h3><p>Notion目前在官网上的介绍是使用js方法和curl命令来进行数据交互。所以熟悉JS的可以直接使用。而我在学习Python的使用。在网上已经有大神已经封装了这些接口和方法。推荐使用 <a class="link"   target="_blank" rel="noopener" href="https://pypi.org/project/notion-client/" >Notion-Client<i class="fas fa-external-link-alt"></i></a> 包来进行数据传输。使用命令<code>pip install notion-client</code> 进行安装。请注意该包仅适用于<code>python为3.7以上</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> notion_client <span class="keyword">import</span> Client</span><br><span class="line"><span class="keyword">from</span> requests_html <span class="keyword">import</span> HTMLSession</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">createdoubanpage</span>(<span class="params">book,author,finishdate,picurl,status</span>):</span><br><span class="line"><span class="comment"># 设定notion 连接客户端 具体的auth与 database_id可以参考Notion官网介绍</span></span><br><span class="line">    notion = Client(auth=<span class="string">&quot;secret_XXXXXXX&quot;</span>)</span><br><span class="line">    database_id= <span class="string">&quot;31fd2XXXXXXXXXX&quot;</span></span><br><span class="line">    newaddbook=<span class="number">0</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">#     book=&quot;九宫格写作法：如何写出一篇好文章&quot;</span></span><br><span class="line"><span class="comment">#     author=&quot;[日]山口拓朗&quot;</span></span><br><span class="line"><span class="comment">#     printdate=&#x27;2021-10-01&#x27;</span></span><br><span class="line"><span class="comment">#     agency=&quot;中国青年出版社&quot;</span></span><br><span class="line"><span class="comment">#     picurl=&#x27;https://img3.doubanio.com/view/subject/s/public/s33749930.jpg&#x27;</span></span><br><span class="line"><span class="comment"># 此部分为Notion固定格式的设定，包含page属性以及在page里面设定图片    </span></span><br><span class="line">    new_page =&#123; <span class="string">&#x27;Book&#x27;</span>: &#123;<span class="string">&#x27;id&#x27;</span>: <span class="string">&#x27;title&#x27;</span>,</span><br><span class="line">                                        <span class="string">&#x27;title&#x27;</span>: [&#123;</span><br><span class="line">                                                     <span class="string">&#x27;text&#x27;</span>: &#123;<span class="string">&#x27;content&#x27;</span>: book,</span><br><span class="line">                                                              <span class="string">&#x27;link&#x27;</span>: <span class="literal">None</span>&#125;,</span><br><span class="line">                                                     <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;text&#x27;</span>&#125;],</span><br><span class="line">                                          <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;title&#x27;</span>&#125;,</span><br><span class="line">                                 <span class="string">&#x27;作者&#x27;</span>: &#123; <span class="string">&#x27;rich_text&#x27;</span>: [&#123;</span><br><span class="line">                                                          <span class="string">&#x27;text&#x27;</span>: &#123;<span class="string">&#x27;content&#x27;</span>: author,</span><br><span class="line">                                                              <span class="string">&#x27;link&#x27;</span>: <span class="literal">None</span>&#125;,</span><br><span class="line">                                                       <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;text&#x27;</span>&#125;],</span><br><span class="line">                                        <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;rich_text&#x27;</span>&#125;,</span><br><span class="line">                                 <span class="string">&#x27;完成日期&#x27;</span>: &#123;<span class="string">&#x27;date&#x27;</span>: &#123;<span class="string">&#x27;end&#x27;</span>: <span class="literal">None</span>,</span><br><span class="line">                                                   <span class="string">&#x27;start&#x27;</span>: finishdate&#125;,</span><br><span class="line">                                          <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;date&#x27;</span>&#125;,</span><br><span class="line">                                 <span class="string">&#x27;状态&#x27;</span>: &#123;</span><br><span class="line">                                        <span class="string">&#x27;select&#x27;</span>: &#123;<span class="string">&#x27;name&#x27;</span>: status&#125;,</span><br><span class="line">                                        <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;select&#x27;</span>&#125;&#125;</span><br><span class="line">    <span class="comment">## add child when create page</span></span><br><span class="line">    new_child= [</span><br><span class="line">           &#123;</span><br><span class="line">    <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;image&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;image&#x27;</span>: &#123;</span><br><span class="line">            <span class="string">&#x27;external&#x27;</span>: &#123;<span class="string">&#x27;url&#x27;</span>: picurl&#125;,</span><br><span class="line">            <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;external&#x27;</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line">    </span><br><span class="line"><span class="comment">#  在新增数据前查询书籍名称是否存在在数据库里面，如果不存在，再增加</span></span><br><span class="line">    results = notion.databases.query(</span><br><span class="line">    **&#123;</span><br><span class="line">        <span class="string">&quot;database_id&quot;</span>: database_id,</span><br><span class="line">        <span class="string">&quot;filter&quot;</span>: &#123;<span class="string">&quot;property&quot;</span>: <span class="string">&quot;Book&quot;</span>, <span class="string">&quot;text&quot;</span>: &#123;<span class="string">&quot;contains&quot;</span>: book&#125;&#125;,</span><br><span class="line">    &#125; ).get(<span class="string">&quot;results&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(results)==<span class="number">0</span>:</span><br><span class="line">        newres=notion.pages.create(parent=&#123;<span class="string">&quot;database_id&quot;</span>: database_id&#125;, properties=new_page,children=new_child)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;create page <span class="subst">&#123;book&#125;</span> ok&quot;</span>)</span><br><span class="line">        newaddbook=newaddbook+<span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Have the page <span class="subst">&#123;book&#125;</span> ,no need create&quot;</span>)</span><br><span class="line">        <span class="comment">#新增书籍 返回1 否则返回0</span></span><br><span class="line">    <span class="keyword">return</span> newaddbook</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在Notion的页面<a class="link"   target="_blank" rel="noopener" href="https://www.notion.so/cemonblog/d81057c4e95047ac8a23faec402dfbe0" >范例页面<i class="fas fa-external-link-alt"></i></a>设置好格式，然后数据传输完成即可生成下面的画廊模式。</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://cdn.jsdelivr.net/gh/cemonliu/blogpic@main/20210825162410.png"
+                        alt="书籍清单"
+                 ></p>
+<h3 id="下一步的思考"><a href="#下一步的思考" class="headerlink" title="下一步的思考"></a>下一步的思考</h3><p>本来计划将此任务部署在个人服务器上面或者腾讯云函数。在测试时发现Notion API增加数据校验，对于图片格式有异常抛出。所以暂时部署任务失败。</p>
+<p> 2021&#x2F;08&#x2F;25 目前<a class="link"   target="_blank" rel="noopener" href="https://developers.notion.com/reference/block" >官网<i class="fas fa-external-link-alt"></i></a>上最新介绍又支持img类型了。所以可以继续部署了</p>
+<blockquote>
+<h3 id="Only-text-like-and-media-like-blocks-are-currently-available"><a href="#Only-text-like-and-media-like-blocks-are-currently-available" class="headerlink" title="Only text-like and media-like blocks are currently available"></a>Only text-like and media-like blocks are currently available</h3><p>At present the API only supports text-like and media-like block types which are listed in the reference below. All other block types will continue to appear in the structure, but only contain a <code>type</code> set to <code>&quot;unsupported&quot;</code>.</p>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;image&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="comment">//...other keys excluded</span></span><br><span class="line">  <span class="attr">&quot;image&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;external&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;external&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://website.domain/images/image.png&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                    </div>
+                    <div>
+                        
+                            <div class="post-share-container border-box">
+    <ul class="share-list-wrap border-box">
+        <li class="qq share-item border-box flex-center tooltip"
+            data-tooltip-content="分享到 QQ"
+        >
+            <i class="fa-brands fa-qq"></i>
+        </li>
+        <li class="wechat share-item border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="分享到微信"
+            data-tooltip-img-tip="微信扫一扫"
+            data-tooltip-img-style="background-color: #fff; top: -10px; padding: 0.6rem 0.6rem 0.1rem 0.6rem;"
+        >
+            <i class="fa-brands fa-weixin"></i>
+        </li>
+        <li class="weibo share-item border-box flex-center tooltip"
+            data-tooltip-content="分享到微博"
+        >
+            <i class="fa-brands fa-weibo"></i>
+        </li>
+    </ul>
+</div>
+
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2021/08/25/Hexo%E5%91%BD%E4%BB%A4/"
+                                   title="Hexo命令失效"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Hexo命令失效</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2021/07/06/VBA%E8%87%AA%E5%8A%A8%E5%8C%96%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE5-%E7%BB%98%E5%88%B6%E5%9B%BE%E8%A1%A8/"
+                                   title="VBA自动化处理数据5-绘制图表"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">VBA自动化处理数据5-绘制图表</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="twikoo-container">
+        <div id="twikoo-comment"></div>
+        <script 
+                src="//cdn.jsdelivr.net/npm/twikoo@1.6.36/dist/twikoo.all.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script 
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initTwikoo = () => {
+            if (window?.twikoo) {
+              twikoo.init({
+                el: '#twikoo-comment',
+                envId: 'https://twikoo.gooday.press',
+                region: '',
+                lang: 'zh-CN' || 'zh-CN'
+              })
+              window.KeepCommentPlugin.hideLoading()
+            } else {
+              setTimeout(() => {
+                window.KeepCommentPlugin.initTwikoo()
+              }, 1000)
+            }
+          }
+
+          if ('false' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initTwikoo()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initTwikoo)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%93%E5%8F%96%E8%B1%86%E7%93%A3%E4%B9%A6%E5%8D%95%E5%B9%B6%E5%AD%98%E5%88%B0Notion%E9%87%8C%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">抓取豆瓣书单并存到Notion里面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8python%E6%8A%93%E5%8F%96%E8%B1%86%E7%93%A3%E4%B9%A6%E5%8D%95"><span class="nav-number">1.1.</span> <span class="nav-text">使用python抓取豆瓣书单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Notion-API-%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE"><span class="nav-number">1.2.</span> <span class="nav-text">使用Notion API 存储数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E4%B8%80%E6%AD%A5%E7%9A%84%E6%80%9D%E8%80%83"><span class="nav-number">1.3.</span> <span class="nav-text">下一步的思考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Only-text-like-and-media-like-blocks-are-currently-available"><span class="nav-number">1.4.</span> <span class="nav-text">Only text-like and media-like blocks are currently available</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2024
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Cemon_Liu</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">访客数</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">访问量</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%93%E5%8F%96%E8%B1%86%E7%93%A3%E4%B9%A6%E5%8D%95%E5%B9%B6%E5%AD%98%E5%88%B0Notion%E9%87%8C%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">抓取豆瓣书单并存到Notion里面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8python%E6%8A%93%E5%8F%96%E8%B1%86%E7%93%A3%E4%B9%A6%E5%8D%95"><span class="nav-number">1.1.</span> <span class="nav-text">使用python抓取豆瓣书单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Notion-API-%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE"><span class="nav-number">1.2.</span> <span class="nav-text">使用Notion API 存储数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E4%B8%80%E6%AD%A5%E7%9A%84%E6%80%9D%E8%80%83"><span class="nav-number">1.3.</span> <span class="nav-text">下一步的思考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Only-text-like-and-media-like-blocks-are-currently-available"><span class="nav-number">1.4.</span> <span class="nav-text">Only text-like and media-like blocks are currently available</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+            
+<script src="/js/post/share.js"></script>
+
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>
