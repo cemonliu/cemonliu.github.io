@@ -9,7 +9,7 @@
     
     <title>
         
-            PowerBI-建模反思 |
+            VBA的应用两例 |
         
         Keep Learning
     </title>
@@ -265,7 +265,7 @@
             <div class="post-content-bottom border-box">
                 
                     <div class="post-title">
-                        PowerBI-建模反思
+                        VBA的应用两例
                     </div>
                 
 
@@ -293,12 +293,12 @@
         
             <span class="meta-info-item post-create-date">
                 <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
-                <span class="datetime">2024-10-12 21:41:43</span>
+                <span class="datetime">2024-10-26 11:14:15</span>
             </span>
 
             <span class="meta-info-item post-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="datetime" data-updated="Thu Oct 17 2024 15:02:30 GMT+0800">2024-10-17 15:02:30</span>
+                <span class="datetime" data-updated="Sat Oct 26 2024 13:33:01 GMT+0800">2024-10-26 13:33:01</span>
             </span>
         
 
@@ -337,24 +337,63 @@
                     
 
                     
-                         <h2 id="PowerBI-建模反思"><a href="#PowerBI-建模反思" class="headerlink" title="PowerBI 建模反思"></a>PowerBI 建模反思</h2><blockquote>
-<p>十一之后，新学了几个DAX函数，但还都是刚熟悉，没有具体的使用场景。所以暂时不做分享。</p>
+                         <h2 id="VBA应用两例与思考"><a href="#VBA应用两例与思考" class="headerlink" title="VBA应用两例与思考"></a>VBA应用两例与思考</h2><blockquote>
+<p>可能是公众号更新频率太低，所以触发了平台的一些机制，所以最近的几篇powerbi文章都被推荐了。</p>
 </blockquote>
-<p>这一期分享一个关于在使用<strong>powerbi</strong>容易遇到的坑（<strong>建模</strong>）。为什么这么说呢？因为我们最初接触别人分享这个软件时，他们都会提供给我们一个样本文件或者excel数据。接下来，我们只要导入这个数据，然后系统会自动帮我们建模。我们就可以直接拖拽一些值进行制作图表了。</p>
-<p>然而，当我们自己导入实际生产的数据时，立即发现问题了。拖出来的数据用不了或者不准确。真是<strong>一看就会，一用就废</strong>。我们在回头看案例的数据时，发现他们的模型都是设计过的。而我们的数据由于各种原因，比如列名不同，对应关系不合理等，系统不会帮我们匹配。</p>
-<p>所以我们需要一点点数据库的基础知识，然后要自己设计这个匹配模型。只有这样，才能方便后续的使用。当有一个合理的模型时，我们可以减少一些复杂的逻辑去实现。不然，DAX就变的很复杂。而常规的建模官方给的建议是STAR模型。</p>
-<h3 id="STAR模型"><a href="#STAR模型" class="headerlink" title="STAR模型"></a>STAR模型</h3><p>官方给出的模型示例是一个五角星形状。各个角对应的是维度表，而中间是具体事实表。<br><img  
+<p>本期更新两个VBA问题的思路以及其中案例关于EXCEL 和Powerbi的应用思考。</p>
+<h3 id="案例1-VBA如何搭配windows计划任务来实现自动化"><a href="#案例1-VBA如何搭配windows计划任务来实现自动化" class="headerlink" title="案例1 VBA如何搭配windows计划任务来实现自动化"></a>案例1 VBA如何搭配windows计划任务来实现自动化</h3><h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>目前我有一个已经写好的excel和VBA程序，这个程序可以实现数据刷新以及自动发送邮件的功能。不足之处是，我必须打开excel手动运行宏。所以我希望配置到windows计划任务里面去，然后设置成每天或每周可以自动执行。</p>
+<h4 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h4><p>VBA有个函数是<code>workbook.open()</code>,他的作用是在文件打开时，要运行的东西。所以我们可以将这些宏放到这里面去运行。然后写一个bat文件，调用计划任务来执行。<br><img  
                        lazyload
                        alt="image"
-                       data-src="https://img.gooday.press/blog-img202410171437199.png"
+                       data-src="https://img.gooday.press/blog-img202410261133256.png"
                        
-                 ><br>当我们使用这种方式建模，其实就是使用的一对多关系来匹配。同时尽量避免了多对多导致的一些偏差。在具体使用过程中，我们有时可能只会拿到一个事实表。就是所有的资料都在一个excel表格里面。我们要做的就是先去提取这些维度表，然后进行设计。</p>
-<ol>
-<li><p>日期表<br>正常的日期表一般是直接用<code>calendar()</code>生成，其中可以用max,min去获取事实表的最大最小日期。</p>
-</li>
-<li><p>其他维度<br>使用新建表然后用<code>values()</code>获取某一列的唯一值，然后将新表建立与事实表的关系。如果是两个表某一列的合并，可以使用<code>union</code>连接两个表的值后进行获取维度表。</p>
-</li>
-</ol>
+                 ><br>这里有一个问题，如果我们在宏执行了自动关闭，并且将文件发送给其他人时，文件会打开运行后 就自动关闭。接收的人可能根本看不到具体内容。</p>
+<p><strong>解决方案</strong>是我们可以用另外一个excel来做中转，即 计划任务➡bat➡中转excel➡实际执行的excel 的流程，然后最后关闭所有的文件。<br>相关的代码如下：<br>bat脚本，调用excel</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">start &quot;&quot; &quot;C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE&quot; &quot;C:\Users\ttt\Desktop\run.xlsm&quot;</span><br></pre></td></tr></table></figure>
+
+<p>中转excel宏</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Private Sub Workbook_Open()</span><br><span class="line">    Workbooks.Open &quot;C:\Users\ttt\Desktop\test.xlsm&quot;</span><br><span class="line">    Application.DisplayAlerts = False</span><br><span class="line">    &#x27;调用实际的宏来执行</span><br><span class="line">    Application.Run &quot;&#x27;test.xlsm&#x27;!filldata&quot;</span><br><span class="line">    ActiveWorkbook.Save</span><br><span class="line">    &#x27;运行完关闭整个excel程序</span><br><span class="line">    Application.Quit</span><br><span class="line">    Application.DisplayAlerts = True</span><br><span class="line">End Sub</span><br></pre></td></tr></table></figure>
+<p>实际执行的范例宏</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Sub filldata()</span><br><span class="line">Application.DisplayAlerts = False</span><br><span class="line">Range(&quot;A1&quot;) = 1</span><br><span class="line">Application.DisplayAlerts = True</span><br><span class="line">End Sub</span><br></pre></td></tr></table></figure>
+<p>在我们调用过程中，可以将需要的宏都在这一个sub里面进行引用。</p>
+<h3 id="案例2-VBA如何实现创建枢纽分析表并格式化4"><a href="#案例2-VBA如何实现创建枢纽分析表并格式化4" class="headerlink" title="案例2 VBA如何实现创建枢纽分析表并格式化4"></a>案例2 VBA如何实现创建枢纽分析表并格式化4</h3><h4 id="背景-1"><a href="#背景-1" class="headerlink" title="背景"></a>背景</h4><p>有人提到希望使用宏去将数据切分成不同的文件，然后将切分完的数据进行枢纽分析。切分数据，其实逻辑就很简单，无非就是筛选，复制，新建文件，粘贴保存。而使用VBA创建枢纽分析表，还需要对条件进行不同的筛选。这个属于之前未研究的部分。</p>
+<h4 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h4><p>在搜索和相关资料后，实现的具体步骤如下。我们做一个demo数据。分别有三列。</p>
+<table>
+<thead>
+<tr>
+<th>date</th>
+<th>name</th>
+<th>cost</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>202401</td>
+<td>abc</td>
+<td>10</td>
+</tr>
+<tr>
+<td>202402</td>
+<td>def</td>
+<td>20</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">Sub create()</span><br><span class="line"></span><br><span class="line">Dim pvtCache As PivotCache</span><br><span class="line">Dim pvt As pivotTable</span><br><span class="line">Set wks = Worksheets.Add</span><br><span class="line"></span><br><span class="line">Set pvtCache = ActiveWorkbook.PivotCaches.create(SourceType:=xlDatabase, SourceData:=Sheets(&quot;raw&quot;).Range(&quot;A1:C7&quot;))</span><br><span class="line">Set pvt = pvtCache.CreatePivotTable(TableDestination:=wks.Range(&quot;A3&quot;), DefaultVersion:=xlPivotTableVersion12)</span><br><span class="line">With pvt</span><br><span class="line">    With .PivotFields(&quot;date&quot;)</span><br><span class="line">    .Orientation = xlRowField  &#x27;添加到行</span><br><span class="line">    .Position = 1</span><br><span class="line">    End With</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    With .PivotFields(&quot;name&quot;)</span><br><span class="line">        .Orientation = xlColumnField  &#x27;添加到列</span><br><span class="line">        .Position = 1</span><br><span class="line">    End With</span><br><span class="line">    </span><br><span class="line">    With .PivotFields(&quot;cost&quot;)</span><br><span class="line">        .Orientation = xlPageField  &#x27;添加到筛选</span><br><span class="line">        .Position = 1</span><br><span class="line">    End With</span><br><span class="line"></span><br><span class="line"> .AddDataField .PivotFields(&quot;cost&quot;), &quot;cost total&quot;, xlSum</span><br><span class="line">End With</span><br><span class="line">End Sub</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>在实现过程中，刚开始会一直报错，有部分原因是这个pvtcache问题。可以关闭excel重新打开运行。<br>另外，针对一些样式设置。  下面的语法，可以取消层级的统计和重复显示这个数据（类似tabular）。<br><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://img.gooday.press/blog-img202410261319997.png"
+                       
+                 ></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">With .PivotFields(&quot;cost&quot;)</span><br><span class="line">   .Orientation = xlRowField</span><br><span class="line">   .LayoutForm = xlTabular</span><br><span class="line">   .RepeatLabels = True</span><br><span class="line">    .Subtotals _</span><br><span class="line">   = Array(False, False, False, False, False, False, False, False, False, False, False, False _</span><br><span class="line">   )</span><br><span class="line">   End With</span><br></pre></td></tr></table></figure>
+
+<h3 id="数据处理的反思"><a href="#数据处理的反思" class="headerlink" title="数据处理的反思"></a>数据处理的反思</h3><p>在过去一段时间，我们在分析数据时往往依赖于EXCEL公式和VBA处理。当后面接触了Python和powerbi,慢慢就进行了一些转变。自动化数据处理部分开始使用python搭配windows计划任务来实现，而展示部分使用powerbi来实现。</p>
+<p>这样的好处是什么呢？就像上面的枢纽分析表一样，我们用powerbi可能很快就搭建好一个矩阵，放置上对应的筛选器就可以了。如果需要权限限制，我们配上对应的角色控制。而用VBA，往往要写代码，debug很久。很难做到低代码实现。<br>如下图，可以配置不同的账户，不同的权限。<br><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://img.gooday.press/blog-img202410261332670.png"
+                        alt="Powerbi user role"
+                 ><br>而自动化Python呢，有各种成熟的库供我们调用，数据的处理速度也要快很多。所以我渐渐的减少VBA的使用频率。当然VBA有其本身的优势，就是无需额外安装，直接就可以调用。但是从目前的趋势来看，微软也慢慢将python加到excel编辑环境里面来了。</p>
+<p>最后要说的是，工具虽然便利，同样还要看最终的需求，就像我推荐了半天powerbi，然后客户或者老板就要看excel。那也只能慢慢研究。<strong>多备几个锤子，哪个能砸的了钉子就用哪个砸。</strong></p>
 
                     
                 </div>
@@ -398,31 +437,15 @@
                 
                     <div class="post-nav border-box">
                         
-                            <div class="prev-post">
-                                <a class="prev"
-                                   rel="prev"
-                                   href="/2024/10/26/VBA%E7%9A%84%E5%BA%94%E7%94%A8%E4%B8%A4%E4%BE%8B/"
-                                   title="VBA的应用两例"
-                                >
-                                    <span class="left arrow-icon flex-center">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </span>
-                                    <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">VBA的应用两例</span>
-                                        <span class="post-nav-item">上一篇</span>
-                                    </span>
-                                </a>
-                            </div>
-                        
                         
                             <div class="next-post">
                                 <a class="next"
                                    rel="next"
-                                   href="/2024/09/28/PowerBI-Rankx%E7%94%A8%E6%B3%95/"
-                                   title="PowerBI-Rankx用法"
+                                   href="/2024/10/12/PowerBI-%E5%BB%BA%E6%A8%A1%E5%8F%8D%E6%80%9D/"
+                                   title="PowerBI-建模反思"
                                 >
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">PowerBI-Rankx用法</span>
+                                        <span class="post-nav-title-item text-ellipsis">PowerBI-建模反思</span>
                                         <span class="post-nav-item">下一篇</span>
                                     </span>
                                     <span class="right arrow-icon flex-center">
@@ -522,7 +545,7 @@
             <div class="pc-post-toc right-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PowerBI-%E5%BB%BA%E6%A8%A1%E5%8F%8D%E6%80%9D"><span class="nav-number">1.</span> <span class="nav-text">PowerBI 建模反思</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#STAR%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">STAR模型</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#VBA%E5%BA%94%E7%94%A8%E4%B8%A4%E4%BE%8B%E4%B8%8E%E6%80%9D%E8%80%83"><span class="nav-number">1.</span> <span class="nav-text">VBA应用两例与思考</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B1-VBA%E5%A6%82%E4%BD%95%E6%90%AD%E9%85%8Dwindows%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%9D%A5%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96"><span class="nav-number">1.1.</span> <span class="nav-text">案例1 VBA如何搭配windows计划任务来实现自动化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90"><span class="nav-number">1.1.2.</span> <span class="nav-text">思路分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B2-VBA%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%88%9B%E5%BB%BA%E6%9E%A2%E7%BA%BD%E5%88%86%E6%9E%90%E8%A1%A8%E5%B9%B6%E6%A0%BC%E5%BC%8F%E5%8C%964"><span class="nav-number">1.2.</span> <span class="nav-text">案例2 VBA如何实现创建枢纽分析表并格式化4</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%83%8C%E6%99%AF-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.2.2.</span> <span class="nav-text">具体实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E7%9A%84%E5%8F%8D%E6%80%9D"><span class="nav-number">1.3.</span> <span class="nav-text">数据处理的反思</span></a></li></ol></li></ol>
     </div>
 </div>
 
@@ -709,7 +732,7 @@
             <div class="tablet-post-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PowerBI-%E5%BB%BA%E6%A8%A1%E5%8F%8D%E6%80%9D"><span class="nav-number">1.</span> <span class="nav-text">PowerBI 建模反思</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#STAR%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">STAR模型</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#VBA%E5%BA%94%E7%94%A8%E4%B8%A4%E4%BE%8B%E4%B8%8E%E6%80%9D%E8%80%83"><span class="nav-number">1.</span> <span class="nav-text">VBA应用两例与思考</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B1-VBA%E5%A6%82%E4%BD%95%E6%90%AD%E9%85%8Dwindows%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%9D%A5%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96"><span class="nav-number">1.1.</span> <span class="nav-text">案例1 VBA如何搭配windows计划任务来实现自动化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90"><span class="nav-number">1.1.2.</span> <span class="nav-text">思路分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B2-VBA%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%88%9B%E5%BB%BA%E6%9E%A2%E7%BA%BD%E5%88%86%E6%9E%90%E8%A1%A8%E5%B9%B6%E6%A0%BC%E5%BC%8F%E5%8C%964"><span class="nav-number">1.2.</span> <span class="nav-text">案例2 VBA如何实现创建枢纽分析表并格式化4</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%83%8C%E6%99%AF-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.2.2.</span> <span class="nav-text">具体实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E7%9A%84%E5%8F%8D%E6%80%9D"><span class="nav-number">1.3.</span> <span class="nav-text">数据处理的反思</span></a></li></ol></li></ol>
     </div>
 </div>
 
