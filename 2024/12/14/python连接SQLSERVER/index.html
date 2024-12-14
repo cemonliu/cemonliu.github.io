@@ -9,7 +9,7 @@
     
     <title>
         
-            hexo与git搭配问题 |
+            python连接SQL SERVER |
         
         Keep Learning
     </title>
@@ -265,7 +265,7 @@
             <div class="post-content-bottom border-box">
                 
                     <div class="post-title">
-                        hexo与git搭配问题
+                        python连接SQL SERVER
                     </div>
                 
 
@@ -293,12 +293,12 @@
         
             <span class="meta-info-item post-create-date">
                 <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
-                <span class="datetime">2021-09-11 15:35:07</span>
+                <span class="datetime">2024-12-14 18:34:48</span>
             </span>
 
             <span class="meta-info-item post-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="datetime" data-updated="Thu Jun 08 2023 14:44:37 GMT+0800">2023-06-08 14:44:37</span>
+                <span class="datetime" data-updated="Sat Dec 14 2024 18:45:03 GMT+0800">2024-12-14 18:45:03</span>
             </span>
         
 
@@ -337,13 +337,21 @@
                     
 
                     
-                         <h2 id="Hexo-github-action部署修改配置"><a href="#Hexo-github-action部署修改配置" class="headerlink" title="Hexo github action部署修改配置"></a>Hexo github action部署修改配置</h2><p>之前用Hexo部署的时候一直把源代码放在公共仓库的。今天看到大家都把代码放到私有仓库再透过github Action来部署。<a class="link"   target="_blank" rel="noopener" href="https://juejin.cn/post/6943895271751286821" >Hexo的具体的教程<i class="fas fa-external-link-alt"></i></a>。按照教程可以轻松的配置出来。</p>
-<p>问题在于当我使用了两个仓库分别放源码和网页文件时，出现了在使用<code>hexo deploy</code> 和<code>hexo backup</code>命令时始终push到一个仓库的问题。经过几次测试。解决方案如下，</p>
-<p>1.要在git里面新增一个额外的remote连接。<code>git remote add origin &lt;remote-url&gt;  </code>.</p>
-<p>2.修改_config.yml</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span> </span><br><span class="line">    <span class="attr">github:</span> <span class="string">git@github.com:cemonliu/XXXX1,master</span>  <span class="comment">#deploy链接的是github</span></span><br><span class="line"><span class="attr">backup:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span></span><br><span class="line">    <span class="attr">github2:</span> <span class="string">git@github.com:cemonliu/XXXX2.git,master</span>  <span class="comment">#这里需要另外链接一个github2</span></span><br></pre></td></tr></table></figure>
+                         <h2 id="Python连接SQL-Server并存储数据"><a href="#Python连接SQL-Server并存储数据" class="headerlink" title="Python连接SQL Server并存储数据"></a>Python连接SQL Server并存储数据</h2><blockquote>
+<p>之前的数据库都是使用的mysql。由于powerbi 使用sql server更方便，将后续的资料开始使用python转存到SQL server里面。</p>
+</blockquote>
+<h3 id="连接方法"><a href="#连接方法" class="headerlink" title="连接方法"></a>连接方法</h3><p>python的好处就在于对于不同的DB，只要调整前端的接口，后面的写入方法都不用调整。所以我们找到合适的连接sql server的connection即可。之前使用的是pymysql,现在将包换成pymssql即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</span><br><span class="line"><span class="keyword">import</span> pymssql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 替换以下连接信息</span></span><br><span class="line">server = <span class="string">&#x27;192.1.1.1&#x27;</span></span><br><span class="line">database = <span class="string">&#x27;xxxx&#x27;</span></span><br><span class="line">username = <span class="string">&#x27;user&#x27;</span></span><br><span class="line">password = <span class="string">&#x27;abc&#x27;</span></span><br><span class="line"><span class="comment"># 创建数据库引擎</span></span><br><span class="line">connection_string = <span class="string">f&#x27;mssql+pymssql://<span class="subst">&#123;username&#125;</span>:<span class="subst">&#123;password&#125;</span>@<span class="subst">&#123;server&#125;</span>:1433/<span class="subst">&#123;database&#125;</span>&#x27;</span></span><br><span class="line">engine = create_engine(connection_string)</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="comment"># 尝试连接并执行简单查询</span></span><br><span class="line">    <span class="keyword">with</span> engine.connect() <span class="keyword">as</span> conn:</span><br><span class="line">        result = pd.read_sql(<span class="string">&quot;SELECT 1&quot;</span>, conn)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;数据库连接成功！&quot;</span>)</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;连接失败：<span class="subst">&#123;<span class="built_in">str</span>(e)&#125;</span>&quot;</span>)</span><br><span class="line">df2 = pd.read_csv(<span class="string">&quot;test.csv&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(df2.head(<span class="number">5</span>))</span><br><span class="line">df2.to_sql(<span class="string">&quot;table name&quot;</span>, engine, if_exists=<span class="string">&quot;append&quot;</span>, index=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># print(df)</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>里面的名字是在git建立远程链接时设定的。经过这个小小的修改，后续就可以愉快的deploy和back up了。</p>
+
+<h3 id="问题整理"><a href="#问题整理" class="headerlink" title="问题整理"></a>问题整理</h3><ol>
+<li><p>使用odbc驱动时，会报如下异常错误。有人说使用高版本的drive可以解决。测试仍然不行，更换pymssql后没有问题。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlalchemy.exc.DBAPIError: (pyodbc.Error) (<span class="string">&#x27;HY104&#x27;</span>, <span class="string">&#x27;[HY104] [Microsoft][ODBC SQL Server Driver]無效的有效位數值 (0) (SQLBindParameter)&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
+<li><p>sql server的默认表都有<code>dbo</code> 实际调用的过程中，不用特别输入。</p>
+</li>
+<li><p>目前在数据处理和清洗过程中使用Pandas的频率最高，后期待整理常用的方法。</p>
+</li>
+</ol>
 
                     
                 </div>
@@ -387,31 +395,15 @@
                 
                     <div class="post-nav border-box">
                         
-                            <div class="prev-post">
-                                <a class="prev"
-                                   rel="prev"
-                                   href="/2021/10/14/batch%E8%87%AA%E5%8A%A8%E5%86%99%E5%85%A5hosts/"
-                                   title="bat文件学习"
-                                >
-                                    <span class="left arrow-icon flex-center">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </span>
-                                    <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">bat文件学习</span>
-                                        <span class="post-nav-item">上一篇</span>
-                                    </span>
-                                </a>
-                            </div>
-                        
                         
                             <div class="next-post">
                                 <a class="next"
                                    rel="next"
-                                   href="/2021/08/25/Notion%E5%AD%A6%E4%B9%A0-1/"
-                                   title="Notion API学习应用-1"
+                                   href="/2024/11/15/%E5%91%BD%E8%BF%90%E7%9A%84%E9%BD%BF%E8%BD%AE%E5%BC%80%E5%A7%8B%E6%97%8B%E8%BD%AC/"
+                                   title="命运的齿轮开始旋转"
                                 >
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">Notion API学习应用-1</span>
+                                        <span class="post-nav-title-item text-ellipsis">命运的齿轮开始旋转</span>
                                         <span class="post-nav-item">下一篇</span>
                                     </span>
                                     <span class="right arrow-icon flex-center">
@@ -511,7 +503,7 @@
             <div class="pc-post-toc right-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-github-action%E9%83%A8%E7%BD%B2%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">Hexo github action部署修改配置</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Python%E8%BF%9E%E6%8E%A5SQL-Server%E5%B9%B6%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE"><span class="nav-number">1.</span> <span class="nav-text">Python连接SQL Server并存储数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">连接方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%95%B4%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text">问题整理</span></a></li></ol></li></ol>
     </div>
 </div>
 
@@ -698,7 +690,7 @@
             <div class="tablet-post-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-github-action%E9%83%A8%E7%BD%B2%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">Hexo github action部署修改配置</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Python%E8%BF%9E%E6%8E%A5SQL-Server%E5%B9%B6%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE"><span class="nav-number">1.</span> <span class="nav-text">Python连接SQL Server并存储数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">连接方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%95%B4%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text">问题整理</span></a></li></ol></li></ol>
     </div>
 </div>
 
